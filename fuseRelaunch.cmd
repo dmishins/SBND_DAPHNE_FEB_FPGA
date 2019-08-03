@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/AFE_Fpga_A_tb_isim_beh.exe" -prj "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/AFE_Fpga_A_tb_beh.prj" "work.AFE_Fpga_A_tb" 

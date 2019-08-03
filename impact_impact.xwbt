@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/impact.xsl
+OUTFILE=/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/impact.xsl
+FAMILY=Multiple
+PART=Multiple
+WORKINGDIR=/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM
+LICENSE=iMPACT
+USER_INFO=iMPACT

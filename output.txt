@@ -1,0 +1,16 @@
+Storage Target: Generic Parallel PROM
+8M   [8388608]
+FF
+DMPROM2
+C:/Users/dmishins/Desktop/AFEDM
+
+BIN (Swap Bits ON)
+UP
+1
+0
+No
+ ON)
+UP
+1
+0
+No
