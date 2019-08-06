@@ -10,10 +10,10 @@ z2
 cModel Technology
 dC:/Users/dmishins/Desktop/AFEDM
 Eafe_dp_pipeline
-Z0 w1564534501
+Z0 w1564977140
 Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z2 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-Z3 d/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM
+Z3 d/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA
 Z4 8ipcore_dir/AFE_DP_Pipeline.vhd
 Z5 Fipcore_dir/AFE_DP_Pipeline.vhd
 l0
@@ -22,9 +22,9 @@ VJSGWATjT@gl:ZD`2V7zLQ3
 !s100 55FXfkkA9TgTh:ofhP8FO3
 Z6 OP;C;2019.1;69
 31
-Z7 !s110 1564714625
+Z7 !s110 1565100819
 !i10b 1
-Z8 !s108 1564714625.000000
+Z8 !s108 1565100819.000000
 Z9 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/AFE_DP_Pipeline.vhd|
 Z10 !s107 ipcore_dir/AFE_DP_Pipeline.vhd|
 !i113 1
@@ -52,72 +52,72 @@ R10
 R11
 R12
 Eafe_fpga_a_tb
-Z16 w1564675841
-R13
+Z16 w1565118017
 R14
+R13
 Z17 DPx6 unisim 11 vcomponents 0 22 53@LQCfFMgObS4SGJhV@]3
 Z18 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
 Z19 DPx4 work 9 proj_defs 0 22 RK:bYG4]B6OS8<<oI0eZY1
 R1
 R2
 R3
-Z20 8AFE_Fpga_A_tb.vhd
-Z21 FAFE_Fpga_A_tb.vhd
+Z20 8/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/AFE_Fpga_A_tb.vhd
+Z21 F/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/AFE_Fpga_A_tb.vhd
 l0
 L188
-VeaZTzE1g83h<aJU<dJ@912
-!s100 ^ib:nDW`akbC<LZE6OlOX3
+V<0O3]3IC;?ja8>cD8nCca1
+!s100 zfWT:]eFU@Z>@aX`5Dm911
 R6
-31
-Z22 !s110 1564714627
+32
+Z22 !s110 1565118026
 !i10b 1
-Z23 !s108 1564714627.000000
-Z24 !s90 -reportprogress|300|-explicit|-93|AFE_Fpga_A_tb.vhd|
-Z25 !s107 AFE_Fpga_A_tb.vhd|
+Z23 !s108 1565118025.000000
+Z24 !s90 -reportprogress|300|-work|work|/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/AFE_Fpga_A_tb.vhd|
+Z25 !s107 /media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/AFE_Fpga_A_tb.vhd|
 !i113 1
-R11
+Z26 o-work work
 R12
 Abehavior
-R13
 R14
+R13
 R17
 R18
 R19
 R1
 R2
-DEx4 work 13 afe_fpga_a_tb 0 22 eaZTzE1g83h<aJU<dJ@912
-l355
+Z27 DEx4 work 13 afe_fpga_a_tb 0 22 <0O3]3IC;?ja8>cD8nCca1
+l356
 L191
-V[93>9<P>mZe>4=R8cTX8H3
-!s100 m4z]>S97kB4178`[ihPhO3
+VlnWI;7]P@W:oEEOc:55o40
+!s100 [BW;JnkGZ6?Q[XUYBB:_U2
 R6
-31
+32
 R22
 !i10b 1
 R23
 R24
 R25
 !i113 1
-R11
+R26
 R12
 Eafe_front_pipeline
-Z26 w1564535072
+R0
 R1
 R2
 R3
-Z27 8ipcore_dir/AFE_FRONT_Pipeline.vhd
-Z28 Fipcore_dir/AFE_FRONT_Pipeline.vhd
+Z28 8ipcore_dir/AFE_FRONT_Pipeline.vhd
+Z29 Fipcore_dir/AFE_FRONT_Pipeline.vhd
 l0
 L43
 VV2IZh2B2jXigGhCZ`Ubh72
 !s100 M4]bNjDb?JZ;li@lalTI63
 R6
 31
-Z29 !s110 1564714626
+Z30 !s110 1565100820
 !i10b 1
-Z30 !s108 1564714626.000000
-Z31 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/AFE_FRONT_Pipeline.vhd|
-Z32 !s107 ipcore_dir/AFE_FRONT_Pipeline.vhd|
+Z31 !s108 1565100820.000000
+Z32 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/AFE_FRONT_Pipeline.vhd|
+Z33 !s107 ipcore_dir/AFE_FRONT_Pipeline.vhd|
 !i113 1
 R11
 R12
@@ -134,16 +134,16 @@ VoQlgBK]zOmPTU]VfND<7P2
 !s100 2kd@?P_SGzNi2>ONCdNGi3
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
 R31
 R32
+R33
 !i113 1
 R11
 R12
 Ebs_rx
-Z33 w1562956030
+R0
 R17
 R18
 R19
@@ -160,9 +160,9 @@ V54nS8@Va[7PhSegjTk2HQ3
 !s100 =oe9b4c5:2jhR>5SN3Yei3
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 Z36 !s90 -reportprogress|300|-explicit|-93|FM_Tx_Rx.vhd|
 Z37 !s107 FM_Tx_Rx.vhd|
 !i113 1
@@ -183,39 +183,39 @@ VZ0TJjK128>RAV^[<3zll:3
 !s100 E`dLUj2ko9HAfmV746dD43
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
 R11
 R12
 Ecmd_fifo
-Z38 w1564534444
+R0
 R1
 R2
 R3
-Z39 8ipcore_dir/CMD_Fifo.vhd
-Z40 Fipcore_dir/CMD_Fifo.vhd
+Z38 8ipcore_dir/CMD_Fifo.vhd
+Z39 Fipcore_dir/CMD_Fifo.vhd
 l0
 L43
 VgAWFWJAD]n[c>=hOREP>W2
 !s100 cg4E=K6_LF1AFPZ<44V<13
 R6
 31
-Z41 !s110 1564714624
+Z40 !s110 1565100817
 !i10b 1
-Z42 !s108 1564714624.000000
-Z43 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/CMD_Fifo.vhd|
-Z44 !s107 ipcore_dir/CMD_Fifo.vhd|
+Z41 !s108 1565100817.000000
+Z42 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/CMD_Fifo.vhd|
+Z43 !s107 ipcore_dir/CMD_Fifo.vhd|
 !i113 1
 R11
 R12
 Acmd_fifo_a
 R13
 R14
-Z45 DEx13 xilinxcorelib 19 fifo_generator_v9_3 0 22 jHL>iHgZM_b4jHaHjNHW>3
+Z44 DEx13 xilinxcorelib 19 fifo_generator_v9_3 0 22 jHL>iHgZM_b4jHaHjNHW>3
 R1
 R2
 DEx4 work 8 cmd_fifo 0 22 gAWFWJAD]n[c>=hOREP>W2
@@ -225,21 +225,21 @@ Vd9j;]bb3WC]c:ZTEnL^m70
 !s100 gMk311XfWj4IQ=Gncn8:l0
 R6
 31
-R41
+R40
 !i10b 1
+R41
 R42
 R43
-R44
 !i113 1
 R11
 R12
 Edac_ram
-Z46 w1564534549
+R0
 R1
 R2
 R3
-Z47 8ipcore_dir/DAC_Ram.vhd
-Z48 Fipcore_dir/DAC_Ram.vhd
+Z45 8ipcore_dir/DAC_Ram.vhd
+Z46 Fipcore_dir/DAC_Ram.vhd
 l0
 L43
 VTfUQAU3jO4]=zkD4cOOEB0
@@ -249,8 +249,8 @@ R6
 R7
 !i10b 1
 R8
-Z49 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/DAC_Ram.vhd|
-Z50 !s107 ipcore_dir/DAC_Ram.vhd|
+Z47 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/DAC_Ram.vhd|
+Z48 !s107 ipcore_dir/DAC_Ram.vhd|
 !i113 1
 R11
 R12
@@ -270,29 +270,29 @@ R6
 R7
 !i10b 1
 R8
-R49
-R50
+R47
+R48
 !i113 1
 R11
 R12
 Edp_ram_1kx16
-Z51 w1564534842
+Z49 w1564977141
 R1
 R2
 R3
-Z52 8ipcore_dir/DP_Ram_1kx16.vhd
-Z53 Fipcore_dir/DP_Ram_1kx16.vhd
+Z50 8ipcore_dir/DP_Ram_1kx16.vhd
+Z51 Fipcore_dir/DP_Ram_1kx16.vhd
 l0
 L43
 VR9fgZ1T5120bGMBSab>CT2
 !s100 C:@e9M`k47RVhOg3068Q10
 R6
 31
-R29
+R7
 !i10b 1
-R30
-Z54 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/DP_Ram_1kx16.vhd|
-Z55 !s107 ipcore_dir/DP_Ram_1kx16.vhd|
+R8
+Z52 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/DP_Ram_1kx16.vhd|
+Z53 !s107 ipcore_dir/DP_Ram_1kx16.vhd|
 !i113 1
 R11
 R12
@@ -309,37 +309,37 @@ V0:0`klX7`LdGH0f9;X<e11
 !s100 dkWleQoDe3mGPJMnb82;@2
 R6
 31
-R29
+R7
 !i10b 1
-R30
-R54
-R55
+R8
+R52
+R53
 !i113 1
 R11
 R12
 Efeb_fpga_a
-Z56 w1564714905
+Z54 w1565028855
 R19
 R17
 R18
 R1
 R2
 R3
-Z57 8/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd
-Z58 F/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd
+Z55 8FEB_Fpga_A.vhd
+Z56 FFEB_Fpga_A.vhd
 l0
 L39
-V5Xlfd3Pah70XN98<17G^61
+VcX89TXbGO`BVRio?5i[jY0
 !s100 ]m`hjocHPHS]BY1b7SjJD3
 R6
-32
-Z59 !s110 1564714929
+31
+Z57 !s110 1565100821
 !i10b 1
-Z60 !s108 1564714929.000000
-Z61 !s90 -reportprogress|300|-work|work|/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd|
-Z62 !s107 /media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd|
+Z58 !s108 1565100821.000000
+Z59 !s90 -reportprogress|300|-explicit|-93|FEB_Fpga_A.vhd|
+Z60 !s107 FEB_Fpga_A.vhd|
 !i113 1
-Z63 o-work work
+R11
 R12
 Abehavioural
 R19
@@ -347,46 +347,46 @@ R17
 R18
 R1
 R2
-Z64 DEx4 work 10 feb_fpga_a 0 22 5Xlfd3Pah70XN98<17G^61
+DEx4 work 10 feb_fpga_a 0 22 cX89TXbGO`BVRio?5i[jY0
 l327
 L89
-Z65 V4:o8d^@b37:`oeY:<l3hL1
-Z66 !s100 25HhH3X^7d53Xi<FfMO7O2
+V0m2X1WeJ3ME4QK_bKT0D93
+!s100 Z<e>XQEEDzTMnNNUR5NVT0
 R6
-32
-R59
+31
+R57
 !i10b 1
+R58
+R59
 R60
-R61
-R62
 !i113 1
-R63
+R11
 R12
 Efifo_dc_32x1
-Z67 w1564535019
+R49
 R1
 R2
 R3
-Z68 8ipcore_dir/FIFO_DC_32x1.vhd
-Z69 Fipcore_dir/FIFO_DC_32x1.vhd
+Z61 8ipcore_dir/FIFO_DC_32x1.vhd
+Z62 Fipcore_dir/FIFO_DC_32x1.vhd
 l0
 L43
 V>W7^hdC`jUh[NnXNZo;^T3
 !s100 Xnl8TUn5@CWHz^m]NUI^62
 R6
 31
-R29
-!i10b 1
 R30
-Z70 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/FIFO_DC_32x1.vhd|
-Z71 !s107 ipcore_dir/FIFO_DC_32x1.vhd|
+!i10b 1
+R31
+Z63 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/FIFO_DC_32x1.vhd|
+Z64 !s107 ipcore_dir/FIFO_DC_32x1.vhd|
 !i113 1
 R11
 R12
 Afifo_dc_32x1_a
 R13
 R14
-R45
+R44
 R1
 R2
 DEx4 work 12 fifo_dc_32x1 0 22 >W7^hdC`jUh[NnXNZo;^T3
@@ -396,16 +396,16 @@ V3W@nId_B]eWTVIai_C?Qb2
 !s100 =3L0SX<<Voo=BK=L`n3>^1
 R6
 31
-R29
-!i10b 1
 R30
-R70
-R71
+!i10b 1
+R31
+R63
+R64
 !i113 1
 R11
 R12
 Efm_rx
-R33
+R0
 R17
 R18
 R19
@@ -422,9 +422,9 @@ Vn:Kc[kXBI>4f3o5^Z=T2f3
 !s100 D0`Q`SJDRO`@M`<Dg6dfX2
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
@@ -445,16 +445,16 @@ V6kh9gbWL[LZkEP7FLfEGL3
 !s100 5<=<<dakz??<e0YR9;JPG0
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
 R11
 R12
 Efm_tx
-R33
+R0
 R17
 R18
 R19
@@ -471,9 +471,9 @@ VI8SUl5=C_3:QOU?kaR5Cn3
 !s100 3ZK]X2=:KGgAnO1DZNMgB3
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
@@ -481,7 +481,7 @@ R11
 R12
 Abehavioural
 R16
-Z72 DEx4 work 5 fm_tx 0 22 I8SUl5=C_3:QOU?kaR5Cn3
+Z65 DEx4 work 5 fm_tx 0 22 I8SUl5=C_3:QOU?kaR5Cn3
 R17
 R18
 R19
@@ -493,17 +493,17 @@ R20
 R21
 l34
 L21
-Vmg9016HmlBzB>dNgP0VzN3
-!s100 iJCo@EO1aELE_a;zgMNF91
+Z66 V6aCPz6=NFibUkTa:MVkU<3
+Z67 !s100 iJCo@EO1aELE_a;zgMNF91
 R6
-31
+32
 R22
 !i10b 1
 R23
 R24
 R25
 !i113 1
-R11
+R26
 R12
 Abehavioural_tx
 R17
@@ -513,28 +513,28 @@ R13
 R14
 R1
 R2
-R72
+R65
 l34
 L21
 VQ?h:T9aFQVaKPgC;96@WA1
 !s100 alOK3HNmOlelUaO4;J63Z1
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
 R11
 R12
 Ehist_ram
-Z73 w1564534624
+R49
 R1
 R2
 R3
-Z74 8ipcore_dir/Hist_Ram.vhd
-Z75 Fipcore_dir/Hist_Ram.vhd
+Z68 8ipcore_dir/Hist_Ram.vhd
+Z69 Fipcore_dir/Hist_Ram.vhd
 l0
 L43
 V<I>Olca?UDKZM;=QnhRWT0
@@ -544,8 +544,8 @@ R6
 R7
 !i10b 1
 R8
-Z76 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/Hist_Ram.vhd|
-Z77 !s107 ipcore_dir/Hist_Ram.vhd|
+Z70 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/Hist_Ram.vhd|
+Z71 !s107 ipcore_dir/Hist_Ram.vhd|
 !i113 1
 R11
 R12
@@ -565,31 +565,31 @@ R6
 R7
 !i10b 1
 R8
-R76
-R77
+R70
+R71
 !i113 1
 R11
 R12
 Eiodrp_controller
-Z78 w1564534455
+R49
 R14
 R13
 R1
 R2
 R3
-Z79 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd
-Z80 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd
+Z72 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd
+Z73 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd
 l0
 L78
 V<i8WY=3??9i4Oib_S3?k^0
 !s100 2>^AYFQ<di[KF[RW9hmCb1
 R6
 31
-R41
+R40
 !i10b 1
-R42
-Z81 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd|
-Z82 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd|
+R41
+Z74 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd|
+Z75 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd|
 !i113 1
 R11
 R12
@@ -605,34 +605,34 @@ V1KPjfHL1TO4R5TUjA73D02
 !s100 S1Y1g1KTf2eG6kBHR=X=H1
 R6
 31
-R41
+R40
 !i10b 1
-R42
-R81
-R82
+R41
+R74
+R75
 !i113 1
 R11
 R12
 Eiodrp_mcb_controller
-R78
+R49
 R14
 R13
 R1
 R2
 R3
-Z83 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd
-Z84 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd
+Z76 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd
+Z77 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd
 l0
 L76
 VgN<NOZGSaJ<=3L_oIC_LD3
 !s100 :UnY[g6Y_ao<fVFT9KGF^2
 R6
 31
-R41
+R40
 !i10b 1
-R42
-Z85 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd|
-Z86 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd|
+R41
+Z78 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd|
+Z79 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd|
 !i113 1
 R11
 R12
@@ -648,32 +648,32 @@ V]jz[XH3n7QZ1Y>^UleXB@1
 !s100 ;^jWl^V<]3g0[:J9XfmOW3
 R6
 31
-R41
+R40
 !i10b 1
-R42
-R85
-R86
+R41
+R78
+R79
 !i113 1
 R11
 R12
 Elpddr_ctrl
-R78
+R49
 R1
 R2
 R3
-Z87 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd
-Z88 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd
+Z80 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd
+Z81 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd
 l0
 L68
 ViYD9]HMlgY8a2Dijok2X00
 !s100 7X`@h=jl^KXBeKkdZg@Nd0
 R6
 31
-R7
+Z82 !s110 1565100818
 !i10b 1
-R8
-Z89 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd|
-Z90 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd|
+Z83 !s108 1565100818.000000
+Z84 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd|
+Z85 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd|
 !i113 1
 R11
 R12
@@ -687,21 +687,21 @@ Vcc9@?6jneQW^g8QlnN]z_2
 !s100 T4[Oa^;JY;`7ACJenUdgF1
 R6
 31
-R7
+R82
 !i10b 1
-R8
-R89
-R90
+R83
+R84
+R85
 !i113 1
 R11
 R12
 Elvdstxbuff
-Z91 w1564534708
+R49
 R1
 R2
 R3
-Z92 8ipcore_dir/LVDSTxBuff.vhd
-Z93 Fipcore_dir/LVDSTxBuff.vhd
+Z86 8ipcore_dir/LVDSTxBuff.vhd
+Z87 Fipcore_dir/LVDSTxBuff.vhd
 l0
 L43
 V3jlgjlS6D>^;NHkA1>Z=i2
@@ -711,15 +711,15 @@ R6
 R7
 !i10b 1
 R8
-Z94 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LVDSTxBuff.vhd|
-Z95 !s107 ipcore_dir/LVDSTxBuff.vhd|
+Z88 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LVDSTxBuff.vhd|
+Z89 !s107 ipcore_dir/LVDSTxBuff.vhd|
 !i113 1
 R11
 R12
 Alvdstxbuff_a
 R13
 R14
-R45
+R44
 R1
 R2
 DEx4 work 10 lvdstxbuff 0 22 3jlgjlS6D>^;NHkA1>Z=i2
@@ -732,32 +732,32 @@ R6
 R7
 !i10b 1
 R8
-R94
-R95
+R88
+R89
 !i113 1
 R11
 R12
 Emcb_raw_wrapper
-R78
+R49
 R17
 R14
 R13
 R1
 R2
 R3
-Z96 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd
-Z97 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd
+Z90 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd
+Z91 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd
 l0
 L135
 VI0;G_B6Of>6F_O39cC?NV2
 !s100 JU<D`9a:T64h0lz`[6J>]1
 R6
 31
-R41
+R82
 !i10b 1
-R42
-Z98 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd|
-Z99 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd|
+R83
+Z92 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd|
+Z93 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd|
 !i113 1
 R11
 R12
@@ -774,35 +774,35 @@ VY]HY<cb7FC>F@?;:PB6n=1
 !s100 a2`QI=njmjaz8W?4eIHLN1
 R6
 31
-R41
+R82
 !i10b 1
-R42
-R98
-R99
+R83
+R92
+R93
 !i113 1
 R11
 R12
 Emcb_soft_calibration
-R78
+R49
 R18
 R14
 R13
 R1
 R2
 R3
-Z100 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd
-Z101 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd
+Z94 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd
+Z95 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd
 l0
 L115
 V:EGh<5gZ?;X0VnA5@lbKU2
 !s100 oU:a3XC@V;NE4nUMcB`?U1
 R6
 31
-R41
+R40
 !i10b 1
-R42
-Z102 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd|
-Z103 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd|
+R41
+Z96 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd|
+Z97 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd|
 !i113 1
 R11
 R12
@@ -819,35 +819,35 @@ VHL3?MGMOX:g38f<I@F7`g3
 !s100 =c3LdjFnDV93el_@I[mSl2
 R6
 31
-R41
+R40
 !i10b 1
-R42
-R102
-R103
+R41
+R96
+R97
 !i113 1
 R11
 R12
 Emcb_soft_calibration_top
-R78
+R49
 R17
 R14
 R13
 R1
 R2
 R3
-Z104 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd
-Z105 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd
+Z98 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd
+Z99 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd
 l0
 L84
 VO>5:Ig@=CcIWm[b_Ni:AE0
 !s100 0b6P=jdM[13B[FX3C9^WK3
 R6
 31
-R41
+R82
 !i10b 1
-R42
-Z106 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd|
-Z107 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd|
+R41
+Z100 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd|
+Z101 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd|
 !i113 1
 R11
 R12
@@ -864,33 +864,33 @@ VS9]mbiUBo<OoYdPE0lZCD2
 !s100 N=98PcXg9TgA7:6UR1f[J1
 R6
 31
-R41
+R82
 !i10b 1
-R42
-R106
-R107
+R41
+R100
+R101
 !i113 1
 R11
 R12
 Ememc3_infrastructure
-R78
+R49
 R17
 R1
 R2
 R3
-Z108 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd
-Z109 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd
+Z102 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd
+Z103 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd
 l0
 L70
 VleK71l?=`aPbbNW`UJc0d2
 !s100 9NFXTWdlABnf;_U;4F:Ae2
 R6
 31
-R7
+R82
 !i10b 1
-R8
-Z110 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd|
-Z111 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd|
+R83
+Z104 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd|
+Z105 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd|
 !i113 1
 R11
 R12
@@ -905,35 +905,35 @@ V[GO9afCYnONDY@;VY@9W?3
 !s100 ]XahMo;Pbkf1He9>Y7lHY3
 R6
 31
-R7
+R82
 !i10b 1
-R8
-R110
-R111
+R83
+R104
+R105
 !i113 1
 R11
 R12
 Ememc3_wrapper
-R78
+R49
 R18
 R14
 R13
 R1
 R2
 R3
-Z112 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd
-Z113 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd
+Z106 8ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd
+Z107 Fipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd
 l0
 L70
 V[Og`iWU6mEb6b2`C;9_[T2
 !s100 1a8=>f?V4bUTQ^JPTk9Ak1
 R6
 31
-R7
+R82
 !i10b 1
-R8
-Z114 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd|
-Z115 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd|
+R83
+Z108 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd|
+Z109 !s107 ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd|
 !i113 1
 R11
 R12
@@ -950,35 +950,35 @@ VO6MB3?:3z=_^;0gYe0Fgn1
 !s100 XWgRO>1FA]^Yje<?bd>nF2
 R6
 31
-R7
+R82
 !i10b 1
-R8
-R114
-R115
+R83
+R108
+R109
 !i113 1
 R11
 R12
 Eone_wire
-Z116 w1562956040
+R0
 R17
 R19
 R18
 R1
 R2
 R3
-Z117 8One_Wire.vhd
-Z118 FOne_Wire.vhd
+Z110 8One_Wire.vhd
+Z111 FOne_Wire.vhd
 l0
 L6
 V9cDnd^;`m1Z5:LKB^dLk81
 !s100 a;E8z>i1Bfjg?c[DQG70T3
 R6
 31
-R22
+R57
 !i10b 1
-R23
-Z119 !s90 -reportprogress|300|-explicit|-93|One_Wire.vhd|
-Z120 !s107 One_Wire.vhd|
+R58
+Z112 !s90 -reportprogress|300|-explicit|-93|One_Wire.vhd|
+Z113 !s107 One_Wire.vhd|
 !i113 1
 R11
 R12
@@ -995,11 +995,11 @@ VoMdib7h7WM>=E8`DX>bF@3
 !s100 zEcFec00GL_MI`01l`]i82
 R6
 31
-R22
+R57
 !i10b 1
-R23
-R119
-R120
+R58
+R112
+R113
 !i113 1
 R11
 R12
@@ -1008,7 +1008,7 @@ R17
 R18
 R1
 R2
-w1564714494
+R0
 R3
 8Proj_Defs.vhd
 FProj_Defs.vhd
@@ -1018,39 +1018,39 @@ VRK:bYG4]B6OS8<<oI0eZY1
 !s100 >gao88[G2[6M0Lc?o[Bh73
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 !s90 -reportprogress|300|-explicit|-93|Proj_Defs.vhd|
 !s107 Proj_Defs.vhd|
 !i113 1
 R11
 R12
 Escfifo_1kx16
-Z121 w1564714366
+R49
 R1
 R2
 R3
-Z122 8ipcore_dir/SCFIFO_1kx16.vhd
-Z123 Fipcore_dir/SCFIFO_1kx16.vhd
+Z114 8ipcore_dir/SCFIFO_1kx16.vhd
+Z115 Fipcore_dir/SCFIFO_1kx16.vhd
 l0
 L43
 V8Rk<d[]SQ5:O9aBeR<Pn:3
 !s100 i]IOTc51ER^ZVg;JF^US>1
 R6
 31
-R29
+R7
 !i10b 1
-R30
-Z124 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/SCFIFO_1kx16.vhd|
-Z125 !s107 ipcore_dir/SCFIFO_1kx16.vhd|
+R8
+Z116 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/SCFIFO_1kx16.vhd|
+Z117 !s107 ipcore_dir/SCFIFO_1kx16.vhd|
 !i113 1
 R11
 R12
 Ascfifo_1kx16_a
 R13
 R14
-R45
+R44
 R1
 R2
 DEx4 work 12 scfifo_1kx16 0 22 8Rk<d[]SQ5:O9aBeR<Pn:3
@@ -1060,21 +1060,21 @@ V1j>Q8UA^bARaJI^SLiJ3T2
 !s100 e`9hoeNzC3Wc0g:o<GQ9m0
 R6
 31
-R29
+R7
 !i10b 1
-R30
-R124
-R125
+R8
+R116
+R117
 !i113 1
 R11
 R12
 Escfifo_32x256
-Z126 w1564534792
+R49
 R1
 R2
 R3
-Z127 8ipcore_dir/SCFIFO_32x256.vhd
-Z128 Fipcore_dir/SCFIFO_32x256.vhd
+Z118 8ipcore_dir/SCFIFO_32x256.vhd
+Z119 Fipcore_dir/SCFIFO_32x256.vhd
 l0
 L43
 V97`f^C11i:<`e3o9Wd1T52
@@ -1084,15 +1084,15 @@ R6
 R7
 !i10b 1
 R8
-Z129 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/SCFIFO_32x256.vhd|
-Z130 !s107 ipcore_dir/SCFIFO_32x256.vhd|
+Z120 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/SCFIFO_32x256.vhd|
+Z121 !s107 ipcore_dir/SCFIFO_32x256.vhd|
 !i113 1
 R11
 R12
 Ascfifo_32x256_a
 R13
 R14
-R45
+R44
 R1
 R2
 DEx4 work 13 scfifo_32x256 0 22 97`f^C11i:<`e3o9Wd1T52
@@ -1102,35 +1102,35 @@ V6MM59:ddD>[H9Z_DNIDPR0
 !s100 D3>BVUVa?A:Qkh>>FHK2V0
 R6
 31
-R29
+R7
 !i10b 1
 R8
-R129
-R130
+R120
+R121
 !i113 1
 R11
 R12
 Eserdes_1_to_n_clk_ddr_s8_diff
-R116
+Z122 w1564977142
 R17
 R14
 R13
 R1
 R2
 R3
-Z131 8serdes_1_to_n_clk_ddr_s8_diff.vhd
-Z132 Fserdes_1_to_n_clk_ddr_s8_diff.vhd
+Z123 8serdes_1_to_n_clk_ddr_s8_diff.vhd
+Z124 Fserdes_1_to_n_clk_ddr_s8_diff.vhd
 l0
 L31
 VV6gB4B`e9R9_MlOEGF0Sz1
 !s100 PlQhG;]@l`2CTIL0;i`iJ1
 R6
 31
-R22
+R57
 !i10b 1
-R30
-Z133 !s90 -reportprogress|300|-explicit|-93|serdes_1_to_n_clk_ddr_s8_diff.vhd|
-Z134 !s107 serdes_1_to_n_clk_ddr_s8_diff.vhd|
+R31
+Z125 !s90 -reportprogress|300|-explicit|-93|serdes_1_to_n_clk_ddr_s8_diff.vhd|
+Z126 !s107 serdes_1_to_n_clk_ddr_s8_diff.vhd|
 !i113 1
 R11
 R12
@@ -1147,35 +1147,35 @@ VdU:zMzJzdYd0GQV2Skob=1
 !s100 l1NaRegalam_OmJIifQka2
 R6
 31
-R22
+R57
 !i10b 1
-R30
-R133
-R134
+R31
+R125
+R126
 !i113 1
 R11
 R12
 Eserdes_1_to_n_data_ddr_s8_diff
-R116
+R122
 R17
 R14
 R13
 R1
 R2
 R3
-Z135 8serdes_1_to_n_data_ddr_s8_diff.vhd
-Z136 Fserdes_1_to_n_data_ddr_s8_diff.vhd
+Z127 8serdes_1_to_n_data_ddr_s8_diff.vhd
+Z128 Fserdes_1_to_n_data_ddr_s8_diff.vhd
 l0
 L73
 V@00D>^]:HIhTaek2EFHHf3
 !s100 hY>4E0Cd2S]U2faC[8:KH1
 R6
 31
-R29
-!i10b 1
 R30
-Z137 !s90 -reportprogress|300|-explicit|-93|serdes_1_to_n_data_ddr_s8_diff.vhd|
-Z138 !s107 serdes_1_to_n_data_ddr_s8_diff.vhd|
+!i10b 1
+R31
+Z129 !s90 -reportprogress|300|-explicit|-93|serdes_1_to_n_data_ddr_s8_diff.vhd|
+Z130 !s107 serdes_1_to_n_data_ddr_s8_diff.vhd|
 !i113 1
 R11
 R12
@@ -1192,16 +1192,16 @@ V04L4Y>LdYabOk=Baoh^Lh0
 !s100 c[LgaGfSmREUaghR2zBD01
 R6
 31
-R29
-!i10b 1
 R30
-R137
-R138
+!i10b 1
+R31
+R129
+R130
 !i113 1
 R11
 R12
 Esyspll
-Z139 w1564534572
+R49
 R17
 R18
 R14
@@ -1209,8 +1209,8 @@ R13
 R1
 R2
 R3
-Z140 8ipcore_dir/SysPLL.vhd
-Z141 Fipcore_dir/SysPLL.vhd
+Z131 8ipcore_dir/SysPLL.vhd
+Z132 Fipcore_dir/SysPLL.vhd
 l0
 L76
 VTEcfVZal@B8zY;hcU^HDm0
@@ -1220,8 +1220,8 @@ R6
 R7
 !i10b 1
 R8
-Z142 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/SysPLL.vhd|
-Z143 !s107 ipcore_dir/SysPLL.vhd|
+Z133 !s90 -reportprogress|300|-explicit|-93|ipcore_dir/SysPLL.vhd|
+Z134 !s107 ipcore_dir/SysPLL.vhd|
 !i113 1
 R11
 R12
@@ -1242,13 +1242,13 @@ R6
 R7
 !i10b 1
 R8
-R142
-R143
+R133
+R134
 !i113 1
 R11
 R12
 Etclk_rx
-R33
+R0
 R17
 R18
 R19
@@ -1265,9 +1265,9 @@ VC]oeT@ajT4Glb`1E;nlGM2
 !s100 NNfAFY79n;`37RQM4cUb90
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
@@ -1288,16 +1288,16 @@ VBeEmYCiAH3>mAihadce>j1
 !s100 TkD2R5[aE]O[zzkUD8GUF3
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
 R11
 R12
 Etclk_tx
-R33
+R0
 R17
 R18
 R19
@@ -1314,9 +1314,9 @@ V15UBO1BWiFD6<LmL^k>M90
 !s100 9nBnGSoPc1RBLkfDkCDEo3
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1
@@ -1337,9 +1337,9 @@ Vi>1mBM;];8D=dOBm[0kiH3
 !s100 1ZF;7IMNF_WW>i2`<:[f`0
 R6
 31
-R29
-!i10b 1
 R30
+!i10b 1
+R31
 R36
 R37
 !i113 1

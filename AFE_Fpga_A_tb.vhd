@@ -178,7 +178,7 @@ end behavioural; -- of Serial_Tx
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 use work.Proj_defs.all;
-use ieee.std_logic_arith.all;
+--use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
 
 -- Uncomment the following library declaration if using
@@ -249,7 +249,7 @@ END COMPONENT;
    signal CpldCS : std_logic := '0';
    signal uCRd : std_logic := '0';
    signal uCWr : std_logic := '0';
-   signal uCA : AddrPins := (others => '0');
+   signal uCA : std_logic_vector(11 downto 0) := (others => '0');
    signal GA : std_logic_vector(1 downto 0) := (others => '0');
    signal AFESDO : std_logic := '0';
    signal AFEDCO_P : std_logic_vector(1 downto 0) := (others => '0');
@@ -281,7 +281,6 @@ END COMPONENT;
    signal DACCS : std_logic_vector(2 downto 0);
    signal DACClk,DACDat,DACLd : std_logic;
    signal Debug : std_logic_vector(10 downto 1);
-	signal FlipBit: std_logic;
 
 -- user defined types
 
@@ -317,7 +316,7 @@ signal DDR_LSFR0,DDR_LSFR1 : DDR_LSFR_Array;
 
    -- Clock period definitions
 	constant VXO_period : time := 10 ns; -- 6.277 ns;
-	constant DCO_period : time := 2.083333 ns;
+	constant DCO_period : time := 2.1 ns;
 	constant RF_Period : time := 18.831 ns;
 
 signal iAFEFR : std_logic_vector(11 downto 0);
@@ -333,6 +332,8 @@ Type DDR_Rx is (Idle,WaitCS0,WaitCS1,WaitCS2,WaitCS3,EnableDQS,DisableDQS);
 signal DDR_Rx_State : DDR_Rx;
 
 signal BitCount : std_logic_vector(3 downto 0);
+signal PULSECNT : unsigned(2 downto 0):= (others => '0');
+signal COUNT : unsigned(7 downto 0):= (others => '0');
 signal RdReg : std_logic_vector(15 downto 0);
 signal FMWord : std_logic_vector(23 downto 0);  
 signal PresentAD : AddrPtr;
@@ -442,12 +443,10 @@ end process;
   begin
 	AFEDCO_P <= "00";
 	AFEDCO_N <= "11";
---	FlipBit  <= '0';
-		wait for VXO_Period/9.6;
+		wait for DCO_period/2;
 	AFEDCO_P <= "11";
 	AFEDCO_N <= "00";
---	FlipBit  <= '1';
-		wait for VXO_Period/9.6;
+		wait for DCO_period/2;
    end process;
 
 VXO_process : process
@@ -456,12 +455,12 @@ VXO_process : process
 	VXO_N <= '1';
 	ClkB_P <= '0';
 	ClkB_N <= '1';
- wait for VXO_period/2;
+ wait for DCO_period*2.4;
 	VXO_P <= '1';
 	VXO_N <= '0';
 	ClkB_P <= '1';
 	ClkB_N <= '0';
- wait for VXO_period/2;
+ wait for DCO_period*2.4;
 end process;
 
 --GPI0_process : process
@@ -616,52 +615,60 @@ then
 	if AFEDCODL = "01" then 
 -- The framing signal is high at the beginning of the serial word
    iAFEFR <= X"FC0";
+	if COUNT(6) = '1' then
+		COUNT <= (Others => '0');
+		PULSECNT <= "111";
+	elsif PULSECNT /= "000" then
+		PULSECNT <= PULSECNT - 1;
+	else
+		COUNT <= COUNT + 1;
+		PULSECNT <= "000";
+	end if;
+
+	
 -- Load a random value, then shift out
-	TxReg0(i) <= DDR_LSFR0(i)(5) & DDR_LSFR0(i)(5) & DDR_LSFR0(i)(5) & DDR_LSFR0(i)(5) & DDR_LSFR0(i)(5) & DDR_LSFR0(i)(5) 
-	           & DDR_LSFR0(i)(5) & DDR_LSFR0(i)(4 downto 0);
-	TxReg1(i) <= DDR_LSFR1(i)(5) & DDR_LSFR1(i)(5) & DDR_LSFR1(i)(5) & DDR_LSFR1(i)(5) & DDR_LSFR1(i)(5) & DDR_LSFR1(i)(5)  
-	           & DDR_LSFR1(i)(5) & DDR_LSFR1(i)(4 downto 0);
+	case PULSECNT is
+	when "000" =>
+		TxReg0(i) <= X"00" & "0" & STD_LOGIC_VECTOR(COUNT(2 downto 0));
+		TxReg1(i) <= X"00" & "0" & STD_LOGIC_VECTOR(COUNT(2 downto 0));
+	when "111" =>
+		TxReg0(i) <= X"204";
+		TxReg1(i) <= X"204";
+	when "110" =>
+		TxReg0(i) <= X"103";
+		TxReg1(i) <= X"103";
+	when "101" =>
+		TxReg0(i) <= X"050";
+		TxReg1(i) <= X"050";
+	when "100" =>
+		TxReg0(i) <= X"030";
+		TxReg1(i) <= X"030";
+	when "011" =>
+		TxReg0(i) <= X"020";
+		TxReg1(i) <= X"020";
+	when "010" =>
+		TxReg0(i) <= X"010";
+		TxReg1(i) <= X"010";
+	when "001" =>
+		TxReg0(i) <= X"005";
+		TxReg1(i) <= X"005";
+	when others =>
+	end case;
 	else TxReg0(i) <= '0' & TxReg0(i)(11 downto 1);
 	     TxReg1(i) <= '0' & TxReg1(i)(11 downto 1);
-	iAFEFR <= iAFEFR(10 downto 0) & iAFEFR(11);
+		  iAFEFR <= iAFEFR(10 downto 0) & iAFEFR(11);
 	end if;
-	
--- Previously an 'endif' was right here.
-
---AFEDat0_P(i) <=     TxReg0(i)(0) after 0.5 ns;
---AFEDat0_N(i) <= not TxReg0(i)(0) after 0.5 ns;
-
---AFEDat1_P(i) <=     TxReg1(i)(0) after 0.5 ns;
---AFEDat1_P(i) <= not TxReg1(i)(0) after 0.5 ns;
-
---AFEFR_P <=     (iAFEFR(11) & iAFEFR(11)) after 0.5 ns;
---AFEFR_N <= not (iAFEFR(11) & iAFEFR(11)) after 0.5 ns;
-
---Change these variables in a different way.
-
---if FlipBit = '0' then
-AFEDat0_P(i) <= '1' after 0.5 ns;
-AFEDat0_N(i) <= '0' after 0.5 ns;
-AFEDat1_P(i) <= '1' after 0.5 ns;
-AFEDat1_N(i) <= '0' after 0.5 ns;
-
-AFEFR_P      <= '1' & '1' after 0.5 ns;
-AFEFR_N      <= '0' & '0' after 0.5 ns;
---end if;
-
---if FlipBit = '1' then
-AFEDat0_P(i) <= '0' after 0.5 ns;
-AFEDat0_N(i) <= '1' after 0.5 ns;
-AFEDat1_P(i) <= '1' after 0.5 ns;
-AFEDat1_N(i) <= '0' after 0.5 ns;
-
-AFEFR_P      <= '0' & '0' after 0.5 ns;
-AFEFR_N      <= '1' & '1' after 0.5 ns;
---end if;
-
-
 
 end if;
+
+AFEDat0_P(i) <=     TxReg0(i)(0) after 0.5 ns;
+AFEDat0_N(i) <= not TxReg0(i)(0) after 0.5 ns;
+
+AFEDat1_P(i) <=     TxReg1(i)(0) after 0.5 ns;
+AFEDat1_N(i) <= not TxReg1(i)(0) after 0.5 ns;
+
+AFEFR_P <=     (iAFEFR(11) & iAFEFR(11)) after 0.5 ns;
+AFEFR_N <= not (iAFEFR(11) & iAFEFR(11)) after 0.5 ns;
 
 end process;
 
@@ -953,7 +960,7 @@ end loop;
  	    uCA(9 downto 0) <= std_logic_vector(IntTrgEnAddr); 
  		  wait for 5 ns;
 		  CpldCS <= '0';
-        uCD <= X"0000";
+        uCD <= X"0002";
 		  uCWr <= '0';
 		  wait for 30 ns;
 		  uCWr <= '1';

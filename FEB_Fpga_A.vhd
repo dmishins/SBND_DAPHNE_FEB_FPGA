@@ -1145,7 +1145,7 @@ main : process(SysClk, CpldRst)
 	HistInterval <= X"0800"; HistMode <= '0'; HistChan <= "000"; HistEn <= "00"; 
 	HistGateCnt0 <= (others => '0');	HistGateCnt1 <= (others => '0'); 
 	IdleDL <= "00"; FMTxBuff_wreq <= '0';
-	SlfTrgEn <= '0'; GPIDL(1) <= "00"; ADCSmplCntReg <= "0010000000"; uBunch <= (others => '0');
+	SlfTrgEn <= '0'; GPIDL(1) <= "00"; ADCSmplCntReg <= "0000001000"; uBunch <= (others => '0');
 	Hist_wenb <= (others => "0"); HistAddrb <= (others => (others => '0')); 
 	Hist_Datb <= (others => (others => '0'));  Hist_Offset_Reg <= (X"FF6");
 	Rx1DatReg <= (others => '0');
