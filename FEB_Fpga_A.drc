@@ -1,7 +1,7 @@
 Release 14.7 Drc P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Thu Aug  1 22:14:16 2019
+Wed Aug  7 10:34:41 2019
 
 drc -z FEB_Fpga_A.ncd FEB_Fpga_A.pcf
 

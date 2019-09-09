@@ -1,5 +1,5 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Thu Aug 01 22:12:17 2019
+// Written by: Map P.20131013 on Wed Aug 07 10:30:26 2019
 //! **************************************************************************
 
 SCHEMATIC START;
@@ -582,15 +582,19 @@ TIMEGRP Sys_PLL_clkfx = BEL "AddrReg_0" BEL "AddrReg_1" BEL "AddrReg_2" BEL
         "DRAMRdBuffDat_14" BEL "DRAMRdBuffDat_15" BEL "PageWdCount_0" BEL
         "PageWdCount_1" BEL "PageWdCount_2" BEL "PageWdCount_3" BEL
         "PageWdCount_4" BEL "PageWdCount_5" BEL "PageWdCount_6" BEL
-        "PageWdCount_7" BEL "BiasTarget_0_0" BEL "BiasTarget_0_1" BEL
-        "BiasTarget_0_2" BEL "BiasTarget_0_3" BEL "BiasTarget_0_4" BEL
-        "BiasTarget_0_5" BEL "BiasTarget_0_6" BEL "BiasTarget_0_7" BEL
-        "BiasTarget_0_8" BEL "BiasTarget_0_9" BEL "BiasTarget_0_10" BEL
-        "BiasTarget_0_11" BEL "BiasTarget_1_0" BEL "BiasTarget_1_1" BEL
-        "BiasTarget_1_2" BEL "BiasTarget_1_3" BEL "BiasTarget_1_4" BEL
-        "BiasTarget_1_5" BEL "BiasTarget_1_6" BEL "BiasTarget_1_7" BEL
-        "BiasTarget_1_8" BEL "BiasTarget_1_9" BEL "BiasTarget_1_10" BEL
-        "BiasTarget_1_11" BEL "PipelineSet_0" BEL "PipelineSet_1" BEL
+        "PageWdCount_7" BEL "PageWdCount_8" BEL "PageWdCount_9" BEL
+        "BiasTarget_0_0" BEL "BiasTarget_0_1" BEL "BiasTarget_0_2" BEL
+        "BiasTarget_0_3" BEL "BiasTarget_0_4" BEL "BiasTarget_0_5" BEL
+        "BiasTarget_0_6" BEL "BiasTarget_0_7" BEL "BiasTarget_0_8" BEL
+        "BiasTarget_0_9" BEL "BiasTarget_0_10" BEL "BiasTarget_0_11" BEL
+        "BiasTarget_1_0" BEL "BiasTarget_1_1" BEL "BiasTarget_1_2" BEL
+        "BiasTarget_1_3" BEL "BiasTarget_1_4" BEL "BiasTarget_1_5" BEL
+        "BiasTarget_1_6" BEL "BiasTarget_1_7" BEL "BiasTarget_1_8" BEL
+        "BiasTarget_1_9" BEL "BiasTarget_1_10" BEL "BiasTarget_1_11" BEL
+        "ADCSmplCntReg_0" BEL "ADCSmplCntReg_1" BEL "ADCSmplCntReg_2" BEL
+        "ADCSmplCntReg_3" BEL "ADCSmplCntReg_4" BEL "ADCSmplCntReg_5" BEL
+        "ADCSmplCntReg_6" BEL "ADCSmplCntReg_7" BEL "ADCSmplCntReg_8" BEL
+        "ADCSmplCntReg_9" BEL "PipelineSet_0" BEL "PipelineSet_1" BEL
         "PipelineSet_2" BEL "PipelineSet_3" BEL "PipelineSet_4" BEL
         "PipelineSet_5" BEL "PipelineSet_6" BEL "PipelineSet_7" BEL
         "WidthReg_0" BEL "WidthReg_1" BEL "WidthReg_2" BEL "WidthReg_3" BEL
@@ -606,145 +610,141 @@ TIMEGRP Sys_PLL_clkfx = BEL "AddrReg_0" BEL "AddrReg_1" BEL "AddrReg_2" BEL
         "TurnOffTime_4" BEL "TurnOffTime_5" BEL "TurnOffTime_6" BEL
         "TurnOffTime_7" BEL "TurnOffTime_8" BEL "LEDTime_0" BEL "LEDTime_1"
         BEL "LEDTime_2" BEL "LEDTime_3" BEL "LEDTime_4" BEL "LEDTime_5" BEL
-        "LEDTime_6" BEL "LEDTime_7" BEL "LEDTime_8" BEL "ADCSmplCntReg_0" BEL
-        "ADCSmplCntReg_1" BEL "ADCSmplCntReg_2" BEL "ADCSmplCntReg_3" BEL
-        "ADCSmplCntReg_4" BEL "ADCSmplCntReg_5" BEL "ADCSmplCntReg_6" BEL
-        "ADCSmplCntReg_7" BEL "ADCSmplCntReg_8" BEL "ADCSmplCntReg_9" BEL
-        "Hist_Offset_Reg_0" BEL "Hist_Offset_Reg_1" BEL "Hist_Offset_Reg_2"
-        BEL "Hist_Offset_Reg_3" BEL "Hist_Offset_Reg_4" BEL
-        "Hist_Offset_Reg_5" BEL "Hist_Offset_Reg_6" BEL "Hist_Offset_Reg_7"
-        BEL "Hist_Offset_Reg_8" BEL "Hist_Offset_Reg_9" BEL
-        "Hist_Offset_Reg_10" BEL "Hist_Offset_Reg_11" BEL "BeamOnLength_0" BEL
-        "BeamOnLength_1" BEL "BeamOnLength_2" BEL "BeamOnLength_3" BEL
-        "BeamOnLength_4" BEL "BeamOnLength_5" BEL "BeamOnLength_6" BEL
-        "BeamOnLength_7" BEL "BeamOnLength_8" BEL "BeamOnLength_9" BEL
-        "BeamOnLength_10" BEL "BeamOnLength_11" BEL "BeamOffLength_0" BEL
-        "BeamOffLength_1" BEL "BeamOffLength_2" BEL "BeamOffLength_3" BEL
-        "BeamOffLength_4" BEL "BeamOffLength_5" BEL "BeamOffLength_6" BEL
-        "BeamOffLength_7" BEL "BeamOffLength_8" BEL "BeamOffLength_9" BEL
-        "BeamOffLength_10" BEL "BeamOffLength_11" BEL "Hist_Datb_0_0" BEL
-        "Hist_Datb_0_1" BEL "Hist_Datb_0_2" BEL "Hist_Datb_0_3" BEL
-        "Hist_Datb_0_4" BEL "Hist_Datb_0_5" BEL "Hist_Datb_0_6" BEL
-        "Hist_Datb_0_7" BEL "Hist_Datb_0_8" BEL "Hist_Datb_0_9" BEL
-        "Hist_Datb_0_10" BEL "Hist_Datb_0_11" BEL "Hist_Datb_0_12" BEL
-        "Hist_Datb_0_13" BEL "Hist_Datb_0_14" BEL "Hist_Datb_0_15" BEL
-        "HistInterval_0" BEL "HistInterval_1" BEL "HistInterval_2" BEL
-        "HistInterval_3" BEL "HistInterval_4" BEL "HistInterval_5" BEL
-        "HistInterval_6" BEL "HistInterval_7" BEL "HistInterval_8" BEL
-        "HistInterval_9" BEL "HistInterval_10" BEL "HistInterval_11" BEL
-        "HistInterval_12" BEL "HistInterval_13" BEL "HistInterval_14" BEL
-        "HistInterval_15" BEL "ODFifoData_0" BEL "ODFifoData_1" BEL
-        "ODFifoData_2" BEL "ODFifoData_3" BEL "ODFifoData_4" BEL
-        "ODFifoData_5" BEL "ODFifoData_6" BEL "ODFifoData_7" BEL
-        "ODFifoData_8" BEL "ODFifoData_9" BEL "ODFifoData_10" BEL
-        "ODFifoData_11" BEL "ODFifoData_12" BEL "ODFifoData_13" BEL
-        "ODFifoData_14" BEL "ODFifoData_15" BEL "ODFifoData_16" BEL
-        "ODFifoData_17" BEL "ODFifoData_18" BEL "ODFifoData_19" BEL
-        "ODFifoData_20" BEL "ODFifoData_21" BEL "ODFifoData_22" BEL
-        "ODFifoData_23" BEL "ODFifoData_24" BEL "ODFifoData_25" BEL
-        "TestCount_0" BEL "TestCount_1" BEL "TestCount_2" BEL "TestCount_3"
-        BEL "TestCount_4" BEL "TestCount_5" BEL "TestCount_6" BEL
-        "TestCount_7" BEL "TestCount_8" BEL "TestCount_9" BEL "TestCount_10"
-        BEL "TestCount_11" BEL "TestCount_12" BEL "TestCount_13" BEL
-        "TestCount_14" BEL "TestCount_15" BEL "TestCount_16" BEL
-        "TestCount_17" BEL "TestCount_18" BEL "TestCount_19" BEL
-        "TestCount_20" BEL "TestCount_21" BEL "TestCount_22" BEL
-        "TestCount_23" BEL "TestCount_24" BEL "TestCount_25" BEL
-        "TestCount_26" BEL "TestCount_27" BEL "TestCount_28" BEL
-        "TestCount_29" BEL "TestCount_30" BEL "TestCount_31" BEL "SDRdPtr_2"
-        BEL "SDRdPtr_3" BEL "SDRdPtr_4" BEL "DACCS_0" BEL "DACCS_1" BEL
-        "DACCS_2" BEL "AFECS_0" BEL "AFECS_1" BEL "DACShift_0" BEL
-        "DACShift_1" BEL "DACShift_2" BEL "DACShift_3" BEL "DACShift_4" BEL
-        "DACShift_5" BEL "DACShift_6" BEL "DACShift_7" BEL "DACShift_8" BEL
-        "DACShift_9" BEL "DACShift_10" BEL "DACShift_11" BEL "DACShift_12" BEL
-        "DACShift_13" BEL "DACShift_14" BEL "DACShift_15" BEL "DACShift_16"
-        BEL "DACShift_17" BEL "DACShift_18" BEL "DACShift_19" BEL
-        "DACShift_20" BEL "DACShift_21" BEL "DACShift_22" BEL "DACShift_23"
-        BEL "DACDat" BEL "AFESDI" BEL "Read_Seq_Stat_0" BEL "Read_Seq_Stat_1"
-        BEL "Read_Seq_Stat_2" BEL "Read_Seq_Stat_3" BEL "EventWdCnt_0" BEL
-        "EventWdCnt_1" BEL "EventWdCnt_2" BEL "EventWdCnt_3" BEL
-        "EventWdCnt_4" BEL "EventWdCnt_5" BEL "EventWdCnt_6" BEL
-        "EventWdCnt_7" BEL "EventWdCnt_8" BEL "EventWdCnt_9" BEL
-        "EventWdCnt_10" BEL "EventWdCnt_11" BEL "EventWdCnt_12" BEL
-        "EventWdCnt_13" BEL "EventWdCnt_14" BEL "EventWdCnt_15" BEL
-        "NxtWdCount_0" BEL "NxtWdCount_1" BEL "NxtWdCount_2" BEL
-        "NxtWdCount_3" BEL "NxtWdCount_4" BEL "NxtWdCount_5" BEL
-        "NxtWdCount_6" BEL "NxtWdCount_7" BEL "NxtWdCount_8" BEL
-        "NxtWdCount_9" BEL "NxtWdCount_10" BEL "NxtWdCount_11" BEL
-        "NxtWdCount_12" BEL "NxtWdCount_13" BEL "NxtWdCount_14" BEL
-        "NxtWdCount_15" BEL "AFE_Num_FSM_FFd1" BEL "BiasActual_1_0" BEL
-        "BiasActual_1_1" BEL "BiasActual_1_2" BEL "BiasActual_1_3" BEL
-        "BiasActual_1_4" BEL "BiasActual_1_5" BEL "BiasActual_1_6" BEL
-        "BiasActual_1_7" BEL "BiasActual_1_8" BEL "BiasActual_1_9" BEL
-        "BiasActual_1_10" BEL "BiasActual_1_11" BEL "BiasActual_0_0" BEL
-        "BiasActual_0_1" BEL "BiasActual_0_2" BEL "BiasActual_0_3" BEL
-        "BiasActual_0_4" BEL "BiasActual_0_5" BEL "BiasActual_0_6" BEL
-        "BiasActual_0_7" BEL "BiasActual_0_8" BEL "BiasActual_0_9" BEL
-        "BiasActual_0_10" BEL "BiasActual_0_11" BEL "Counter1us_5" BEL
-        "Counter1us_6" BEL "Counter1us_7" BEL "Counter1ms_1" BEL
-        "Counter1ms_2" BEL "Counter1ms_3" BEL "Counter1ms_4" BEL
-        "Counter1ms_5" BEL "Counter1ms_6" BEL "Counter1ms_7" BEL
-        "Counter1ms_8" BEL "Counter1ms_9" BEL "Counter1ms_10" BEL
-        "Counter1ms_11" BEL "Counter1ms_12" BEL "Counter1ms_13" BEL
-        "Counter1ms_14" BEL "Counter1ms_15" BEL "Counter1ms_16" BEL
-        "Counter1ms_17" BEL "GateCounter_0" BEL "GateCounter_1" BEL
-        "GateCounter_2" BEL "GateCounter_3" BEL "GateCounter_4" BEL
-        "GateCounter_5" BEL "GateCounter_6" BEL "GateCounter_7" BEL
-        "GateCounter_8" BEL "Counter1s_8" BEL "Counter1s_9" BEL "Counter1s_10"
-        BEL "Counter1s_11" BEL "Counter1s_12" BEL "Counter1s_13" BEL
-        "Counter1s_14" BEL "Counter1s_15" BEL "Counter1s_16" BEL
-        "Counter1s_17" BEL "Counter1s_18" BEL "Counter1s_19" BEL
-        "Counter1s_20" BEL "Counter1s_21" BEL "Counter1s_22" BEL
-        "Counter1s_23" BEL "Counter1s_24" BEL "Counter1s_25" BEL
-        "Counter1s_26" BEL "Counter1s_27" BEL "ResetCount_0" BEL
-        "ResetCount_1" BEL "ResetCount_2" BEL "ResetCount_3" BEL "GPOCount_0"
-        BEL "GPOCount_1" BEL "GPOCount_2" BEL "UpTimeCount_0" BEL
-        "UpTimeCount_1" BEL "UpTimeCount_2" BEL "UpTimeCount_3" BEL
-        "UpTimeCount_4" BEL "UpTimeCount_5" BEL "UpTimeCount_6" BEL
-        "UpTimeCount_7" BEL "UpTimeCount_8" BEL "UpTimeCount_9" BEL
-        "UpTimeCount_10" BEL "UpTimeCount_11" BEL "UpTimeCount_12" BEL
-        "UpTimeCount_13" BEL "UpTimeCount_14" BEL "UpTimeCount_15" BEL
-        "UpTimeCount_16" BEL "UpTimeCount_17" BEL "UpTimeCount_18" BEL
-        "UpTimeCount_19" BEL "UpTimeCount_20" BEL "UpTimeCount_21" BEL
-        "UpTimeCount_22" BEL "UpTimeCount_23" BEL "UpTimeCount_24" BEL
-        "UpTimeCount_25" BEL "UpTimeCount_26" BEL "UpTimeCount_27" BEL
-        "UpTimeCount_28" BEL "UpTimeCount_29" BEL "UpTimeCount_30" BEL
-        "UpTimeCount_31" BEL "HistGateCnt0_0" BEL "HistGateCnt0_1" BEL
-        "HistGateCnt0_2" BEL "HistGateCnt0_3" BEL "HistGateCnt0_4" BEL
-        "HistGateCnt0_5" BEL "HistGateCnt0_6" BEL "HistGateCnt0_7" BEL
-        "HistGateCnt0_8" BEL "HistGateCnt0_9" BEL "HistGateCnt0_10" BEL
-        "HistGateCnt0_11" BEL "HistGateCnt0_12" BEL "HistGateCnt0_13" BEL
-        "HistGateCnt0_14" BEL "HistGateCnt0_15" BEL "HistGateCnt1_0" BEL
-        "HistGateCnt1_1" BEL "HistGateCnt1_2" BEL "HistGateCnt1_3" BEL
-        "HistGateCnt1_4" BEL "HistGateCnt1_5" BEL "HistGateCnt1_6" BEL
-        "HistGateCnt1_7" BEL "HistGateCnt1_8" BEL "HistGateCnt1_9" BEL
-        "HistGateCnt1_10" BEL "HistGateCnt1_11" BEL "HistGateCnt1_12" BEL
-        "HistGateCnt1_13" BEL "HistGateCnt1_14" BEL "HistGateCnt1_15" BEL
-        "HistAddrb_0_0" BEL "HistAddrb_0_1" BEL "HistAddrb_0_2" BEL
-        "HistAddrb_0_3" BEL "HistAddrb_0_4" BEL "HistAddrb_0_5" BEL
-        "HistAddrb_0_6" BEL "HistAddrb_0_7" BEL "HistAddrb_0_8" BEL
-        "HistAddrb_0_9" BEL "HistAddrb_0_10" BEL "Octal_Shift_FSM_FFd2" BEL
-        "HistAddrb_1_0" BEL "HistAddrb_1_1" BEL "HistAddrb_1_2" BEL
-        "HistAddrb_1_3" BEL "HistAddrb_1_4" BEL "HistAddrb_1_5" BEL
-        "HistAddrb_1_6" BEL "HistAddrb_1_7" BEL "HistAddrb_1_8" BEL
-        "HistAddrb_1_9" BEL "HistAddrb_1_10" BEL "Chan_Num_0" BEL "Chan_Num_1"
-        BEL "Chan_Num_2" BEL "Octal_Shift_FSM_FFd1" BEL
-        "DDR_Read_Seq_FSM_FFd3" BEL "DDR_Read_Seq_FSM_FFd2" BEL
-        "DDR_Read_Seq_FSM_FFd1" BEL "DDRWrtCount_0" BEL "DDRWrtCount_1" BEL
-        "DDRWrtCount_2" BEL "DDRWrtCount_3" BEL "DDRWrtCount_4" BEL
-        "DDRWrtCount_5" BEL "DDRWrtCount_6" BEL "DDRWrtCount_7" BEL
-        "DDRWrtCount_8" BEL "DDRWrtCount_9" BEL "DDRWrtCount_10" BEL
-        "DDR_Write_Seq_FSM_FFd4" BEL "DDR_Write_Seq_FSM_FFd3" BEL
-        "DDR_Write_Seq_FSM_FFd2" BEL "DDR_Write_Seq_FSM_FFd1" BEL
-        "SampleCount_0" BEL "SampleCount_1" BEL "SampleCount_2" BEL
-        "SampleCount_3" BEL "SampleCount_4" BEL "SampleCount_5" BEL
-        "SampleCount_6" BEL "SampleCount_7" BEL "SampleCount_8" BEL
-        "BuffRdCount_0" BEL "BuffRdCount_1" BEL "BuffRdCount_2" BEL
-        "BuffRdCount_3" BEL "BuffRdCount_4" BEL "BuffRdCount_5" BEL
-        "BuffRdCount_6" BEL "BuffRdCount_7" BEL "BuffRdCount_8" BEL
-        "Event_Builder_FSM_FFd4" BEL "Event_Builder_FSM_FFd1" BEL
-        "Event_Builder_FSM_FFd3" BEL "Event_Builder_FSM_FFd2" BEL
-        "Sys_PLL/clkout1_buf" PIN
+        "LEDTime_6" BEL "LEDTime_7" BEL "LEDTime_8" BEL "Hist_Offset_Reg_0"
+        BEL "Hist_Offset_Reg_1" BEL "Hist_Offset_Reg_2" BEL
+        "Hist_Offset_Reg_3" BEL "Hist_Offset_Reg_4" BEL "Hist_Offset_Reg_5"
+        BEL "Hist_Offset_Reg_6" BEL "Hist_Offset_Reg_7" BEL
+        "Hist_Offset_Reg_8" BEL "Hist_Offset_Reg_9" BEL "Hist_Offset_Reg_10"
+        BEL "Hist_Offset_Reg_11" BEL "BeamOnLength_0" BEL "BeamOnLength_1" BEL
+        "BeamOnLength_2" BEL "BeamOnLength_3" BEL "BeamOnLength_4" BEL
+        "BeamOnLength_5" BEL "BeamOnLength_6" BEL "BeamOnLength_7" BEL
+        "BeamOnLength_8" BEL "BeamOnLength_9" BEL "BeamOnLength_10" BEL
+        "BeamOnLength_11" BEL "BeamOffLength_0" BEL "BeamOffLength_1" BEL
+        "BeamOffLength_2" BEL "BeamOffLength_3" BEL "BeamOffLength_4" BEL
+        "BeamOffLength_5" BEL "BeamOffLength_6" BEL "BeamOffLength_7" BEL
+        "BeamOffLength_8" BEL "BeamOffLength_9" BEL "BeamOffLength_10" BEL
+        "BeamOffLength_11" BEL "Hist_Datb_0_0" BEL "Hist_Datb_0_1" BEL
+        "Hist_Datb_0_2" BEL "Hist_Datb_0_3" BEL "Hist_Datb_0_4" BEL
+        "Hist_Datb_0_5" BEL "Hist_Datb_0_6" BEL "Hist_Datb_0_7" BEL
+        "Hist_Datb_0_8" BEL "Hist_Datb_0_9" BEL "Hist_Datb_0_10" BEL
+        "Hist_Datb_0_11" BEL "Hist_Datb_0_12" BEL "Hist_Datb_0_13" BEL
+        "Hist_Datb_0_14" BEL "Hist_Datb_0_15" BEL "HistInterval_0" BEL
+        "HistInterval_1" BEL "HistInterval_2" BEL "HistInterval_3" BEL
+        "HistInterval_4" BEL "HistInterval_5" BEL "HistInterval_6" BEL
+        "HistInterval_7" BEL "HistInterval_8" BEL "HistInterval_9" BEL
+        "HistInterval_10" BEL "HistInterval_11" BEL "HistInterval_12" BEL
+        "HistInterval_13" BEL "HistInterval_14" BEL "HistInterval_15" BEL
+        "ODFifoData_0" BEL "ODFifoData_1" BEL "ODFifoData_2" BEL
+        "ODFifoData_3" BEL "ODFifoData_4" BEL "ODFifoData_5" BEL
+        "ODFifoData_6" BEL "ODFifoData_7" BEL "ODFifoData_8" BEL
+        "ODFifoData_9" BEL "ODFifoData_10" BEL "ODFifoData_11" BEL
+        "ODFifoData_12" BEL "ODFifoData_13" BEL "ODFifoData_14" BEL
+        "ODFifoData_15" BEL "ODFifoData_16" BEL "ODFifoData_17" BEL
+        "ODFifoData_18" BEL "ODFifoData_19" BEL "ODFifoData_20" BEL
+        "ODFifoData_21" BEL "ODFifoData_22" BEL "ODFifoData_23" BEL
+        "ODFifoData_24" BEL "ODFifoData_25" BEL "TestCount_0" BEL
+        "TestCount_1" BEL "TestCount_2" BEL "TestCount_3" BEL "TestCount_4"
+        BEL "TestCount_5" BEL "TestCount_6" BEL "TestCount_7" BEL
+        "TestCount_8" BEL "TestCount_9" BEL "TestCount_10" BEL "TestCount_11"
+        BEL "TestCount_12" BEL "TestCount_13" BEL "TestCount_14" BEL
+        "TestCount_15" BEL "TestCount_16" BEL "TestCount_17" BEL
+        "TestCount_18" BEL "TestCount_19" BEL "TestCount_20" BEL
+        "TestCount_21" BEL "TestCount_22" BEL "TestCount_23" BEL
+        "TestCount_24" BEL "TestCount_25" BEL "TestCount_26" BEL
+        "TestCount_27" BEL "TestCount_28" BEL "TestCount_29" BEL
+        "TestCount_30" BEL "TestCount_31" BEL "SDRdPtr_2" BEL "SDRdPtr_3" BEL
+        "SDRdPtr_4" BEL "DACCS_0" BEL "DACCS_1" BEL "DACCS_2" BEL "AFECS_0"
+        BEL "AFECS_1" BEL "DACShift_0" BEL "DACShift_1" BEL "DACShift_2" BEL
+        "DACShift_3" BEL "DACShift_4" BEL "DACShift_5" BEL "DACShift_6" BEL
+        "DACShift_7" BEL "DACShift_8" BEL "DACShift_9" BEL "DACShift_10" BEL
+        "DACShift_11" BEL "DACShift_12" BEL "DACShift_13" BEL "DACShift_14"
+        BEL "DACShift_15" BEL "DACShift_16" BEL "DACShift_17" BEL
+        "DACShift_18" BEL "DACShift_19" BEL "DACShift_20" BEL "DACShift_21"
+        BEL "DACShift_22" BEL "DACShift_23" BEL "DACDat" BEL "AFESDI" BEL
+        "Read_Seq_Stat_0" BEL "Read_Seq_Stat_1" BEL "Read_Seq_Stat_2" BEL
+        "Read_Seq_Stat_3" BEL "EventWdCnt_0" BEL "EventWdCnt_1" BEL
+        "EventWdCnt_2" BEL "EventWdCnt_3" BEL "EventWdCnt_4" BEL
+        "EventWdCnt_5" BEL "EventWdCnt_6" BEL "EventWdCnt_7" BEL
+        "EventWdCnt_8" BEL "EventWdCnt_9" BEL "EventWdCnt_10" BEL
+        "EventWdCnt_11" BEL "EventWdCnt_12" BEL "EventWdCnt_13" BEL
+        "EventWdCnt_14" BEL "EventWdCnt_15" BEL "NxtWdCount_0" BEL
+        "NxtWdCount_1" BEL "NxtWdCount_2" BEL "NxtWdCount_3" BEL
+        "NxtWdCount_4" BEL "NxtWdCount_5" BEL "NxtWdCount_6" BEL
+        "NxtWdCount_7" BEL "NxtWdCount_8" BEL "NxtWdCount_9" BEL
+        "NxtWdCount_10" BEL "NxtWdCount_11" BEL "NxtWdCount_12" BEL
+        "NxtWdCount_13" BEL "NxtWdCount_14" BEL "NxtWdCount_15" BEL
+        "AFE_Num_FSM_FFd1" BEL "BiasActual_1_0" BEL "BiasActual_1_1" BEL
+        "BiasActual_1_2" BEL "BiasActual_1_3" BEL "BiasActual_1_4" BEL
+        "BiasActual_1_5" BEL "BiasActual_1_6" BEL "BiasActual_1_7" BEL
+        "BiasActual_1_8" BEL "BiasActual_1_9" BEL "BiasActual_1_10" BEL
+        "BiasActual_1_11" BEL "BiasActual_0_0" BEL "BiasActual_0_1" BEL
+        "BiasActual_0_2" BEL "BiasActual_0_3" BEL "BiasActual_0_4" BEL
+        "BiasActual_0_5" BEL "BiasActual_0_6" BEL "BiasActual_0_7" BEL
+        "BiasActual_0_8" BEL "BiasActual_0_9" BEL "BiasActual_0_10" BEL
+        "BiasActual_0_11" BEL "Counter1us_5" BEL "Counter1us_6" BEL
+        "Counter1us_7" BEL "Counter1ms_1" BEL "Counter1ms_2" BEL
+        "Counter1ms_3" BEL "Counter1ms_4" BEL "Counter1ms_5" BEL
+        "Counter1ms_6" BEL "Counter1ms_7" BEL "Counter1ms_8" BEL
+        "Counter1ms_9" BEL "Counter1ms_10" BEL "Counter1ms_11" BEL
+        "Counter1ms_12" BEL "Counter1ms_13" BEL "Counter1ms_14" BEL
+        "Counter1ms_15" BEL "Counter1ms_16" BEL "Counter1ms_17" BEL
+        "GateCounter_0" BEL "GateCounter_1" BEL "GateCounter_2" BEL
+        "GateCounter_3" BEL "GateCounter_4" BEL "GateCounter_5" BEL
+        "GateCounter_6" BEL "GateCounter_7" BEL "GateCounter_8" BEL
+        "Counter1s_8" BEL "Counter1s_9" BEL "Counter1s_10" BEL "Counter1s_11"
+        BEL "Counter1s_12" BEL "Counter1s_13" BEL "Counter1s_14" BEL
+        "Counter1s_15" BEL "Counter1s_16" BEL "Counter1s_17" BEL
+        "Counter1s_18" BEL "Counter1s_19" BEL "Counter1s_20" BEL
+        "Counter1s_21" BEL "Counter1s_22" BEL "Counter1s_23" BEL
+        "Counter1s_24" BEL "Counter1s_25" BEL "Counter1s_26" BEL
+        "Counter1s_27" BEL "ResetCount_0" BEL "ResetCount_1" BEL
+        "ResetCount_2" BEL "ResetCount_3" BEL "GPOCount_0" BEL "GPOCount_1"
+        BEL "GPOCount_2" BEL "UpTimeCount_0" BEL "UpTimeCount_1" BEL
+        "UpTimeCount_2" BEL "UpTimeCount_3" BEL "UpTimeCount_4" BEL
+        "UpTimeCount_5" BEL "UpTimeCount_6" BEL "UpTimeCount_7" BEL
+        "UpTimeCount_8" BEL "UpTimeCount_9" BEL "UpTimeCount_10" BEL
+        "UpTimeCount_11" BEL "UpTimeCount_12" BEL "UpTimeCount_13" BEL
+        "UpTimeCount_14" BEL "UpTimeCount_15" BEL "UpTimeCount_16" BEL
+        "UpTimeCount_17" BEL "UpTimeCount_18" BEL "UpTimeCount_19" BEL
+        "UpTimeCount_20" BEL "UpTimeCount_21" BEL "UpTimeCount_22" BEL
+        "UpTimeCount_23" BEL "UpTimeCount_24" BEL "UpTimeCount_25" BEL
+        "UpTimeCount_26" BEL "UpTimeCount_27" BEL "UpTimeCount_28" BEL
+        "UpTimeCount_29" BEL "UpTimeCount_30" BEL "UpTimeCount_31" BEL
+        "HistGateCnt0_0" BEL "HistGateCnt0_1" BEL "HistGateCnt0_2" BEL
+        "HistGateCnt0_3" BEL "HistGateCnt0_4" BEL "HistGateCnt0_5" BEL
+        "HistGateCnt0_6" BEL "HistGateCnt0_7" BEL "HistGateCnt0_8" BEL
+        "HistGateCnt0_9" BEL "HistGateCnt0_10" BEL "HistGateCnt0_11" BEL
+        "HistGateCnt0_12" BEL "HistGateCnt0_13" BEL "HistGateCnt0_14" BEL
+        "HistGateCnt0_15" BEL "HistGateCnt1_0" BEL "HistGateCnt1_1" BEL
+        "HistGateCnt1_2" BEL "HistGateCnt1_3" BEL "HistGateCnt1_4" BEL
+        "HistGateCnt1_5" BEL "HistGateCnt1_6" BEL "HistGateCnt1_7" BEL
+        "HistGateCnt1_8" BEL "HistGateCnt1_9" BEL "HistGateCnt1_10" BEL
+        "HistGateCnt1_11" BEL "HistGateCnt1_12" BEL "HistGateCnt1_13" BEL
+        "HistGateCnt1_14" BEL "HistGateCnt1_15" BEL "HistAddrb_0_0" BEL
+        "HistAddrb_0_1" BEL "HistAddrb_0_2" BEL "HistAddrb_0_3" BEL
+        "HistAddrb_0_4" BEL "HistAddrb_0_5" BEL "HistAddrb_0_6" BEL
+        "HistAddrb_0_7" BEL "HistAddrb_0_8" BEL "HistAddrb_0_9" BEL
+        "HistAddrb_0_10" BEL "Octal_Shift_FSM_FFd2" BEL "HistAddrb_1_0" BEL
+        "HistAddrb_1_1" BEL "HistAddrb_1_2" BEL "HistAddrb_1_3" BEL
+        "HistAddrb_1_4" BEL "HistAddrb_1_5" BEL "HistAddrb_1_6" BEL
+        "HistAddrb_1_7" BEL "HistAddrb_1_8" BEL "HistAddrb_1_9" BEL
+        "HistAddrb_1_10" BEL "Chan_Num_0" BEL "Chan_Num_1" BEL "Chan_Num_2"
+        BEL "Octal_Shift_FSM_FFd1" BEL "DDR_Read_Seq_FSM_FFd3" BEL
+        "DDR_Read_Seq_FSM_FFd2" BEL "DDR_Read_Seq_FSM_FFd1" BEL
+        "DDRWrtCount_0" BEL "DDRWrtCount_1" BEL "DDRWrtCount_2" BEL
+        "DDRWrtCount_3" BEL "DDRWrtCount_4" BEL "DDRWrtCount_5" BEL
+        "DDRWrtCount_6" BEL "DDRWrtCount_7" BEL "DDRWrtCount_8" BEL
+        "DDRWrtCount_9" BEL "DDRWrtCount_10" BEL "DDR_Write_Seq_FSM_FFd4" BEL
+        "DDR_Write_Seq_FSM_FFd3" BEL "DDR_Write_Seq_FSM_FFd2" BEL
+        "DDR_Write_Seq_FSM_FFd1" BEL "SampleCount_0" BEL "SampleCount_1" BEL
+        "SampleCount_2" BEL "SampleCount_3" BEL "SampleCount_4" BEL
+        "SampleCount_5" BEL "SampleCount_6" BEL "SampleCount_7" BEL
+        "SampleCount_8" BEL "BuffRdCount_0" BEL "BuffRdCount_1" BEL
+        "BuffRdCount_2" BEL "BuffRdCount_3" BEL "BuffRdCount_4" BEL
+        "BuffRdCount_5" BEL "BuffRdCount_6" BEL "BuffRdCount_7" BEL
+        "BuffRdCount_8" BEL "Event_Builder_FSM_FFd4" BEL
+        "Event_Builder_FSM_FFd1" BEL "Event_Builder_FSM_FFd3" BEL
+        "Event_Builder_FSM_FFd2" BEL "Sys_PLL/clkout1_buf" PIN
         "LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/samc_0_pins<251>"
         PIN
         "LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/samc_0_pins<273>"
@@ -3708,11 +3708,11 @@ TIMEGRP GenOnePerAFE_1__LVDSInClk_rx_bufio2_x1 = BEL "EvenWrtDone_1" BEL
         "Input_Seqs_1_7_FSM_FFd2" BEL "DPFrontRdAd_1_8" BEL "DPFrontRdAd_1_9"
         BEL "DPWrtAd_1_0" BEL "DPWrtAd_1_1" BEL "DPWrtAd_1_2" BEL
         "DPWrtAd_1_3" BEL "DPWrtAd_1_4" BEL "DPWrtAd_1_7" BEL "DPWrtAd_1_5"
-        BEL "DPWrtAd_1_6" BEL "HistWidth_1_0" BEL "HistWidth_1_1" BEL
+        BEL "DPWrtAd_1_6" BEL "DPRdAd_1_0" BEL "DPRdAd_1_1" BEL "DPRdAd_1_2"
+        BEL "DPRdAd_1_3" BEL "DPRdAd_1_4" BEL "DPRdAd_1_5" BEL "DPRdAd_1_6"
+        BEL "DPRdAd_1_7" BEL "HistWidth_1_0" BEL "HistWidth_1_1" BEL
         "HistWidth_1_2" BEL "HistWidth_1_3" BEL "HistWidth_1_4" BEL
         "HistWidth_1_5" BEL "HistWidth_1_6" BEL "HistWidth_1_7" BEL
-        "DPRdAd_1_0" BEL "DPRdAd_1_1" BEL "DPRdAd_1_2" BEL "DPRdAd_1_3" BEL
-        "DPRdAd_1_4" BEL "DPRdAd_1_5" BEL "DPRdAd_1_6" BEL "DPRdAd_1_7" BEL
         "HistTimer_1_0" BEL "HistTimer_1_1" BEL "uBunchOffset_1_0" BEL
         "uBunchOffset_1_1" BEL "uBunchOffset_1_2" BEL "uBunchOffset_1_3" BEL
         "uBunchOffset_1_4" BEL "uBunchOffset_1_5" BEL "uBunchOffset_1_6" BEL

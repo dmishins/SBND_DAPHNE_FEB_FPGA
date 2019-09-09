@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2019-08-06T09:13:23</DateModified>
+  <DateModified>2019-08-12T10:00:47</DateModified>
   <ModuleName>FEB_Fpga_A</ModuleName>
-  <SummaryTimeStamp>2019-08-01T21:57:23</SummaryTimeStamp>
+  <SummaryTimeStamp>2019-08-07T10:35:03</SummaryTimeStamp>
   <SavedFilePath>/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/iseconfig/FEB_Fpga_A.xreport</SavedFilePath>
   <ImplementationReportsDirectory>/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/</ImplementationReportsDirectory>
   <DateInitialized>2014-10-20T14:31:13</DateInitialized>

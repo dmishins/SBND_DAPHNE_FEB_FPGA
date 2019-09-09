@@ -3,11 +3,11 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pn" timeStamp="Thu Aug  1 22:12:20 2019">
+<application name="pn" timeStamp="Wed Aug  7 10:30:30 2019">
 <section name="Project Information" visible="false">
 <property name="ProjectID" value="D8C6D7C8D89C4A369863F1662C6D79D2" type="project"/>
-<property name="ProjectIteration" value="14" type="project"/>
-<property name="ProjectFile" value="/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/AFE_Fpga_A.xise" type="project"/>
+<property name="ProjectIteration" value="15" type="project"/>
+<property name="ProjectFile" value="/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/AFE_Fpga_A.xise" type="project"/>
 <property name="ProjectCreationTimestamp" value="2018-05-09T18:04:47" type="project"/>
 </section>
 <section name="Project Statistics" visible="true">
@@ -18,7 +18,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PROP_LastAppliedStrategy" value="Xilinx Default (unlocked)" type="design"/>
 <property name="PROP_ManualCompileOrderImp" value="false" type="design"/>
 <property name="PROP_PropSpecInProjFile" value="Store all values" type="design"/>
-<property name="PROP_SelectedInstanceHierarchicalPath" value="/AFE_Fpga_A_tb" type="process"/>
+<property name="PROP_SelectedInstanceHierarchicalPath" value="/AFE_Fpga_A_tb/uut" type="process"/>
 <property name="PROP_Simulator" value="Modelsim-DE Mixed" type="design"/>
 <property name="PROP_SynthTopFile" value="changed" type="process"/>
 <property name="PROP_Top_Level_Module_Type" value="HDL" type="design"/>
@@ -27,13 +27,16 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="PROP_UserConstraintEditorPreference" value="Text Editor" type="process"/>
 <property name="PROP_intProjectCreationTimestamp" value="2018-05-09T18:04:47" type="design"/>
 <property name="PROP_intWbtProjectID" value="D8C6D7C8D89C4A369863F1662C6D79D2" type="design"/>
-<property name="PROP_intWbtProjectIteration" value="14" type="process"/>
+<property name="PROP_intWbtProjectIteration" value="15" type="process"/>
 <property name="PROP_intWorkingDirLocWRTProjDir" value="Same" type="design"/>
 <property name="PROP_intWorkingDirUsed" value="No" type="design"/>
 <property name="PROP_lockPinsUcfFile" value="changed" type="process"/>
-<property name="PROP_selectedSimRootSourceNode_behav" value="work.AFE_Fpga_A_tb" type="process"/>
+<property name="PROP_selectedSimRootSourceNode_behav" value="work.FEB_Fpga_A" type="process"/>
 <property name="PROP_AutoTop" value="true" type="design"/>
+<property name="PROP_CompxlibSimulator" value="Modelsim-DE VHDL" type="process"/>
 <property name="PROP_DevFamily" value="Spartan6" type="design"/>
+<property name="PROP_SimCustom_behav" value="changed" type="process"/>
+<property name="PROP_vsim_otherCmdLineOptions" value="-L secureip" type="process"/>
 <property name="PROP_DevDevice" value="xc6slx25" type="design"/>
 <property name="PROP_DevFamilyPMName" value="spartan6" type="design"/>
 <property name="PROP_DevPackage" value="csg324" type="design"/>

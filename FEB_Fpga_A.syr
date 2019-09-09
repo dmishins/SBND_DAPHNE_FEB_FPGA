@@ -111,113 +111,113 @@ Cores Search Directories           : {"ipcore_dir"  }
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/CMD_Fifo.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/CMD_Fifo.vhd" into library work
 Parsing entity <CMD_Fifo>.
 Parsing architecture <CMD_Fifo_a> of entity <cmd_fifo>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd" into library work
 Parsing entity <iodrp_mcb_controller>.
 Parsing architecture <trans> of entity <iodrp_mcb_controller>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd" into library work
 Parsing entity <iodrp_controller>.
 Parsing architecture <trans> of entity <iodrp_controller>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" into library work
 Parsing entity <mcb_soft_calibration>.
 Parsing architecture <trans> of entity <mcb_soft_calibration>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" into library work
 Parsing entity <mcb_soft_calibration_top>.
 Parsing architecture <trans> of entity <mcb_soft_calibration_top>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" into library work
 Parsing entity <mcb_raw_wrapper>.
 Parsing architecture <aarch> of entity <mcb_raw_wrapper>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" into library work
 Parsing entity <memc3_wrapper>.
 Parsing architecture <acch> of entity <memc3_wrapper>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd" into library work
 Parsing entity <memc3_infrastructure>.
 Parsing architecture <syn> of entity <memc3_infrastructure>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd" into library work
 Parsing entity <LPDDR_Ctrl>.
 Parsing architecture <arc> of entity <lpddr_ctrl>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/AFE_DP_Pipeline.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/AFE_DP_Pipeline.vhd" into library work
 Parsing entity <AFE_DP_Pipeline>.
 Parsing architecture <AFE_DP_Pipeline_a> of entity <afe_dp_pipeline>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/DAC_Ram.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/DAC_Ram.vhd" into library work
 Parsing entity <DAC_Ram>.
 Parsing architecture <DAC_Ram_a> of entity <dac_ram>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/SysPLL.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/SysPLL.vhd" into library work
 Parsing entity <SysPLL>.
 Parsing architecture <xilinx> of entity <syspll>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/Hist_Ram.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/Hist_Ram.vhd" into library work
 Parsing entity <Hist_Ram>.
 Parsing architecture <Hist_Ram_a> of entity <hist_ram>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LVDSTxBuff.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LVDSTxBuff.vhd" into library work
 Parsing entity <LVDSTxBuff>.
 Parsing architecture <LVDSTxBuff_a> of entity <lvdstxbuff>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/SCFIFO_32x256.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/SCFIFO_32x256.vhd" into library work
 Parsing entity <SCFIFO_32x256>.
 Parsing architecture <SCFIFO_32x256_a> of entity <scfifo_32x256>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/DP_Ram_1kx16.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/DP_Ram_1kx16.vhd" into library work
 Parsing entity <DP_Ram_1kx16>.
 Parsing architecture <DP_Ram_1kx16_a> of entity <dp_ram_1kx16>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/SCFIFO_1kx16.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/SCFIFO_1kx16.vhd" into library work
 Parsing entity <SCFIFO_1kx16>.
 Parsing architecture <SCFIFO_1kx16_a> of entity <scfifo_1kx16>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/FIFO_DC_32x1.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/FIFO_DC_32x1.vhd" into library work
 Parsing entity <FIFO_DC_32x1>.
 Parsing architecture <FIFO_DC_32x1_a> of entity <fifo_dc_32x1>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/AFE_FRONT_Pipeline.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/AFE_FRONT_Pipeline.vhd" into library work
 Parsing entity <AFE_FRONT_Pipeline>.
 Parsing architecture <AFE_FRONT_Pipeline_a> of entity <afe_front_pipeline>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" into library work
 Parsing package <Proj_Defs>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" Line 463. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" Line 470. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" Line 477. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" Line 478. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" Line 488. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" Line 489. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/Proj_Defs.vhd" Line 490. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/serdes_1_to_n_data_ddr_s8_diff.vhd" into library work
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" Line 463. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" Line 470. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" Line 477. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" Line 478. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" Line 488. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" Line 489. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/Proj_Defs.vhd" Line 490. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/serdes_1_to_n_data_ddr_s8_diff.vhd" into library work
 Parsing entity <serdes_1_to_n_data_ddr_s8_diff>.
 Parsing architecture <arch_serdes_1_to_n_data_ddr_s8_diff> of entity <serdes_1_to_n_data_ddr_s8_diff>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/serdes_1_to_n_clk_ddr_s8_diff.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/serdes_1_to_n_clk_ddr_s8_diff.vhd" into library work
 Parsing entity <serdes_1_to_n_clk_ddr_s8_diff>.
 Parsing architecture <arch_serdes_1_to_n_clk_ddr_s8_diff> of entity <serdes_1_to_n_clk_ddr_s8_diff>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd" into library work
 Parsing entity <One_Wire>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd" Line 13. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd" Line 14. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd" Line 15. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd" Line 13. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd" Line 14. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd" Line 15. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <behavioural> of entity <one_wire>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd" into library work
 Parsing entity <FM_Tx>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd" Line 18. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd" Line 18. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <behavioural_Tx> of entity <fm_tx>.
 Parsing entity <FM_Rx>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd" Line 171. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd" Line 172. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd" Line 171. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd" Line 172. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <behavioural_Rx> of entity <fm_rx>.
 Parsing entity <TClk_Tx>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd" Line 313. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd" Line 313. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <behavioural_TTx> of entity <tclk_tx>.
 Parsing entity <TClk_Rx>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd" Line 440. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd" Line 440. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <behavioural_TRx> of entity <tclk_rx>.
 Parsing entity <BS_Rx>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd" Line 566. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd" Line 566. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <behavioural_BRx> of entity <bs_rx>.
-Parsing VHDL file "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" into library work
+Parsing VHDL file "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" into library work
 Parsing entity <FEB_Fpga_A>.
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 58. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 59. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 60. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 69. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 70. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 74. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 76. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 77. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 81. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
-INFO:HDLCompiler:1676 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 84. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 58. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 59. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 60. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 69. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 70. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 74. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 76. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 77. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 81. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 84. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <behavioural> of entity <feb_fpga_a>.
 
 =========================================================================
@@ -235,40 +235,40 @@ Elaborating entity <memc3_infrastructure> (architecture <syn>) with generics fro
 Elaborating entity <memc3_wrapper> (architecture <acch>) with generics from library <work>.
 
 Elaborating entity <mcb_raw_wrapper> (architecture <aarch>) with generics from library <work>.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 582: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3207: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3495: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3757: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3964: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 582: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3207: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3495: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3757: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 3964: Comparison between arrays of unequal length always returns FALSE.
 
 Elaborating entity <mcb_soft_calibration_top> (architecture <trans>) with generics from library <work>.
 
 Elaborating entity <mcb_soft_calibration> (architecture <trans>) with generics from library <work>.
-WARNING:HDLCompiler:1127 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 559: Assignment to half_mv_du ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 561: Assignment to half_mv_dd ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 559: Assignment to half_mv_du ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 561: Assignment to half_mv_dd ignored, since the identifier is never used
 
 Elaborating entity <iodrp_controller> (architecture <trans>) from library <work>.
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd" Line 352. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd" Line 352. Case statement is complete. others clause is never selected
 
 Elaborating entity <iodrp_mcb_controller> (architecture <trans>) from library <work>.
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd" Line 496. Case statement is complete. others clause is never selected
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 623: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:1127 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 911: Assignment to state_start_dyncal_r1 ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 968: Assignment to mcb_uodatavalid_u ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 1012: Assignment to iodrpctrlr_use_bkst ignored, since the identifier is never used
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" Line 395: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:634 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" Line 222: Net <ZIO_IODRP_SDO> does not have a driver.
-WARNING:HDLCompiler:634 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" Line 236: Net <ZIO_IN> does not have a driver.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7024: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7050: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7075: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7086: Comparison between arrays of unequal length always returns FALSE.
-WARNING:HDLCompiler:321 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7091: Comparison between arrays of unequal length always returns FALSE.
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd" Line 496. Case statement is complete. others clause is never selected
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 623: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:1127 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 911: Assignment to state_start_dyncal_r1 ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 968: Assignment to mcb_uodatavalid_u ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" Line 1012: Assignment to iodrpctrlr_use_bkst ignored, since the identifier is never used
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" Line 395: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:634 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" Line 222: Net <ZIO_IODRP_SDO> does not have a driver.
+WARNING:HDLCompiler:634 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" Line 236: Net <ZIO_IN> does not have a driver.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7024: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7050: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7075: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7086: Comparison between arrays of unequal length always returns FALSE.
+WARNING:HDLCompiler:321 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd" Line 7091: Comparison between arrays of unequal length always returns FALSE.
 
 Elaborating entity <One_Wire> (architecture <behavioural>) from library <work>.
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd" Line 314. Case statement is complete. others clause is never selected
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd" Line 361. Case statement is complete. others clause is never selected
-WARNING:HDLCompiler:92 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd" Line 367: onewrrdrom should be on the sensitivity list of the process
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd" Line 314. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd" Line 361. Case statement is complete. others clause is never selected
+WARNING:HDLCompiler:92 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd" Line 367: onewrrdrom should be on the sensitivity list of the process
 
 Elaborating entity <FM_Tx> (architecture <behavioural_Tx>) with generics from library <work>.
 
@@ -297,37 +297,37 @@ Elaborating entity <AFE_DP_Pipeline> (architecture <AFE_DP_Pipeline_a>) from lib
 Elaborating entity <AFE_FRONT_Pipeline> (architecture <AFE_FRONT_Pipeline_a>) from library <work>.
 
 Elaborating entity <DP_Ram_1kx16> (architecture <DP_Ram_1kx16_a>) from library <work>.
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 846. Case statement is complete. others clause is never selected
-WARNING:HDLCompiler:1127 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 702: Assignment to peak ignored, since the identifier is never used
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 846. Case statement is complete. others clause is never selected
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 1477. Case statement is complete. others clause is never selected
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 1914. Case statement is complete. others clause is never selected
-INFO:HDLCompiler:679 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 2072. Case statement is complete. others clause is never selected
-WARNING:HDLCompiler:1127 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" Line 1094: Assignment to seq_rst ignored, since the identifier is never used
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 846. Case statement is complete. others clause is never selected
+WARNING:HDLCompiler:1127 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 702: Assignment to peak ignored, since the identifier is never used
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 846. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 1477. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 1914. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 2072. Case statement is complete. others clause is never selected
+WARNING:HDLCompiler:1127 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" Line 1094: Assignment to seq_rst ignored, since the identifier is never used
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
 Synthesizing Unit <FEB_Fpga_A>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd".
 WARNING:Xst:647 - Input <GPI1> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 375: Output port <c3_clk0> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 375: Output port <c3_p2_wr_error> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 375: Output port <c3_p3_rd_overflow> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 375: Output port <c3_p3_rd_error> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 448: Output port <Rx_Out_Parity_Err> of the instance <FMRx1> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 458: Output port <full> of the instance <CmdFifo> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 473: Output port <full> of the instance <uBunchBuff> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 484: Output port <full> of the instance <DDRAddrBuff> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 495: Output port <full> of the instance <EventBuff> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 507: Output port <full> of the instance <DRAMRdBuff> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 528: Output port <dout> of the instance <GenOnePerAFE[0].EvBuffStatFIFO> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 528: Output port <full> of the instance <GenOnePerAFE[0].EvBuffStatFIFO> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 561: Output port <debug> of the instance <GenOnePerAFE[0].LVDSInDat> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 528: Output port <dout> of the instance <GenOnePerAFE[1].EvBuffStatFIFO> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 528: Output port <full> of the instance <GenOnePerAFE[1].EvBuffStatFIFO> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd" line 561: Output port <debug> of the instance <GenOnePerAFE[1].LVDSInDat> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 375: Output port <c3_clk0> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 375: Output port <c3_p2_wr_error> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 375: Output port <c3_p3_rd_overflow> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 375: Output port <c3_p3_rd_error> of the instance <LPDDRCtrl> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 448: Output port <Rx_Out_Parity_Err> of the instance <FMRx1> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 458: Output port <full> of the instance <CmdFifo> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 473: Output port <full> of the instance <uBunchBuff> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 484: Output port <full> of the instance <DDRAddrBuff> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 495: Output port <full> of the instance <EventBuff> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 507: Output port <full> of the instance <DRAMRdBuff> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 528: Output port <dout> of the instance <GenOnePerAFE[0].EvBuffStatFIFO> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 528: Output port <full> of the instance <GenOnePerAFE[0].EvBuffStatFIFO> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 561: Output port <debug> of the instance <GenOnePerAFE[0].LVDSInDat> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 528: Output port <dout> of the instance <GenOnePerAFE[1].EvBuffStatFIFO> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 528: Output port <full> of the instance <GenOnePerAFE[1].EvBuffStatFIFO> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FEB_Fpga_A.vhd" line 561: Output port <debug> of the instance <GenOnePerAFE[1].LVDSInDat> is unconnected or connected to loadless signal.
     Found 1-bit register for signal <SerdesRst>.
     Found 1-bit register for signal <DACLd>.
     Found 1-bit register for signal <DACClk>.
@@ -653,6 +653,7 @@ INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd"
     Found 10-bit register for signal <Buff_Rd_Ptr<1><5>>.
     Found 10-bit register for signal <Buff_Rd_Ptr<1><6>>.
     Found 10-bit register for signal <Buff_Rd_Ptr<1><7>>.
+    Found 10-bit register for signal <PageWdCount>.
     Found 8-bit register for signal <DPWrtAd<0>>.
     Found 8-bit register for signal <DPWrtAd<1>>.
     Found 8-bit register for signal <DPRdAd<0>>.
@@ -662,7 +663,6 @@ INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd"
     Found 8-bit register for signal <Counter1us>.
     Found 8-bit register for signal <NoHIts<0>>.
     Found 8-bit register for signal <NoHIts<1>>.
-    Found 8-bit register for signal <PageWdCount>.
     Found 2-bit register for signal <iWrtDL<0>>.
     Found 2-bit register for signal <HistTimer<0>>.
     Found 2-bit register for signal <HistEnDl<0>>.
@@ -830,6 +830,7 @@ INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd"
     Found 16-bit register for signal <EvBuffDat>.
     Found 16-bit register for signal <DRAMRdBuffDat>.
     Found 10-bit register for signal <DPFrontWrtAd<1>>.
+    Found 10-bit register for signal <ADCSmplCntReg>.
     Found 10-bit register for signal <DPFrontWrtAd<0>>.
     Found 24-bit register for signal <DACShift>.
     Found 28-bit register for signal <ODFifoData>.
@@ -849,7 +850,6 @@ INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FEB_Fpga_A.vhd"
     Found 9-bit register for signal <LEDTime>.
     Found 18-bit register for signal <Counter1ms>.
     Found 16-bit register for signal <HistInterval>.
-    Found 10-bit register for signal <ADCSmplCntReg>.
     Found 11-bit register for signal <HistAddrb<0>>.
     Found 11-bit register for signal <HistAddrb<1>>.
     Found 11-bit register for signal <DDRWrtCount>.
@@ -1319,7 +1319,7 @@ INFO:Xst:1799 - State addrrd is never reached in FSM <DDR_Write_Seq>.
     Found 10-bit subtractor for signal <GND_6_o_GND_6_o_sub_1870_OUT<9:0>> created at line 1308.
     Found 9-bit subtractor for signal <GND_6_o_GND_6_o_sub_2265_OUT<8:0>> created at line 1308.
     Found 9-bit subtractor for signal <GND_6_o_GND_6_o_sub_2286_OUT<8:0>> created at line 1308.
-    Found 8-bit subtractor for signal <GND_6_o_GND_6_o_sub_2393_OUT<7:0>> created at line 1308.
+    Found 10-bit subtractor for signal <GND_6_o_GND_6_o_sub_2393_OUT<9:0>> created at line 1308.
     Found 11-bit subtractor for signal <GND_6_o_GND_6_o_sub_2464_OUT<10:0>> created at line 1308.
     Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_2507_OUT<15:0>> created at line 1308.
     Found 16-bit subtractor for signal <GND_6_o_GND_6_o_sub_2523_OUT<15:0>> created at line 1308.
@@ -1427,7 +1427,7 @@ INFO:Xst:1799 - State addrrd is never reached in FSM <DDR_Write_Seq>.
     Summary:
 	inferred   4 RAM(s).
 	inferred 139 Adder/Subtractor(s).
-	inferred 3544 D-type flip-flop(s).
+	inferred 3546 D-type flip-flop(s).
 	inferred  64 Comparator(s).
 	inferred 459 Multiplexer(s).
 	inferred  20 Tristate(s).
@@ -1435,13 +1435,13 @@ INFO:Xst:1799 - State addrrd is never reached in FSM <DDR_Write_Seq>.
 Unit <FEB_Fpga_A> synthesized.
 
 Synthesizing Unit <SysPLL>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/SysPLL.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/SysPLL.vhd".
     Summary:
 	no macro.
 Unit <SysPLL> synthesized.
 
 Synthesizing Unit <LPDDR_Ctrl>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd".
         C3_P0_MASK_SIZE = 4
         C3_P0_DATA_PORT_SIZE = 32
         C3_P1_MASK_SIZE = 4
@@ -1456,13 +1456,13 @@ Synthesizing Unit <LPDDR_Ctrl>.
         C3_NUM_DQ_PINS = 16
         C3_MEM_ADDR_WIDTH = 14
         C3_MEM_BANKADDR_WIDTH = 2
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd" line 472: Output port <selfrefresh_mode> of the instance <memc3_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/LPDDR_Ctrl.vhd" line 472: Output port <selfrefresh_mode> of the instance <memc3_wrapper_inst> is unconnected or connected to loadless signal.
     Summary:
 	no macro.
 Unit <LPDDR_Ctrl> synthesized.
 
 Synthesizing Unit <memc3_infrastructure>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_infrastructure.vhd".
         C_INCLK_PERIOD = 6250
         C_RST_ACT_LOW = 0
         C_INPUT_CLK_TYPE = "DIFFERENTIAL"
@@ -1484,7 +1484,7 @@ WARNING:Xst:647 - Input <sys_clk> is never used. This port will be preserved and
 Unit <memc3_infrastructure> synthesized.
 
 Synthesizing Unit <memc3_wrapper>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd".
         C_MEMCLK_PERIOD = 6250
         C_P0_MASK_SIZE = 4
         C_P0_DATA_PORT_SIZE = 32
@@ -1564,84 +1564,84 @@ Synthesizing Unit <memc3_wrapper>.
         C_MC_CALIBRATION_DELAY = "HALF"
         C_CALIB_SOFT_IP = "TRUE"
 WARNING:Xst:647 - Input <selfrefresh_enter> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <status> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <mcbx_dram_odt> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <mcbx_dram_ddr3_rst> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_data_valid> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_cmd_ready_in> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_refrsh_flag> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_cal_start> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_sdo> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_count> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_data> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <status> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p0_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p1_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p2_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p3_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p4_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_cmd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_cmd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_underrun> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_wr_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_full> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_empty> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_overflow> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <p5_rd_error> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <mcbx_dram_odt> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <mcbx_dram_ddr3_rst> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_data_valid> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_cmd_ready_in> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_refrsh_flag> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_cal_start> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/memc3_wrapper.vhd" line 609: Output port <uo_sdo> of the instance <memc3_mcb_raw_wrapper_inst> is unconnected or connected to loadless signal.
     Summary:
 	no macro.
 Unit <memc3_wrapper> synthesized.
 
 Synthesizing Unit <mcb_raw_wrapper>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_raw_wrapper.vhd".
         C_MEMCLK_PERIOD = 6250
         C_PORT_ENABLE = "001100"
         C_MEM_ADDR_ORDER = "ROW_BANK_COLUMN"
@@ -1825,7 +1825,7 @@ WARNING:Xst:653 - Signal <mcbx_dram_ddr3_rst> is used but never assigned. This s
 Unit <mcb_raw_wrapper> synthesized.
 
 Synthesizing Unit <mcb_soft_calibration_top>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd".
         C_MEM_TZQINIT_MAXCNT = "1000010000"
         C_MC_CALIBRATION_MODE = "CALIBRATION"
         SKIP_IN_TERM_CAL = 1
@@ -1833,8 +1833,8 @@ Synthesizing Unit <mcb_soft_calibration_top>.
         SKIP_DYN_IN_TERM = 1
         C_SIMULATION = "FALSE"
         C_MEM_TYPE = "MDDR"
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" line 291: Output port <Max_Value> of the instance <mcb_soft_calibration_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" line 291: Output port <ZIO_IODRP_CS> of the instance <mcb_soft_calibration_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" line 291: Output port <Max_Value> of the instance <mcb_soft_calibration_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration_top.vhd" line 291: Output port <ZIO_IODRP_CS> of the instance <mcb_soft_calibration_inst> is unconnected or connected to loadless signal.
 WARNING:Xst:2563 - Inout <ZIO_PIN> is never assigned. Tied to value Z.
 WARNING:Xst:653 - Signal <ZIO_IODRP_SDO> is used but never assigned. This sourceless signal will be automatically connected to value GND.
 WARNING:Xst:653 - Signal <ZIO_IN> is used but never assigned. This sourceless signal will be automatically connected to value GND.
@@ -1849,7 +1849,7 @@ WARNING:Xst:653 - Signal <ZIO_IN> is used but never assigned. This sourceless si
 Unit <mcb_soft_calibration_top> synthesized.
 
 Synthesizing Unit <mcb_soft_calibration>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd".
         C_MEM_TZQINIT_MAXCNT = "1000010000"
         SKIP_IN_TERM_CAL = 1
         SKIP_DYNAMIC_CAL = 0
@@ -1874,8 +1874,8 @@ WARNING:Xst:647 - Input <MCB_UODATA> is never used. This port will be preserved 
 WARNING:Xst:647 - Input <MCB_UODATAVALID> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <MCB_UOCMDREADY> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <MCB_UO_CAL_START> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" line 583: Output port <DRP_BKST> of the instance <iodrp_controller_inst> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" line 601: Output port <read_data> of the instance <iodrp_mcb_controller_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" line 583: Output port <DRP_BKST> of the instance <iodrp_controller_inst> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/mcb_soft_calibration.vhd" line 601: Output port <read_data> of the instance <iodrp_mcb_controller_inst> is unconnected or connected to loadless signal.
     Register <MCB_UIUDQSDEC> equivalent to <MCB_UILDQSDEC> has been removed
     Register <MCB_UIUDQSINC> equivalent to <MCB_UILDQSINC> has been removed
     Found 1-bit register for signal <Block_Reset>.
@@ -2011,7 +2011,7 @@ INFO:Xst:1799 - State 111010 is never reached in FSM <STATE>.
 Unit <mcb_soft_calibration> synthesized.
 
 Synthesizing Unit <iodrp_controller>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_controller.vhd".
     Found 8-bit register for signal <data_reg>.
     Found 1-bit register for signal <rd_not_write_reg>.
     Found 8-bit register for signal <shift_through_reg>.
@@ -2045,7 +2045,7 @@ Synthesizing Unit <iodrp_controller>.
 Unit <iodrp_controller> synthesized.
 
 Synthesizing Unit <iodrp_mcb_controller>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/LPDDR_Ctrl/user_design/rtl/iodrp_mcb_controller.vhd".
     Set property "fsm_encoding = gray" for signal <state>.
     Set property "fsm_encoding = gray" for signal <nextstate>.
 WARNING:Xst:647 - Input <drp_ioi_addr> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
@@ -2084,7 +2084,7 @@ WARNING:Xst:647 - Input <drp_ioi_addr> is never used. This port will be preserve
 Unit <iodrp_mcb_controller> synthesized.
 
 Synthesizing Unit <One_Wire>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/One_Wire.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/One_Wire.vhd".
     Found 9-bit register for signal <OneWTimer>.
     Found 8-bit register for signal <OneWBitCount>.
     Found 8-bit register for signal <OneWireCmdReg>.
@@ -2156,7 +2156,7 @@ INFO:Xst:1799 - State waitread is never reached in FSM <OneWireSeq>.
 Unit <One_Wire> synthesized.
 
 Synthesizing Unit <FM_Tx>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd".
         Pwidth = 16
     Found 2-bit register for signal <n0093>.
     Found 2-bit register for signal <EnDL>.
@@ -2202,7 +2202,7 @@ Synthesizing Unit <FM_Tx>.
 Unit <FM_Tx> synthesized.
 
 Synthesizing Unit <FM_Rx>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/FM_Tx_Rx.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/FM_Tx_Rx.vhd".
         Pwidth = 24
     Found 2-bit register for signal <RxDl>.
     Found 2-bit register for signal <Rx_State>.
@@ -2241,7 +2241,7 @@ Synthesizing Unit <FM_Rx>.
 Unit <FM_Rx> synthesized.
 
 Synthesizing Unit <serdes_1_to_n_clk_ddr_s8_diff>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/serdes_1_to_n_clk_ddr_s8_diff.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/serdes_1_to_n_clk_ddr_s8_diff.vhd".
         S = 6
         DIFF_TERM = true
     Summary:
@@ -2249,7 +2249,7 @@ Synthesizing Unit <serdes_1_to_n_clk_ddr_s8_diff>.
 Unit <serdes_1_to_n_clk_ddr_s8_diff> synthesized.
 
 Synthesizing Unit <serdes_1_to_n_data_ddr_s8_diff>.
-    Related source file is "/media/dmishins/MISHINS/FROM14CPU/Desktop/AFEDM/serdes_1_to_n_data_ddr_s8_diff.vhd".
+    Related source file is "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/serdes_1_to_n_data_ddr_s8_diff.vhd".
         S = 6
         D = 9
         DIFF_TERM = true
@@ -2302,7 +2302,7 @@ Macro Statistics
  8x4-bit single-port Read Only RAM                     : 1
 # Adders/Subtractors                                   : 173
  10-bit adder                                          : 43
- 10-bit subtractor                                     : 16
+ 10-bit subtractor                                     : 17
  11-bit adder                                          : 2
  11-bit subtractor                                     : 1
  12-bit adder                                          : 3
@@ -2328,12 +2328,12 @@ Macro Statistics
  7-bit subtractor                                      : 1
  8-bit adder                                           : 8
  8-bit addsub                                          : 1
- 8-bit subtractor                                      : 6
+ 8-bit subtractor                                      : 5
  9-bit adder                                           : 4
  9-bit subtractor                                      : 3
 # Registers                                            : 667
  1-bit register                                        : 303
- 10-bit register                                       : 107
+ 10-bit register                                       : 108
  11-bit register                                       : 3
  12-bit register                                       : 66
  16-bit register                                       : 44
@@ -2350,7 +2350,7 @@ Macro Statistics
  6-bit register                                        : 4
  7-bit register                                        : 4
  72-bit register                                       : 1
- 8-bit register                                        : 37
+ 8-bit register                                        : 36
  9-bit register                                        : 13
 # Comparators                                          : 81
  10-bit comparator greater                             : 5
@@ -2374,7 +2374,7 @@ Macro Statistics
  1-bit 2-to-1 multiplexer                              : 192
  1-bit 3-to-1 multiplexer                              : 1
  1-bit 8-to-1 multiplexer                              : 3
- 10-bit 2-to-1 multiplexer                             : 105
+ 10-bit 2-to-1 multiplexer                             : 110
  10-bit 8-to-1 multiplexer                             : 1
  11-bit 2-to-1 multiplexer                             : 3
  12-bit 2-to-1 multiplexer                             : 38
@@ -2392,7 +2392,7 @@ Macro Statistics
  6-bit 2-to-1 multiplexer                              : 4
  7-bit 2-to-1 multiplexer                              : 3
  72-bit 2-to-1 multiplexer                             : 3
- 8-bit 2-to-1 multiplexer                              : 47
+ 8-bit 2-to-1 multiplexer                              : 42
  9-bit 2-to-1 multiplexer                              : 17
 # Tristates                                            : 23
  1-bit tristate buffer                                 : 23
@@ -2537,13 +2537,13 @@ The following registers are absorbed into counter <ADCSmplCntr_1_5>: 1 register 
 The following registers are absorbed into counter <InWdCnt_1_6>: 1 register on signal <InWdCnt_1_6>.
 The following registers are absorbed into counter <ADCSmplCntr_1_6>: 1 register on signal <ADCSmplCntr_1_6>.
 The following registers are absorbed into counter <InWdCnt_1_7>: 1 register on signal <InWdCnt_1_7>.
-The following registers are absorbed into counter <DPWrtAd_0>: 1 register on signal <DPWrtAd_0>.
 The following registers are absorbed into counter <ADCSmplCntr_1_7>: 1 register on signal <ADCSmplCntr_1_7>.
+The following registers are absorbed into counter <DPWrtAd_0>: 1 register on signal <DPWrtAd_0>.
 The following registers are absorbed into counter <DPWrtAd_1>: 1 register on signal <DPWrtAd_1>.
 The following registers are absorbed into counter <DPRdAd_0>: 1 register on signal <DPRdAd_0>.
+The following registers are absorbed into counter <DPRdAd_1>: 1 register on signal <DPRdAd_1>.
 The following registers are absorbed into counter <HistWidth_0>: 1 register on signal <HistWidth_0>.
 The following registers are absorbed into counter <HistWidth_1>: 1 register on signal <HistWidth_1>.
-The following registers are absorbed into counter <DPRdAd_1>: 1 register on signal <DPRdAd_1>.
 The following registers are absorbed into counter <HistTimer_0>: 1 register on signal <HistTimer_0>.
 The following registers are absorbed into counter <HistTimer_1>: 1 register on signal <HistTimer_1>.
 The following registers are absorbed into counter <uBunchOffset_0>: 1 register on signal <uBunchOffset_0>.
@@ -2651,6 +2651,7 @@ Macro Statistics
 # Adders/Subtractors                                   : 73
  10-bit adder                                          : 23
  10-bit adder carry in                                 : 1
+ 10-bit subtractor                                     : 1
  11-bit adder                                          : 1
  12-bit adder                                          : 1
  12-bit subtractor                                     : 20
@@ -2665,7 +2666,7 @@ Macro Statistics
  7-bit adder                                           : 1
  7-bit subtractor                                      : 1
  8-bit adder                                           : 2
- 8-bit subtractor                                      : 4
+ 8-bit subtractor                                      : 3
  9-bit adder                                           : 4
  9-bit subtractor                                      : 1
 # Counters                                             : 83
@@ -2694,8 +2695,8 @@ Macro Statistics
  9-bit up counter                                      : 3
 # Accumulators                                         : 16
  16-bit up loadable accumulator                        : 16
-# Registers                                            : 3097
- Flip-Flops                                            : 3097
+# Registers                                            : 3099
+ Flip-Flops                                            : 3099
 # Comparators                                          : 81
  10-bit comparator greater                             : 5
  10-bit comparator lessequal                           : 4
@@ -2718,7 +2719,7 @@ Macro Statistics
  1-bit 2-to-1 multiplexer                              : 481
  1-bit 3-to-1 multiplexer                              : 1
  1-bit 8-to-1 multiplexer                              : 3
- 10-bit 2-to-1 multiplexer                             : 60
+ 10-bit 2-to-1 multiplexer                             : 65
  10-bit 8-to-1 multiplexer                             : 1
  12-bit 2-to-1 multiplexer                             : 28
  16-bit 2-to-1 multiplexer                             : 64
@@ -2734,7 +2735,7 @@ Macro Statistics
  6-bit 2-to-1 multiplexer                              : 4
  7-bit 2-to-1 multiplexer                              : 3
  72-bit 2-to-1 multiplexer                             : 3
- 8-bit 2-to-1 multiplexer                              : 36
+ 8-bit 2-to-1 multiplexer                              : 31
  9-bit 2-to-1 multiplexer                              : 11
 # FSMs                                                 : 32
 # Xors                                                 : 3
@@ -3483,8 +3484,8 @@ Final Macro Processing ...
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 4127
- Flip-Flops                                            : 4127
+# Registers                                            : 4129
+ Flip-Flops                                            : 4129
 
 =========================================================================
 
@@ -3507,24 +3508,24 @@ Top Level Output File Name         : FEB_Fpga_A.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 9688
+# BELS                             : 9690
 #      GND                         : 40
 #      INV                         : 170
 #      LUT1                        : 327
 #      LUT2                        : 777
-#      LUT3                        : 1370
+#      LUT3                        : 1369
 #      LUT4                        : 1053
-#      LUT5                        : 849
-#      LUT6                        : 1923
+#      LUT5                        : 851
+#      LUT6                        : 1925
 #      MULT_AND                    : 6
 #      MUXCY                       : 1633
-#      MUXF7                       : 70
+#      MUXF7                       : 69
 #      VCC                         : 30
 #      XORCY                       : 1440
-# FlipFlops/Latches                : 4924
+# FlipFlops/Latches                : 4926
 #      FD                          : 52
 #      FDC                         : 899
-#      FDCE                        : 3107
+#      FDCE                        : 3109
 #      FDE                         : 291
 #      FDP                         : 148
 #      FDPE                        : 131
@@ -3569,15 +3570,15 @@ Selected Device : 6slx25csg324-3
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:            4922  out of  30064    16%  
- Number of Slice LUTs:                 6469  out of  15032    43%  
-    Number used as Logic:              6469  out of  15032    43%  
+ Number of Slice Registers:            4924  out of  30064    16%  
+ Number of Slice LUTs:                 6472  out of  15032    43%  
+    Number used as Logic:              6472  out of  15032    43%  
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   7698
-   Number with an unused Flip Flop:    2776  out of   7698    36%  
-   Number with an unused LUT:          1229  out of   7698    15%  
-   Number of fully used LUT-FF pairs:  3693  out of   7698    47%  
+ Number of LUT Flip Flop pairs used:   7702
+   Number with an unused Flip Flop:    2778  out of   7702    36%  
+   Number with an unused LUT:          1230  out of   7702    15%  
+   Number of fully used LUT-FF pairs:  3694  out of   7702    47%  
    Number of unique control sets:       358
 
 IO Utilization: 
@@ -3612,7 +3613,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-ClkB_P                             | DCM_SP:CLKFX           | 1925  |
+ClkB_P                             | DCM_SP:CLKFX           | 1927  |
 GenOnePerAFE[0].LVDSInClk/ddly_m   | BUFIO2_2CLK+BUFG       | 1408  |
 GenOnePerAFE[1].LVDSInClk/ddly_m   | BUFIO2_2CLK+BUFG       | 1399  |
 ClkB_P                             | DCM_SP:CLK0            | 2     |
@@ -3641,7 +3642,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'ClkB_P'
   Clock period: 32.402ns (frequency: 30.862MHz)
-  Total number of paths / destination ports: 172043 / 4395
+  Total number of paths / destination ports: 172158 / 4399
 -------------------------------------------------------------------------
 Delay:               4.050ns (Levels of Logic = 3)
   Source:            FMRx1/data_7 (FF)
@@ -3756,7 +3757,7 @@ Delay:               8.259ns (Levels of Logic = 7)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'ClkB_P'
-  Total number of paths / destination ports: 18537 / 2276
+  Total number of paths / destination ports: 18535 / 2280
 -------------------------------------------------------------------------
 Offset:              10.247ns (Levels of Logic = 5)
   Source:            uCA<0> (PAD)
@@ -3771,7 +3772,7 @@ Offset:              10.247ns (Levels of Logic = 5)
      LUT6:I0->O           28   0.203   1.339  CpldCS_uuCA[11]_AND_689_o<2>21 (CpldCS_uuCA[11]_AND_689_o<2>2)
      LUT5:I3->O           15   0.203   1.229  uuCA[9]_GND_6_o_equal_2309_o<9>1 (uuCA[9]_GND_6_o_equal_2309_o)
      LUT6:I2->O           49   0.203   1.898  WRDL[1]_uuCA[11]_AND_824_o (WRDL[1]_uuCA[11]_AND_824_o)
-     LUT6:I0->O           30   0.203   1.263  _n6836_inv1 (_n6836_inv)
+     LUT6:I0->O           30   0.203   1.263  _n6833_inv1 (_n6833_inv)
      FDCE:CE                   0.322          SDRdAD_0
     ----------------------------------------
     Total                     10.247ns (2.356ns logic, 7.891ns route)
@@ -3793,9 +3794,9 @@ Offset:              9.907ns (Levels of Logic = 6)
      IBUF:I->O            88   1.222   2.163  uCA_0_IBUF (uCA_0_IBUF)
      LUT6:I0->O           28   0.203   1.235  CpldCS_uuCA[11]_AND_689_o<2>21 (CpldCS_uuCA[11]_AND_689_o<2>2)
      LUT5:I4->O            4   0.205   1.028  CpldCS_uuCA[11]_AND_689_o<2>411 (CpldCS_uuCA[11]_AND_689_o<2>41)
-     LUT6:I1->O            7   0.203   0.774  uuCA[11]_uuCA[9]_OR_468_o (uuCA[11]_uuCA[9]_OR_468_o)
+     LUT6:I1->O            7   0.203   0.774  uuCA[11]_uuCA[9]_OR_477_o (uuCA[11]_uuCA[9]_OR_477_o)
      LUT5:I4->O           28   0.205   1.235  AsyncRst1 (AsyncRst)
-     LUT5:I4->O           12   0.205   0.908  _n6534_inv1 (_n6534_inv)
+     LUT5:I4->O           12   0.205   0.908  _n6530_inv1 (_n6530_inv)
      FDCE:CE                   0.322          GateWidth_0_0
     ----------------------------------------
     Total                      9.907ns (2.565ns logic, 7.342ns route)
@@ -3817,9 +3818,9 @@ Offset:              9.907ns (Levels of Logic = 6)
      IBUF:I->O            88   1.222   2.163  uCA_0_IBUF (uCA_0_IBUF)
      LUT6:I0->O           28   0.203   1.235  CpldCS_uuCA[11]_AND_689_o<2>21 (CpldCS_uuCA[11]_AND_689_o<2>2)
      LUT5:I4->O            4   0.205   1.028  CpldCS_uuCA[11]_AND_689_o<2>411 (CpldCS_uuCA[11]_AND_689_o<2>41)
-     LUT6:I1->O            7   0.203   0.774  uuCA[11]_uuCA[9]_OR_468_o (uuCA[11]_uuCA[9]_OR_468_o)
+     LUT6:I1->O            7   0.203   0.774  uuCA[11]_uuCA[9]_OR_477_o (uuCA[11]_uuCA[9]_OR_477_o)
      LUT5:I4->O           28   0.205   1.235  AsyncRst1 (AsyncRst)
-     LUT5:I4->O           12   0.205   0.908  _n6579_inv1 (_n6579_inv)
+     LUT5:I4->O           12   0.205   0.908  _n6575_inv1 (_n6575_inv)
      FDCE:CE                   0.322          GateWidth_1_0
     ----------------------------------------
     Total                      9.907ns (2.565ns logic, 7.342ns route)
@@ -3839,7 +3840,7 @@ Offset:              4.508ns (Levels of Logic = 3)
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
     MCB:UOREFRSHFLAG      11   0.000   1.130  LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/samc_0 (LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/uo_refrsh_flag_xhdl23)
-     LUT6:I2->O            2   0.203   0.845  LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n08281 (LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n0828)
+     LUT6:I2->O            2   0.203   0.845  LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n08221 (LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n0822)
      LUT6:I3->O            1   0.205   0.827  LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n1647_inv1 (LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n1647_inv1)
      LUT5:I1->O            7   0.203   0.773  LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n1647_inv2 (LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/_n1647_inv)
      FDRE:CE                   0.322          LPDDRCtrl/memc3_wrapper_inst/memc3_mcb_raw_wrapper_inst/gen_term_calib.mcb_soft_calibration_top_inst/mcb_soft_calibration_inst/DQS_DELAY_0
@@ -4019,13 +4020,13 @@ VXO_P          |    8.259|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 49.00 secs
-Total CPU time to Xst completion: 47.94 secs
+Total REAL time to Xst completion: 51.00 secs
+Total CPU time to Xst completion: 48.72 secs
  
 --> 
 
 
-Total memory usage is 544476 kilobytes
+Total memory usage is 543828 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  281 (   0 filtered)

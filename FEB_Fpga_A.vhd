@@ -278,7 +278,7 @@ signal DDRWrtSeqStat : std_logic_vector(2 downto 0);
 signal EvBuffWrt,EvBuffRd,EvBuffEmpty,EvBuffFull,DRAMRdBuffWrt,PageRdStat,
 		 PageRdReq,DRAMRdBuffRd,DRAMRdBuffFull,DRAMRdBuffEmpty : std_logic;
 signal EvBuffDat,EvBufffOut,DRAMRdBuffDat,DRAMRdBuffOut : std_logic_vector(15 downto 0);
-signal PageWdCount : unsigned(7 downto 0);
+signal PageWdCount : unsigned(9 downto 0);
 signal DRAMRdBuffWdsUsed,EvBuffWdsUsed : std_logic_vector(12 downto 0);
 signal DDRWrtCount : unsigned(10 downto 0);
 
@@ -1552,7 +1552,7 @@ end if;
 
 -- DDR Page data FIFO write
 if PageWdCount /= 0 and (DDR_Read_Seq = RdDataHi or (DDR_Read_Seq = RdDataLo and SDrd_en = '1'))
-then DRAMRdBuffWrt <= '1'; 
+then Wrt <= '1'; 
 else DRAMRdBuffWrt <= '0'; 
 end if;
 
@@ -1571,15 +1571,15 @@ end if;
  -- Page read word count
 	if DDR_Read_Seq = RdWdCount and RdHi_LoSel = '0' 
 		then 
-			if unsigned(SDRdDat(31 downto 24)) = 0
-			 then PageWdCount <= unsigned(SDRdDat(23 downto 16));
-			 else PageWdCount <= X"FF";
+			if unsigned(SDRdDat(31 downto 26)) = 0
+			 then PageWdCount <= unsigned(SDRdDat(25 downto 16));
+			 else PageWdCount <= "11" & X"FF";
 			end if;
 elsif DDR_Read_Seq = RdWdCount and RdHi_LoSel = '1' 
 		 then 
-			if unsigned(SDRdDat(15 downto 8)) = 0
-			 then PageWdCount <= unsigned(SDRdDat(7 downto 0));
-			 else PageWdCount <= X"FF";
+			if unsigned(SDRdDat(15 downto 10)) = 0
+			 then PageWdCount <= unsigned(SDRdDat(9 downto 0));
+			 else PageWdCount <= "11"&  X"FF";
 			end if;
  elsif PageWdCount /= 0 
 	 and (DDR_Read_Seq = RdDataHi or (DDR_Read_Seq = RdDataLo and SDrd_en = '1'))
