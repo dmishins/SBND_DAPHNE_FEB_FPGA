@@ -91,7 +91,7 @@
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1565019876" xil_pn:name="TRANEXT_compLibraries_FPGA" xil_pn:prop_ck="3124485847971035694" xil_pn:start_ts="1565019479">
+    <transform xil_pn:end_ts="1569004883" xil_pn:name="TRANEXT_compLibraries_FPGA" xil_pn:prop_ck="5670676517737976510" xil_pn:start_ts="1569004314">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="compxlib.log"/>
@@ -100,13 +100,9 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1565100812" xil_pn:in_ck="7016022331335348037" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1565100812">
+    <transform xil_pn:end_ts="1569005146" xil_pn:in_ck="7016022331335348037" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1569005146">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="AFE_Fpga_A_tb.vhd"/>
       <outfile xil_pn:name="FEB_Fpga_A.vhd"/>
       <outfile xil_pn:name="FM_Tx_Rx.vhd"/>
@@ -156,14 +152,9 @@
       <outfile xil_pn:name="ipcore_dir/SCFIFO_32x256.vhd"/>
       <outfile xil_pn:name="ipcore_dir/SysPLL.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1565100812" xil_pn:in_ck="7016022331335348037" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1565100812">
+    <transform xil_pn:end_ts="1569005146" xil_pn:in_ck="7016022331335348037" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1569005146">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="AFE_Fpga_A_tb.vhd"/>
       <outfile xil_pn:name="FEB_Fpga_A.vhd"/>
       <outfile xil_pn:name="FM_Tx_Rx.vhd"/>
@@ -172,14 +163,9 @@
       <outfile xil_pn:name="serdes_1_to_n_clk_ddr_s8_diff.vhd"/>
       <outfile xil_pn:name="serdes_1_to_n_data_ddr_s8_diff.vhd"/>
     </transform>
-    <transform xil_pn:end_ts="1565100813" xil_pn:in_ck="7159216938300228706" xil_pn:name="TRAN_MSimulateBehavioralModel" xil_pn:prop_ck="2190027450849382853" xil_pn:start_ts="1565100812">
+    <transform xil_pn:end_ts="1569005147" xil_pn:in_ck="7159216938300228706" xil_pn:name="TRAN_MSimulateBehavioralModel" xil_pn:prop_ck="2190027450849382853" xil_pn:start_ts="1569005146">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForInputs"/>
-      <status xil_pn:value="OutOfDateForPredecessor"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="InputChanged"/>
-      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="AFE_Fpga_A_tb.fdo"/>
       <outfile xil_pn:name="vsim.wlf"/>
       <outfile xil_pn:name="work"/>

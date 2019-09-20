@@ -1552,7 +1552,7 @@ end if;
 
 -- DDR Page data FIFO write
 if PageWdCount /= 0 and (DDR_Read_Seq = RdDataHi or (DDR_Read_Seq = RdDataLo and SDrd_en = '1'))
-then Wrt <= '1'; 
+then DRAMRdBuffWrt <= '1'; 
 else DRAMRdBuffWrt <= '0'; 
 end if;
 

@@ -8,7 +8,7 @@
 <!-- Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.    -->
 
 <messages>
-<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/DMFPGA/SBND_DAPHNE_FEB_FPGA/ipcore_dir/AFE_FRONT_Pipeline.vhd&quot; into library work</arg>
+<msg type="info" file="ProjectMgmt" num="1061" ><arg fmt="%s" index="1">Parsing VHDL file &quot;/home/dmishins/Documents/DAPHNE/SBND_DAPHNE_FEB_FPGA/ipcore_dir/AFE_FRONT_Pipeline.vhd&quot; into library work</arg>
 </msg>
 
 </messages>
