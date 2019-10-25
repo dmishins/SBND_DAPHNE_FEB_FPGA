@@ -1267,6 +1267,8 @@ if RxOut.Done = '1' and Rx1Dat(21) = '1' and Rx1Dat(19 downto 0) = X"00000"
 	then uBunch <= X"000" & unsigned(Rx1Dat(19 downto 0));
  elsif uBunchWrtTmr /= 0 then
  uBunch <= uBunch + 1;
+ elsif WRDL = 1 and (uuCA(11 downto 10) = uGA and uuCA(9 downto 0) = ManTriggerAddr) then
+ uBunch <= X"000000" & unsigned(uCD(7 downto 0));
 else uBunch <= uBunch;
 end if;
 
@@ -1293,8 +1295,8 @@ if (Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0') ) 
 else uBunchRd <= '0';
 end if;
 
-if SlfTrgEn = '1' and ((GateCounter = TurnOnTime and TmgSrcSel = '1')
-   or (RxOut.Done = '1' and TmgSrcSel = '0'))
+if (SlfTrgEn = '1' and ((GateCounter = TurnOnTime and TmgSrcSel = '1')
+   or (RxOut.Done = '1' and TmgSrcSel = '0'))) or (WRDL = 1 and ((uuCA(11 downto 10) = uGA and uuCA(9 downto 0) = ManTriggerAddr))) -- added mantrigger by writing anything to mangriggeraddr
 	then TrigReq <= '1';
 elsif TrigReqD = '1' then TrigReq <= '0'; 
 end if;
