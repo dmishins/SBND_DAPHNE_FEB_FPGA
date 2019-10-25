@@ -1273,7 +1273,8 @@ else uBunch <= uBunch;
 end if;
 
 -- Write uBunch number at the uBunch beginning
-if RxOut.Done = '1' and SlfTrgEn = '1' then uBunchWrtTmr <= 4;
+if (RxOut.Done = '1' and SlfTrgEn = '1') or (WRDL = 1 and (uuCA(11 downto 10) = uGA and uuCA(9 downto 0) = ManTriggerAddr))
+ then uBunchWrtTmr <= 4;
 elsif uBunchWrtTmr /= 0 then
 	uBunchWrtTmr <= uBunchWrtTmr - 1;
 else
@@ -2303,6 +2304,7 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 std_logic_vector(TestCount(31 downto 16)) when TestCounterHiAd,
 		 std_logic_vector(TestCount(15 downto 0)) when TestCounterLoAd,
 		 X"000" & "00" & FMTxBuff_full & FMTxBuff_empty when LVDSTxFIFOStatAd,
+		 std_logic_vector(ubunch(15 downto 0)) when ManTriggerAddr,
 		 X"0" & BeamOnLength when BeamOnLengthAd,
 		 X"0" & BeamOffLength when BeamOffLengthAd,
 		 "0000000" & std_logic_vector(TurnOnTime) when OnTimeAddr,
