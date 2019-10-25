@@ -179,7 +179,8 @@ signal WrtPtrRst,ADCSmplGate,EvBuffStatFIFO_Full,
 		 EvBuffStatFIFO_Empty,EvenWrtDone : std_logic_vector (1 downto 0);
 signal RdDone,EvBuffStat_rden : std_logic;
 signal EvBuffStatFIFO_Out,EvBuffStatFIFO_In : Array2x1;
-signal MaskReg,EvOvf : Array_2x8;
+signal MaskReg,EvOvf, EvRead : Array_2x8;
+signal EvNum : Integer range 0 to 10;
 signal HistWidth : Arrayu_2x8;
 signal GateWidth,uBunchOffset : Arrayu_2x12;
 signal DoneDly : Arrayu_2x3;
@@ -197,6 +198,7 @@ signal uBunchBuffOut,DDRAddrOut : std_logic_vector(31 downto 0);
 signal uBunch : unsigned(31 downto 0);
 signal uBunchWrt,uBunchRd,uBunchBuffEmpty,uBunchBuffFull,
 			DDRAddrRd,DDRAddrFull,DDRAddrEmpty : std_logic;
+signal uBunchWrtTmr : integer range 0 to 10;
 
 Type Input_Seq_FSM is (Idle,Increment,WrtChanNo,WrtTimeStamp,WrtHits,
 							  WrtHitWdCnt,LdWrtAdHi);
@@ -268,7 +270,7 @@ signal SampleCount,BuffRdCount : unsigned(8 downto 0);
 
 Type Event_Builder_FSM is (Idle,Check_Ovf,Add_Wd_Count,Incr_Chan0,
 									Check_Mask0,WdCountWrt,WrtuBunchHi,WrtuBunchLo,
-									Incr_Chan1,Check_Mask1,Wait1,Wait2,WrtData);
+									Incr_Chan1,Check_Mask1,Wait1,Wait2,WrtData, Check_ignored);
 signal Event_Builder : Event_Builder_FSM;
 signal Read_Seq_Stat : std_logic_vector(3 downto 0);
 Type Write_Seq_FSM is (Idle,ChkWrtBuff,SndCmd,WtCmdMtpy,AddrRd,
@@ -324,8 +326,9 @@ signal TempEn : std_logic;
 signal TempCtrl : std_logic_vector(3 downto 0);
 signal One_Wire_Out : std_logic_vector(15 downto 0);
 
-begin
+begin 
 
+NxtWdCount <= EventWdCnt + unsigned(Buff_Out(AFE_Num)(Chan_Num)); --moved from of process block.  how did this work before??
 uGA <= unsigned(GA);
 uuCA <= unsigned(uCA);
 
@@ -1115,7 +1118,7 @@ main : process(SysClk, CpldRst)
 -- Test pulse generator signals
 	Buff_Rst <= '0'; Seq_Rst <= '0'; 
 	Strt_req <= '0'; TrigType <= X"000"; 
-	EventWdCnt <= (others => '0'); NxtWdCount <= (others => '0');
+	EventWdCnt <= (others => '0'); --NxtWdCount <= (others => '0');
 	PipelineSet <= X"04";  WidthReg <= X"10";
 	FrontPipelineSet <= "00"& X"04"; 
 -- MIG related signals
@@ -1154,7 +1157,7 @@ main : process(SysClk, CpldRst)
 	BeamOn <= '0'; ControllerNo <= "00000"; PortNo <= "00000"; EvBuffStat_rden <= '0';
 	EvBuffWrt <= '0'; EvBuffRd <= '0'; EvBuffDat <= (others => '0'); PageRdReq <= '0';
 	DRAMRdBuffDat <= (others => '0'); DDRWrtCount <= (others => '0'); PageRdStat <= '0';
-	PageWdCount <= (others => '0'); DRAMRdBuffWrt <= '0'; DRAMRdBuffRd <= '0';
+	PageWdCount <= (others => '0'); DRAMRdBuffWrt <= '0'; DRAMRdBuffRd <= '0'; uBunchWrtTmr <= 0;
 
  elsif rising_edge (SysClk) then 
 
@@ -1262,20 +1265,30 @@ if RxOut.Done = '1' and Rx1Dat(21) = '1' and Rx1Dat(19 downto 0) = X"00000"
 	then uBunch <= uBunch(31 downto 20) & unsigned(Rx1Dat(19 downto 0));
  elsif RxOut.Done = '1' and Rx1Dat(21) = '0'
 	then uBunch <= X"000" & unsigned(Rx1Dat(19 downto 0));
+ elsif uBunchWrtTmr /= 0 then
+ uBunch <= uBunch + 1;
 else uBunch <= uBunch;
 end if;
 
 -- Write uBunch number at the uBunch beginning
-if RxOut.Done = '1' and SlfTrgEn = '1' then uBunchWrt <= '1';
+if RxOut.Done = '1' and SlfTrgEn = '1' then uBunchWrtTmr <= 4;
+elsif uBunchWrtTmr /= 0 then
+	uBunchWrtTmr <= uBunchWrtTmr - 1;
+else
+uBunchWrtTmr <= uBunchWrtTmr;
+end if;
+if uBunchWrtTmr /= 0 then
+uBunchWrt <= '1';
 else uBunchWrt <= '0';
 end if;
+
 
 if RxOut.Done = '1' then Rx1DatReg <= Rx1Dat;
 else Rx1DatReg <= Rx1DatReg;
 end if;
 
 -- Read the uBunch number after calculating and writing the event word count.
-if Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0') 
+if (Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0') ) and EvNum = 0
 	then uBunchRd <= '1';
 else uBunchRd <= '0';
 end if;
@@ -1318,8 +1331,8 @@ Case Event_Builder is
 			else Event_Builder <= Check_Mask0;
 			end if;
 	When Check_Ovf => Read_Seq_Stat <= X"3"; 
-			if EvOvf(AFE_Num)(Chan_Num) = '0' 
-				then Event_Builder <= Add_Wd_Count;
+			if EvOvf(AFE_Num)(Chan_Num) = '0' and EvRead(AFE_Num)(Chan_Num) = '0' -- check to see if event has already been readout in larger event building sequence for heartbear
+				then Event_Builder <= Add_Wd_Count;  
 			else Event_Builder <= Incr_Chan0;
 			end if;
 	When Add_Wd_Count => Event_Builder <= Incr_Chan0; Read_Seq_Stat <= X"4"; 
@@ -1327,14 +1340,25 @@ Case Event_Builder is
 	When WrtuBunchHi => Event_Builder <= WrtuBunchLo; Read_Seq_Stat <= X"6"; 
 	When WrtuBunchLo => Event_Builder <= Check_Mask1; Read_Seq_Stat <= X"7";  
 	When Check_Mask1 =>  Read_Seq_Stat <= X"8";
-		if MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0'
-		  then Event_Builder <= Wait1;
+		if MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0' and EvRead(AFE_Num)(Chan_Num) = '0'
+		  then Event_Builder <= Wait1; EvRead(AFE_Num)(Chan_Num) <= '1';
 		 else Event_Builder <= Incr_Chan1;
 		end if;
 	When Incr_Chan1 => Read_Seq_Stat <= X"9";
 		 if AFE_Num = 1 and Chan_Num = 7
-		  then Event_Builder <= Idle;
+		  then Event_Builder <= Check_ignored; -- was idle.  Instead, we now have a new step
 			else Event_Builder <= Check_Mask1;
+			end if;
+	When Check_ignored =>
+			if EvNum < 4 then
+				--if unsigned(EvOvf(0)) /= 0 or unsigned(EvOvf(1)) /= 0 then -- Fix this syntax, but basically idea is check if its not zero for all events.perhaps consider changing to checking evread true for all events
+					Event_Builder <= Check_Mask0;
+					EvNum <= EvNum + 1;
+				--else
+				--	Event_Builder <= Idle;
+				--end if;
+			else
+				Event_Builder <= Idle;
 			end if;
 	When Wait1 =>  Read_Seq_Stat <= X"A"; 
 			if NoHIts(AFE_Num)(Chan_Num) = '0' 
@@ -1347,6 +1371,7 @@ Case Event_Builder is
 		 if SampleCount <= 1 then Event_Builder <= Incr_Chan1;
 		else Event_Builder <= WrtData;
 		end if;
+		
 End Case;
 
 for i in 0 to 1 loop
@@ -1357,7 +1382,7 @@ end if;
 end loop;
 end loop;
 
- NxtWdCount <= EventWdCnt + unsigned(Buff_Out(AFE_Num)(Chan_Num));
+ --NxtWdCount <= EventWdCnt + unsigned(Buff_Out(AFE_Num)(Chan_Num)); --moved out of process block.  how did this work before??
 
  if Event_Builder = WdCountWrt 
 	then EvBuffDat <= std_logic_vector(EventWdCnt);
@@ -1391,27 +1416,28 @@ if Event_Builder = Incr_Chan0 or Event_Builder = Incr_Chan1
  if SlfTrgEn = '0'
    then 	Buff_Rd_Ptr(0) <= (others => (others => '0'));
 			Buff_Rd_Ptr(1) <= (others => (others => '0'));
- elsif Event_Builder = Incr_Chan0 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '1'
+ elsif Event_Builder = Incr_Chan0 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '1' and EvNum = 4 
 		then Buff_Rd_Ptr(AFE_Num)(Chan_Num) <= Buff_Rd_Ptr(AFE_Num)(Chan_Num) 
 														 + unsigned(Buff_Out(AFE_Num)(Chan_Num)(9 downto 0)) + 1;
   elsif BuffRdCount /= 0
-		or (Event_Builder = Check_Mask1 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0')
+		or (Event_Builder = Check_Mask1 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0' and EvRead(AFE_Num)(Chan_Num) = '0')
 	then Buff_Rd_Ptr(AFE_Num)(Chan_Num) <= Buff_Rd_Ptr(AFE_Num)(Chan_Num) + 1;
 	else Buff_Rd_Ptr(AFE_Num)(Chan_Num) <= Buff_Rd_Ptr(AFE_Num)(Chan_Num);
 	end if;
 
-   if Event_Builder = Idle then EventWdCnt <= X"0003";
-elsif Event_Builder = Incr_Chan0 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0'
+   if Event_Builder = Idle or Event_Builder = Check_ignored then EventWdCnt <= X"0003";
+elsif Event_Builder = Incr_Chan0 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0' and EvRead(AFE_Num)(Chan_Num) = '0'
 	then EventWdCnt <= EventWdCnt + unsigned(Buff_Out(AFE_Num)(Chan_Num)); -- BuffOut_Mux; 
 	else EventWdCnt <= EventWdCnt;
 	end if;
 
-	if Event_Builder = Idle then EvOvf <= (others => X"00");
-elsif Event_Builder = Check_Mask0 and MaskReg(AFE_Num)(Chan_Num) = '1' 
+	if Event_Builder = Idle then EvOvf <= (others => X"00"); EvNum <= 0; -- added in reset for event counter
+		 EvRead <= (others => X"00");
+elsif Event_Builder = Check_Mask0 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvRead(AFE_Num)(Chan_Num) = '0'
 then 
    if NxtWdCount > X"03FE"
 	then EvOvf(AFE_Num)(Chan_Num) <= '1';
-	else EvOvf <= EvOvf;
+	else EvOvf(AFE_Num)(Chan_Num) <= '0';
 	end if;
 else EvOvf <= EvOvf;
 end if;
@@ -1424,7 +1450,7 @@ then SampleCount <= SampleCount - 1;
 else SampleCount <= SampleCount;
 end if;
 
-if Event_Builder = Check_Mask1 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0' 
+if Event_Builder = Check_Mask1 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0' and EvRead(AFE_Num)(Chan_Num) = '0'
 	then BuffRdCount <= unsigned(Buff_Out(AFE_Num)(Chan_Num)(8 downto 0)); -- BuffOut_Mux(8 downto 0);
 elsif (Event_Builder = WrtData or Event_Builder = Wait1 or Event_Builder = Wait2) and BuffRdCount /= 0
 then BuffRdCount <= BuffRdCount - 1;

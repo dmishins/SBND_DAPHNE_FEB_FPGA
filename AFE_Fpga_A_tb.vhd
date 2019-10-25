@@ -615,7 +615,7 @@ then
 	if AFEDCODL = "01" then 
 -- The framing signal is high at the beginning of the serial word
    iAFEFR <= X"FC0";
-	if COUNT(6) = '1' then
+	if COUNT(5) = '1' then
 		COUNT <= (Others => '0');
 		PULSECNT <= "111";
 	elsif PULSECNT /= "000" then
