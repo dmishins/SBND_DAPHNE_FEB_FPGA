@@ -155,7 +155,7 @@ signal GateCounter, TurnOnTime,TurnOffTime,LEDTime : unsigned (8 downto 0);
 
 -- trigger logic signals
 signal Strt_req, Seq_Busy,FlashEn,FlashGate, TrgSrc,
-		 TrigReq,TrigReqD,SlfTrgEn,TmgSrcSel : std_logic; 
+		 TrigReq,TrigReqD,SlfTrgEn,TmgSrcSel, DDRSeqEn : std_logic; 
 
 signal StatReg : std_logic_vector (3 downto 0);
 
@@ -682,18 +682,15 @@ begin
 elsif rising_edge (RxOutClk(0)) then
 
 Debug(1) <= ADCSmplGate(0);
-if SlfTrgEdge(0)(1) = 1 then Debug(2) <= '1'; else Debug(2) <= '0'; end if;
-if SlfTrgEdge(0)(2) = 1 then Debug(3) <= '1'; else Debug(3) <= '0'; end if;
-if signed(Ins(0)(1)) > IntTrgThresh(0)(1) then Debug(4) <= '1'; else Debug(4) <= '0'; end if;
-if signed(Ins(0)(2)) > IntTrgThresh(0)(2) then Debug(5) <= '1'; else Debug(5) <= '0'; end if;
-if signed(OutsFront(0)(1)) > IntTrgThresh(0)(1) then Debug(6) <= '1'; else Debug(6) <= '0'; end if;
-if signed(OutsFront(0)(2)) > IntTrgThresh(0)(2) then Debug(7) <= '1'; else Debug(7) <= '0'; end if;
-if signed(Outs(0)(1)) > IntTrgThresh(0)(1) then Debug(8) <= '1'; else Debug(8) <= '0'; end if;
-if signed(Outs(0)(2)) > IntTrgThresh(0)(2) then Debug(9) <= '1'; else Debug(9) <= '0'; end if;
+if Event_Builder = Idle then Debug(2) <= '1'; else Debug(2) <= '0'; end if;
+Debug(3) <= uBunchRd;
+Debug(4) <= uBunchWrt;
+Debug(5) <= RxOut.Done;
+Debug(9 downto 6) <= std_logic_vector(uBunch(3 downto 0));
 		if SlfTrgEn = '1' and EvBuffWdsUsed >= EvBufffOut(12 downto 0) 
 		 and EvBuffEmpty = '0' 
-		then Debug(9) <= '1';
-		else Debug(9) <= '0';
+		then Debug(10) <= '1';
+		else Debug(10) <= '0';
 		end if;
 end if;
 end process;
@@ -1265,25 +1262,25 @@ if RxOut.Done = '1' and Rx1Dat(21) = '1' and Rx1Dat(19 downto 0) = X"00000"
 	then uBunch <= uBunch(31 downto 20) & unsigned(Rx1Dat(19 downto 0));
  elsif RxOut.Done = '1' and Rx1Dat(21) = '0'
 	then uBunch <= X"000" & unsigned(Rx1Dat(19 downto 0));
- elsif uBunchWrtTmr /= 0 then
+ elsif uBunchWrtTmr /= 0 and uBunchWrtTmr /= 5 then
  uBunch <= uBunch + 1;
  elsif WRDL = 1 and (uuCA(11 downto 10) = uGA and uuCA(9 downto 0) = ManTriggerAddr) then
- uBunch <= X"000000" & unsigned(uCD(7 downto 0));
+ uBunch <= X"0000" & unsigned(uCD(15 downto 0));
 else uBunch <= uBunch;
 end if;
 
 -- Write uBunch number at the uBunch beginning
 if (RxOut.Done = '1' and SlfTrgEn = '1') or (WRDL = 1 and (uuCA(11 downto 10) = uGA and uuCA(9 downto 0) = ManTriggerAddr))
- then uBunchWrtTmr <= 4;
+ then uBunchWrtTmr <= 5;
 elsif uBunchWrtTmr /= 0 then
 	uBunchWrtTmr <= uBunchWrtTmr - 1;
+	uBunchWrt <= '1';
+
 else
 uBunchWrtTmr <= uBunchWrtTmr;
+uBunchWrt <= '0';
 end if;
-if uBunchWrtTmr /= 0 then
-uBunchWrt <= '1';
-else uBunchWrt <= '0';
-end if;
+
 
 
 if RxOut.Done = '1' then Rx1DatReg <= Rx1Dat;
@@ -1291,7 +1288,7 @@ else Rx1DatReg <= Rx1DatReg;
 end if;
 
 -- Read the uBunch number after calculating and writing the event word count.
-if (Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0') ) and EvNum = 0
+if (Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0') )-- and EvNum = 0
 	then uBunchRd <= '1';
 else uBunchRd <= '0';
 end if;
@@ -1319,7 +1316,7 @@ end if;
 
 Case Event_Builder is
    When Idle => Read_Seq_Stat <= X"0";
-	 	if unsigned(EvBuffStatFIFO_Empty) = 0 and SlfTrgEn = '1' and RdDone = '0'
+	 	if unsigned(EvBuffStatFIFO_Empty) = 0 and SlfTrgEn = '1' and RdDone = '0' -- why do we care about the evbuffstat being empty?  Could this be my issue?
 		then Event_Builder <= Check_Mask0;
 		else Event_Builder <= Idle;
 		end if;
@@ -1689,7 +1686,7 @@ Case DDR_Write_Seq is
 -- If the FIFO words used is > leading word count, 
 -- then at least one event is ready for copying to DRAM
 		if SlfTrgEn = '1' and EvBuffWdsUsed >= EvBufffOut(12 downto 0) 
-		 and EvBuffEmpty = '0' 
+		 and EvBuffEmpty = '0' and DDRSeqEn = '1'
 		then DDR_Write_Seq <= ChkWrtBuff;
 		else DDR_Write_Seq <= Idle;
 		end if;
@@ -1745,7 +1742,7 @@ elsif DDR_Write_Seq = WrtDDR and DDRWrtCount /= 0
 else DDRWrtCount <= DDRWrtCount;
 end if;
 
-if DDR_Write_Seq =  Wait1 then EvBuffRd <= '1';  
+if (DDR_Write_Seq = Wait1) or ((RDDL = 2 and uuCA(11 downto 10) = uGA and uuCA(9 downto 0) = EvBufffirst)) then EvBuffRd <= '1';  
 elsif (DDR_Write_Seq = WrtDDR and DDRWrtCount <= 1) or DDR_Write_Seq = Idle
 then EvBuffRd <= '0';
 else EvBuffRd <= EvBuffRd;
@@ -2269,8 +2266,10 @@ end if;
 if WRDL = 1 and uuCA(9 downto 0) = IntTrgEnAddr 
 then TmgSrcSel <= uCD(0); 
 	  SlfTrgEn <= uCD(1);
+	  DDRSeqEn <= uCD(2);
 else SlfTrgEn <= SlfTrgEn;
 	  TmgSrcSel <= TmgSrcSel;
+	  DDRSeqEn <= DDRSeqEn;
 end if;
 
 end if; -- CpldRst
@@ -2362,7 +2361,7 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 X"0" & std_logic_vector(IntTrgThresh(1)(7)) when ThreshRegAddr(1)(7),
 		 X"000" & "00" & TrgSrc & '0' when TrigCtrlAddr,
 		 X"0" & "00" & std_logic_vector(ADCSmplCntReg) when ADCSmplCntrAd,
-		 X"000" &"00" & SlfTrgEn & TmgSrcSel when IntTrgEnAddr,
+		 X"000" &"0"& DDRSeqEn & SlfTrgEn & TmgSrcSel when IntTrgEnAddr,
 		 "000" & ControllerNo & "000" & PortNo when FEBAddresRegAd,
 		 "000" & EvBuffWdsUsed when EvBuffStatAd,
 		 EvBufffOut when EvBufffirst,

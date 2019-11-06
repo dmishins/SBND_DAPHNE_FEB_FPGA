@@ -105,6 +105,14 @@ constant UpTimeRegAddrLo : AddrPtr := "00" & X"6D";
 -- Diagnostic access to timestamp register
 constant TimeStampAdHi : AddrPtr := "00" & X"72";
 constant TimeStampAdLo : AddrPtr := "00" & X"73";
+
+
+
+
+constant ManTriggerAddr : AddrPtr := "00" & X"74"; -- address to issue a manual trigger.
+
+
+
 -- Spill indicator
 
 Type AddrArrayType is Array(0 to 7) of AddrPtr;
