@@ -279,7 +279,7 @@ signal DDR_Write_Seq : Write_Seq_FSM;
 signal DDRWrtSeqStat : std_logic_vector(2 downto 0);
 signal EvBuffWrt,EvBuffRd,EvBuffEmpty,EvBuffFull,DRAMRdBuffWrt,PageRdStat,
 		 PageRdReq,DRAMRdBuffRd,DRAMRdBuffFull,DRAMRdBuffEmpty : std_logic;
-signal EvBuffDat,EvBufffOut,DRAMRdBuffDat,DRAMRdBuffOut : std_logic_vector(15 downto 0);
+signal EvBuffDat,EvBufffOut,DRAMRdBuffDat,DRAMRdBuffOut,BuffOverflow : std_logic_vector(15 downto 0);
 signal PageWdCount : unsigned(9 downto 0);
 signal DRAMRdBuffWdsUsed,EvBuffWdsUsed : std_logic_vector(12 downto 0);
 signal DDRWrtCount : unsigned(10 downto 0);
@@ -943,6 +943,7 @@ begin
    InWdCnt(i)(k) <= (others => '0'); AFE_Wrt(i)(k) <= '0'; 
 	Input_Seqs(i)(k) <= Idle;  In_Seq_Stat(i)(k) <= '0';
 	ADCSmplCntr(i)(k) <= "0000000000";
+	BuffOverflow(8*i+k) <= '0';
 
 elsif rising_edge (RxOutClk(i)) then
 
@@ -1060,7 +1061,12 @@ end if;
 	elsif WrtPtrRst(i) = '1' then Buff_Wrt_Ptr(i)(k) <= (others => '0');
 	else Buff_Wrt_Ptr(i)(k) <= Buff_Wrt_Ptr(i)(k);
 	end if;
+	if (Buff_Wrt_Ptr(i)(k) = Buff_Rd_Ptr(i)(k) - 1) or (Buff_Wrt_Ptr(i)(k) = Buff_Rd_Ptr(i)(k) - 2) then
+		BuffOverflow(8*i+k) <= '1';
+	--else BuffOverflow <= BuffOverflow;
+	end if;
 
+	
 -- Qualify writes with the mask register bits
 	if ((Input_Seqs(i)(k) = WrtHits and FRDat(i) = 0) 
 	 or (Input_Seqs(i)(k) = WrtChanNo and FRDat(i) = 0 and SlfTrgEdge(i)(k) = 1) -- Diff_Reg(i)(k) > IntTrgThresh(i)(k))
@@ -2300,6 +2306,7 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 X"000" & '0' & LEDSrc & PulseSel & FlashEn when FlashCtrlAddr,
 		 UpTimeStage(31 downto 16) when UpTimeRegAddrHi,
 		 UpTimeStage(15 downto 0) when UpTimeRegAddrLo,
+		 BuffOverflow when BuffOverflowResetAd,
 		 std_logic_vector(TestCount(31 downto 16)) when TestCounterHiAd,
 		 std_logic_vector(TestCount(15 downto 0)) when TestCounterLoAd,
 		 X"000" & "00" & FMTxBuff_full & FMTxBuff_empty when LVDSTxFIFOStatAd,
