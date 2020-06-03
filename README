@@ -9,6 +9,9 @@ To automatically setup the project, you can run a tcl script to automatically cr
 source /opt/Xilinx/14.7/ISE_DS/settings64.sh
 2. Run the rebuild script **from the FEB_iseproj directory**
 xtclsh FEB_iseproj.tcl rebuild_project
+2.a. Consider running 
+chmod -R 775 *
+in the root directory to fix permissions errors.
 3. Source the iseumich/fermi script to open ise.  In ISE, open the .xise project file created in the FEB_iseproj directory.
 4. Run regenerate all cores
 
