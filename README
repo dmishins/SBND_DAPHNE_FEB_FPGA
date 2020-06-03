@@ -43,7 +43,16 @@ Then you should be ready to synthesize and implement the design.
 
 **************************************************************
 
-To generate an exportable .bin file for upload to the board via the microcontroller, select the top level design in the hierarchy and select configure target device in the processes list. This will open impact.  You may already have an impact project with the correct settings. If not, 
+To generate an exportable .bin file for upload to the board via the microcontroller, select the top level design in the hierarchy and select configure target device in the processes list. This will open impact.  You may already have an impact project with the correct settings. If not, create one with the following settings:
+Generic Parallel PROM
+PROM Size: 8M
+Compression: False
+Output Format: Bin (swap bits on)
+Swap bits: On
+Number of Revisions:1
+Revision 0 start address: 0
+Load Direction: UP
+Add non-configuration Data Files
 
 **************************************************************
 
