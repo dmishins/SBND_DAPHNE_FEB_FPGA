@@ -142,11 +142,6 @@ constant AFE1ArrayMax : AddrPtr  := "10" & X"66";
 
 ---------------------- Broadcast addresses ------------------------------
 
--- Flash gate control register
-constant FlashCtrlAddr : AddrPtr := "11" & X"00";
--- Flash gate on time and off time
-constant OnTimeAddr  : AddrPtr := "11" & X"01";
-constant OffTimeAddr : AddrPtr := "11" & X"02";
 
 -- Trigger control register
 constant TrigCtrlAddr : AddrPtr := "11" & X"03";

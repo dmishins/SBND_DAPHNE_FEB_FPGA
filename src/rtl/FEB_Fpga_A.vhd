@@ -153,7 +153,6 @@ signal Counter10us : std_logic_vector (10 downto 0);
 signal Counter1ms  : std_logic_vector (17 downto 0); 
 signal Count100ms  : std_logic_vector (6 downto 0);
 signal Counter1s   : std_logic_vector (27 downto 0);
-signal GateCounter, TurnOnTime,TurnOffTime,LEDTime : std_logic_vector (8 downto 0);
 
 -- Signals for aligning RxOutClks
 Type AlignSeq_Type is (Idle,SendPDn,SendPEn,SendRst,WaitFR,CheckFR,RstCntr);
@@ -165,12 +164,11 @@ Type OD_WriteState is (Idle, SetAFESel0, WrtAFE0, SetAFESel1, WrtAFE1);
 signal OD_Write : OD_WriteState;
 
 -- trigger logic signals
-signal Strt_req, Seq_Busy,FlashEn,FlashGate, TrgSrc,
+signal Strt_req, Seq_Busy, TrgSrc,
 		 TrigReq,TrigReqD,SlfTrgEn,TmgSrcSel, DDRHoldoff : std_logic; 
 
 signal StatReg : std_logic_vector (3 downto 0);
 
-signal LEDSrc : std_logic;
 -- Make a test counter that increments with each read
 signal TestCount : std_logic_vector (31 downto 0);
 -- Uptime counter to check for un-anticipated resets
@@ -241,6 +239,12 @@ signal Buff_In,Buff_Out : Array_2x8x16;
 signal Buff_Rd_Ptr,NextEvAddr,Buff_Wrt_Ptr,WrtCrrntWdCntAd,WrtNxtWdCntAd,InWdCnt : Array_2x8x10;
 signal NoHIts : Array_2x8;
 Signal Ins,Mids,Outs : Array_2x8x12;
+
+--On Beam input buffer signals
+signal OnBeam_out : Array_2x8x12;
+signal OnBeam_rd_en, OnBeam_wr_en, OnBeam_full, OnBeam_empty: Array_2x8;
+signal OnBeam_rd_undercount, OnBeam_wr_overcount : Array_2x8x10;
+
 -- Deserialize frame along with the 8 data lines. Use the deserialized 
 -- frame signal as an input to the bitslip state machine
 signal AFE_Wrt,AFE_rd : Array_2x8;
@@ -666,6 +670,21 @@ AsyncRst <= '1' when ResetHi = '1' or (uCWr = '0' and CpldCS = '0' and uCD(5) = 
 -- Eight DPRams per AFE, separate read and write clock domains
 Gen_FIFOs_Per_AFE : for i in 0 to 1 generate
 Gen_FIFOs_Per_Chan : for k in 0 to 7 generate
+
+BeamBuff : OnBeam_AFE_Buff
+  PORT MAP (
+    rst => ResetHI,
+    wr_clk => RxOutClk(i),
+    rd_clk => SysClk,
+    din => Mids(i)(k),
+    wr_en => OnBeam_wr_en(i)(k),
+    rd_en => OnBeam_rd_en(i)(k),
+    dout => OnBeam_out(i)(k),
+    full => OnBeam_full(i)(k),
+    empty => OnBeam_empty(i)(k),
+    rd_data_count => OnBeam_rd_undercount(i)(k),
+    wr_data_count => OnBeam_wr_overcount(i)(k)
+  );
 
 AFEBuff : DP_Ram_1kx16
   PORT MAP ( 
@@ -1248,9 +1267,7 @@ main : process(SysClk, CpldRst)
 	AFEClk <= '0';  AFERst <= '0'; 
 -- Synchronous edge detectors for various strobes
 	RDDL <= "00"; WRDL <= "00"; AddrReg <= (others => '0'); 
-	PulseSel <= '0'; FlashEn <= '0'; LEDSrc <= '0'; 
-	SlfTrgEn <= '0'; DDRHoldoff <= '0'; TurnOffTime <= '0' & X"70"; 
-	LEDTime <= '0' & X"30"; TurnOnTime <= '0' & X"01"; 
+	SlfTrgEn <= '0'; DDRHoldoff <= '0'; 	
 	BeamOnLength <= X"050"; BeamOffLength <= X"700";
 	TmgSrcSel <= '0'; 
 -- Upper DRAM word staging register
@@ -1275,14 +1292,17 @@ main : process(SysClk, CpldRst)
 	NextEvAddr(0) <= (others => (others => '0'));
 	NextEvAddr(1) <= (others => (others => '0'));
 	SampleCount <= (others => '0'); BuffRdCount <= (others => '0');
-	uBunchWrt <= '0'; uBunchRd <= '0'; 	GateCounter <= '0' & X"00"; 
+	uBunchWrt <= '0'; uBunchRd <= '0'; 
 	BeamOn <= '0'; EvOvf <=(others => X"FF"); 	Rx1DatReg <= (others => '0');
-	FlashGate <= '0'; FifoRdD <= '0'; 
+   FifoRdD <= '0'; 
 	IdleDL <= "00"; GPIDL(1) <= "00"; uBunch <= (others => '0'); uBunchGuard <= '0';
 	EvBuffWrt <= '0'; EvBuffRd <= '0'; EvBuffDat <= (others => '0'); PageRdReq <= '0';
 	DRAMRdBuffDat <= (others => '0'); DDRWrtCount <= (others => '0'); PageRdStat <= '0';
 	PageWdCount <= (others => '0'); DRAMRdBuffWrt <= '0'; DRAMRdBuffRd <= '0';
 	EvBuffStat_rden <= '0'; RdDone <= '0'; GPOCount <= "000"; GPO <= '0'; 
+	
+	PulseSel <= '0';
+	Pulse <= '0';
 	
 elsif rising_edge (SysClk) then 
 
@@ -1304,17 +1324,6 @@ if RDDL = 1 or WRDL = 1 then AddrReg <= uCA;
 else AddrReg <= AddrReg;
 end if;
 
-if WRDL = 1 and uCA(9 downto 0) = FlashCtrlAddr 
--- Flash gate enable bit
-then FlashEn <= uCD(0);
--- Choose between LED and flashgate
-	  PulseSel <= uCD(1);
--- Select source for LED flasher pulse
-	  LEDSrc <= uCD(2);
-else FlashEn <= FlashEn;
-	  PulseSel <= PulseSel;
-	  LEDSrc <= LEDSrc;
-end if;
 
 -- Reset DRAM Read FIFO
 if (WRDL = 1 and uCA(9 downto 0) = PageStatAddr and uCD(8) = '1') or
@@ -1323,22 +1332,6 @@ then rstDRAMBuffHi <= '1';
 else rstDRAMBuffHi <= '0';
 end if;
 
--- Register for determining the turn on time 
-if WRDL = 1 and uCA(9 downto 0) = OnTimeAddr
-then TurnOnTime <= uCD(8 downto 0);
-else TurnOnTime <= TurnOnTime;
-end if;
-
--- Register for determining the turn off time  
-if WRDL = 1 and uCA(9 downto 0) = OffTimeAddr
-then TurnOffTime <= uCD(8 downto 0);
-else TurnOffTime <= TurnOffTime;
-end if;
-
-if WRDL = 1 and uCA(9 downto 0) = LEDTimeAddr
-then LEDTime <= uCD(8 downto 0);
-else LEDTime <= LEDTime;
-end if;
 
 -- Register for determining the live gate lengths
    if WRDL = 1 and uCA(9 downto 0) = BeamOnLengthAd
@@ -1367,16 +1360,6 @@ end if;
 
 ----------------------- Flash gate logic ----------------------
 
--- Counter for timing the flash gate. 270 counts at 159 MHz = 1.695 ns
-if (GateCounter = 270 and TmgSrcSel = '1') 
-or	(SlfTrgEn = '1' and RxOut.Done = '1' and Rx1Dat(20) = '1') 
-or TmgSrcSel = '0' or FlashEn = '0'
-	then GateCounter <= (others => '0');
-else GateCounter <= GateCounter + 1;
-end if;
-
---Debug(1) <= RxOut.Done;
-
 if SlfTrgEn = '1' and RxOut.Done = '1' and Rx1Dat(20) = '1' 
 	then BeamOn <= '1';
 elsif SlfTrgEn = '1' and RxOut.Done = '1' and Rx1Dat(20) = '0'
@@ -1384,19 +1367,6 @@ elsif SlfTrgEn = '1' and RxOut.Done = '1' and Rx1Dat(20) = '0'
 else BeamOn <= BeamOn;
 end if;
 
--- "Turn on" in this case means reducing the SiPM voltage, "turn off"
--- means restoring to its nominal value
-  if GateCounter = TurnOnTime and FlashEn = '1' and PulseSel = '1' then FlashGate <= '1';
-elsif GateCounter = TurnOffTime then FlashGate <= '0';
-else FlashGate <= FlashGate;
-end if;
-
-if FlashEn = '1' and
-     ((PulseSel = '0' and (GateCounter = LEDTime or GateCounter = LEDTime + 1))
-   or (PulseSel = '1' and FlashGate = '1'))
-then Pulse <= '1';
-else Pulse <= '0';
-end if;
 
 ------------------------------- Trigger Logic ----------------------------
 
@@ -1469,8 +1439,7 @@ if Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0')
 else uBunchRd <= '0';
 end if;
 
-if SlfTrgEn = '1' and ((GateCounter = TurnOnTime and TmgSrcSel = '1')
-   or (RxOut.Done = '1' and TmgSrcSel = '0'))
+if RxOut.Done = '1' and TmgSrcSel = '0'
 	then TrigReq <= '1';
 elsif TrigReqD = '1' then TrigReq <= '0'; 
 end if;
@@ -2638,7 +2607,6 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 X"00" & "000" & MuxSelReg & MuxadReg when MuxCtrlAd,
 		 MaskReg(1) & MaskReg(0) when InputMaskAddr,
 		 In_Seq_Stat(1)(7 downto 0) & In_Seq_Stat(0)(7 downto 0) when InseqStatAd,
-		 X"000" & '0' & LEDSrc & PulseSel & FlashEn when FlashCtrlAddr,
 		 UpTimeStage(31 downto 16) when UpTimeRegAddrHi,
 		 UpTimeStage(15 downto 0) when UpTimeRegAddrLo,
 		 TestCount(31 downto 16) when TestCounterHiAd,
@@ -2646,9 +2614,6 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 X"000" & "00" & FMTxBuff_full & FMTxBuff_empty when LVDSTxFIFOStatAd,
 		 X"0" & BeamOnLength when BeamOnLengthAd,
 		 X"0" & BeamOffLength when BeamOffLengthAd,
-		 "0000000" & TurnOnTime when OnTimeAddr,
-		 "0000000" & TurnOffTime when OffTimeAddr,
- 		 "0000000" & LEDTime when LEDTimeAddr,
 		 "00" & SDWrtAd(29 downto 16) when SDRamWrtPtrHiAd,
 		 SDWrtAd(15 downto 0) when SDRamWrtPtrLoAd,
 		 "00" & SDRdAD(29 downto 16) when SDRamRdPtrHiAd,
