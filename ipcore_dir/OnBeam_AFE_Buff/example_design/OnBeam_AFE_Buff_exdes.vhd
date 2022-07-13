@@ -78,6 +78,8 @@ entity OnBeam_AFE_Buff_exdes is
      	   WR_DATA_COUNT             : OUT std_logic_vector(10-1 DOWNTO 0);
            RD_DATA_COUNT             : OUT std_logic_vector(10-1 DOWNTO 0);
            RST                       : IN  std_logic;
+           PROG_FULL                 : OUT std_logic;
+           PROG_FULL_THRESH          : IN  std_logic_vector(9-1 DOWNTO 0);
            WR_EN 		     : IN  std_logic;
            RD_EN                     : IN  std_logic;
            DIN                       : IN  std_logic_vector(12-1 DOWNTO 0);
@@ -103,6 +105,8 @@ architecture xilinx of OnBeam_AFE_Buff_exdes is
      	   WR_DATA_COUNT             : OUT std_logic_vector(10-1 DOWNTO 0);
            RD_DATA_COUNT             : OUT std_logic_vector(10-1 DOWNTO 0);
            RST                       : IN  std_logic;
+           PROG_FULL                 : OUT std_logic;
+           PROG_FULL_THRESH          : IN  std_logic_vector(9-1 DOWNTO 0);
            WR_EN 		     : IN  std_logic;
            RD_EN                     : IN  std_logic;
            DIN                       : IN  std_logic_vector(12-1 DOWNTO 0);
@@ -135,6 +139,8 @@ begin
            WR_DATA_COUNT             => wr_data_count,
            RD_DATA_COUNT             => rd_data_count,
            RST                       => rst,
+           PROG_FULL                 => prog_full,
+           PROG_FULL_THRESH          => prog_full_thresh,
            WR_EN 		     => wr_en,
            RD_EN                     => rd_en,
            DIN                       => din,

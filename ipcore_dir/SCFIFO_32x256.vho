@@ -22,7 +22,7 @@
 --    devices, or systems.  Use in such applications are expressly            --
 --    prohibited.                                                             --
 --                                                                            --
---    (c) Copyright 1995-2017 Xilinx, Inc.                                    --
+--    (c) Copyright 1995-2022 Xilinx, Inc.                                    --
 --    All rights reserved.                                                    --
 --------------------------------------------------------------------------------
 
@@ -59,10 +59,10 @@ COMPONENT SCFIFO_32x256
   PORT (
     clk : IN STD_LOGIC;
     rst : IN STD_LOGIC;
-    din : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+    din : IN STD_LOGIC_VECTOR(33 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
-    dout : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+    dout : OUT STD_LOGIC_VECTOR(33 DOWNTO 0);
     full : OUT STD_LOGIC;
     empty : OUT STD_LOGIC
   );

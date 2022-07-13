@@ -100,6 +100,8 @@ ARCHITECTURE simulation_arch OF OnBeam_AFE_Buff_synth IS
     SIGNAL wr_data_count                  :   STD_LOGIC_VECTOR(10-1 DOWNTO 0);
     SIGNAL rd_data_count                  :   STD_LOGIC_VECTOR(10-1 DOWNTO 0);
     SIGNAL rst	                          :   STD_LOGIC;
+    SIGNAL prog_full                      :   STD_LOGIC;
+    SIGNAL prog_full_thresh               :   STD_LOGIC_VECTOR(9-1 DOWNTO 0);
     SIGNAL wr_en                          :   STD_LOGIC;
     SIGNAL rd_en                          :   STD_LOGIC;
     SIGNAL din                            :   STD_LOGIC_VECTOR(12-1 DOWNTO 0);
@@ -290,6 +292,8 @@ ARCHITECTURE simulation_arch OF OnBeam_AFE_Buff_synth IS
            WR_DATA_COUNT             => wr_data_count,
            RD_DATA_COUNT             => rd_data_count,
            RST                       => rst,
+           PROG_FULL                 => prog_full,
+           PROG_FULL_THRESH          => prog_full_thresh,
            WR_EN 		     => wr_en,
            RD_EN                     => rd_en,
            DIN                       => din,

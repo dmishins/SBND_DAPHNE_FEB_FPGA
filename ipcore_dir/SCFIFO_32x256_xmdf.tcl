@@ -143,11 +143,11 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x25
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/functional/simulate_ncsim.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/functional/simulate_ncsim.sh
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/functional/simulate_vcs.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/functional/simulate_vcs.sh
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
 incr fcount
 
@@ -191,11 +191,11 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x25
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/timing/simulate_ncsim.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/timing/simulate_ncsim.sh
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/timing/simulate_vcs.bat
+utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path SCFIFO_32x256/simulation/timing/simulate_vcs.sh
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
 incr fcount
 

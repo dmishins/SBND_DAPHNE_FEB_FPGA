@@ -44,12 +44,24 @@
 # 
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
+#--------------------------------------------------------------------------------
+rm -rf simv* csrc DVEfiles AN.DB
 
-#-----------------------------------------------------------------------------
-#  Script to synthesize and implement the Coregen FIFO Generator
-#-----------------------------------------------------------------------------
-rm -rf results
-mkdir results
-cd results
-cp ../../../SCFIFO_32x256.ngc .
-planAhead -mode batch -source ../planAhead_ise.tcl
+echo "Compiling Core VHDL UNISIM/Behavioral model"
+vhdlan  ../../implement/results/routed.vhd
+
+echo "Compiling Test Bench Files"
+vhdlan   ../SCFIFO_32x256_pkg.vhd
+vhdlan   ../SCFIFO_32x256_rng.vhd
+vhdlan   ../SCFIFO_32x256_dgen.vhd
+vhdlan   ../SCFIFO_32x256_dverif.vhd
+vhdlan   ../SCFIFO_32x256_pctrl.vhd
+vhdlan   ../SCFIFO_32x256_synth.vhd
+vhdlan   ../SCFIFO_32x256_tb.vhd
+
+echo "Elaborating Design"
+vcs -time_res 1ps +neg_tchk +vcs+lic+wait -debug SCFIFO_32x256_tb
+
+echo "Simulating Design"
+./simv -ucli -i ucli_commands.key
+dve -session vcs_session.tcl

@@ -44,12 +44,30 @@
 # 
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
+#--------------------------------------------------------------------------------
+mkdir work
+echo "Compiling Core VHDL UNISIM/Behavioral model"
+ncvhdl -v93  -work work ../../implement/results/routed.vhd
 
-#-----------------------------------------------------------------------------
-#  Script to synthesize and implement the Coregen FIFO Generator
-#-----------------------------------------------------------------------------
-rm -rf results
-mkdir results
-cd results
-cp ../../../SCFIFO_32x256.ngc .
-planAhead -mode batch -source ../planAhead_ise.tcl
+echo "Compiling Test Bench Files"
+ncvhdl -v93 -work work ../SCFIFO_32x256_pkg.vhd
+ncvhdl -v93 -work work ../SCFIFO_32x256_rng.vhd 
+ncvhdl -v93 -work work ../SCFIFO_32x256_dgen.vhd
+ncvhdl -v93 -work work ../SCFIFO_32x256_dverif.vhd
+ncvhdl -v93 -work work ../SCFIFO_32x256_pctrl.vhd 
+ncvhdl -v93 -work work ../SCFIFO_32x256_synth.vhd 
+ncvhdl -v93 -work work ../SCFIFO_32x256_tb.vhd
+
+echo "Compiling SDF file"
+ncsdfc ../../implement/results/routed.sdf -output ./routed.sdf.X
+
+echo "Generating SDF command file"
+echo 'COMPILED_SDF_FILE = "routed.sdf.X",' > sdf.cmd
+echo 'SCOPE = :SCFIFO_32x256_synth_inst:SCFIFO_32x256_inst,' >> sdf.cmd
+echo 'MTM_CONTROL = "MAXIMUM";' >> sdf.cmd
+
+echo "Elaborating Design"
+ncelab -access +rwc -sdf_cmd_file sdf.cmd work.SCFIFO_32x256_tb
+
+echo "Simulating Design"
+ncsim -gui -input @"simvision -input wave_ncsim.sv" work.SCFIFO_32x256_tb

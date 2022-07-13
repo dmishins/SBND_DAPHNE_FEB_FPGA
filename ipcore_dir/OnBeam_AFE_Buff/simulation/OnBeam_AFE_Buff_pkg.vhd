@@ -203,6 +203,8 @@ PACKAGE OnBeam_AFE_Buff_pkg IS
      	   WR_DATA_COUNT             : OUT std_logic_vector(10-1 DOWNTO 0);
            RD_DATA_COUNT             : OUT std_logic_vector(10-1 DOWNTO 0);
            RST                       : IN  std_logic;
+           PROG_FULL                 : OUT std_logic;
+           PROG_FULL_THRESH          : IN  std_logic_vector(9-1 DOWNTO 0);
            WR_EN 		     : IN  std_logic;
            RD_EN                     : IN  std_logic;
            DIN                       : IN  std_logic_vector(12-1 DOWNTO 0);

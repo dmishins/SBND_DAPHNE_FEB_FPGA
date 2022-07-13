@@ -150,7 +150,7 @@ constant TrigCtrlAddr : AddrPtr := "11" & X"03";
 constant InternalPipeLineAddr	: AddrPtr := "11" & X"04";
 constant InputPipeLineAddr	: AddrPtr := "11" & X"08";
 -- Adjustable gate used for use in the test beam
-constant BeamOnLengthAd  : AddrPtr := "11" & X"05";
+constant OnBeamLengthAd  : AddrPtr := "11" & X"05";
 constant BeamOffLengthAd : AddrPtr := "11" & X"06";
 
 constant GateAddr	: AddrPtr := "11" & X"07";
@@ -390,12 +390,18 @@ component LVDSTxBuff
 end component;
 
 -- Fifo for buffering micro bunch numbers
-component SCFIFO_32x256
-  port (rst,clk,wr_en,rd_en : in std_logic;
-    din : in std_logic_vector(31 downto 0);
-    dout : out std_logic_vector(31 downto 0);
-    empty,full : out std_logic);
-end component;
+COMPONENT SCFIFO_32x256
+  PORT (
+    clk : IN STD_LOGIC;
+    rst : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(33 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(33 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
 
 component DP_Ram_1kx16
   port (clka,clkb : in std_logic;
@@ -413,13 +419,16 @@ COMPONENT OnBeam_AFE_Buff
     din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
+    prog_full_thresh : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     full : OUT STD_LOGIC;
     empty : OUT STD_LOGIC;
     rd_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
+    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+    prog_full : OUT STD_LOGIC
   );
 END COMPONENT;
+
 
 COMPONENT SCFIFO_1kx16 --now 16kx16
   PORT (

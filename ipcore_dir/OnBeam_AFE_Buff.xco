@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.7
-# Date: Sat Jul  9 00:02:36 2022
+# Date: Wed Jul 13 03:20:59 2022
 #
 ##############################################################
 #
@@ -157,7 +157,7 @@ CSET programmable_empty_type_rdch=No_Programmable_Empty_Threshold
 CSET programmable_empty_type_wach=No_Programmable_Empty_Threshold
 CSET programmable_empty_type_wdch=No_Programmable_Empty_Threshold
 CSET programmable_empty_type_wrch=No_Programmable_Empty_Threshold
-CSET programmable_full_type=No_Programmable_Full_Threshold
+CSET programmable_full_type=Single_Programmable_Full_Threshold_Input_Port
 CSET programmable_full_type_axis=No_Programmable_Full_Threshold
 CSET programmable_full_type_rach=No_Programmable_Full_Threshold
 CSET programmable_full_type_rdch=No_Programmable_Full_Threshold
@@ -210,4 +210,4 @@ CSET wuser_width=1
 MISC pkg_timestamp=2012-11-19T12:39:56Z
 # END Extra information
 GENERATE
-# CRC: 6a40a952
+# CRC: 43319352

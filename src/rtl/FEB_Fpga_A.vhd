@@ -165,7 +165,7 @@ signal OD_Write : OD_WriteState;
 
 -- trigger logic signals
 signal Strt_req, Seq_Busy, TrgSrc,
-		 TrigReq,TrigReqD,SlfTrgEn,TmgSrcSel, DDRHoldoff : std_logic; 
+		 OnBeamTrigReq, OffBeamTrigReq,OnBeamTrigAck, OffBeamTrigAck,SlfTrgEn,TmgSrcSel, DDRHoldoff : std_logic; 
 
 signal StatReg : std_logic_vector (3 downto 0);
 
@@ -177,7 +177,8 @@ signal UpTimeStage : std_logic_vector (31 downto 0);
 -- Number of data words per spill
 -- 80 MHz counter ADC sample #
 signal InputPipelineSet,InternalPipelineSet,WidthReg : std_logic_vector (7 downto 0);
-signal BeamOnLength,BeamOffLength : std_logic_vector (11 downto 0);
+signal OnBeamLength : std_logic_vector (7 downto 0);
+signal BeamOffLength : std_logic_vector (11 downto 0);
 
 -- Event word cout
 signal EventWdCnt,NxtWdCount : std_logic_vector (15 downto 0);
@@ -201,7 +202,7 @@ signal Avg_En : Array_2x8;
 signal Pad_Avg_Count : Array_2x5;
 signal Avg_Req : std_logic_vector(1 downto 0);
 signal SlfTrgEdge : Array_2x8x2;
-signal uBunchBuffOut,DDRAddrOut : std_logic_vector(31 downto 0);
+signal uBunchBuffOut,uBunchBuffDat, DDRAddrOut : std_logic_vector(33 downto 0);
 signal uBunch : std_logic_vector(31 downto 0);
 signal uBunchGuard : std_logic;
 signal uBunchWrt,uBunchRd,uBunchBuffEmpty,uBunchBuffFull,
@@ -242,15 +243,18 @@ Signal Ins,Mids,Outs : Array_2x8x12;
 
 --On Beam input buffer signals
 signal OnBeam_out : Array_2x8x12;
-signal OnBeam_rd_en, OnBeam_wr_en, OnBeam_full, OnBeam_empty: Array_2x8;
+signal OnBeam_rd_en, OnBeam_wr_en, OnBeam_full, OnBeam_prog_full, OnBeam_overflow, OnBeam_empty: Array_2x8;
+constant ZerosArray: Array_2x8:= (others=>(others=>'0'));
 signal OnBeam_rd_undercount, OnBeam_wr_overcount : Array_2x8x10;
+signal OnBeam_full_thresh : std_logic_vector (8 downto 0);
+
+
 
 -- Deserialize frame along with the 8 data lines. Use the deserialized 
 -- frame signal as an input to the bitslip state machine
 signal AFE_Wrt,AFE_rd : Array_2x8;
 signal SerDesInP,SerDesInN : Array_2x9;
 signal FrDat : Array_2x6;
-signal FrDat2 : Array_2x6;
 signal SlipReq,SlipEn,SerdesRst,FR_OK,FRStat : std_logic_vector(1 downto 0);
 signal Slippause : Array_2x4;
 signal RstReqDL : Array_2x2;
@@ -310,11 +314,11 @@ signal MuxadReg : std_logic_vector(1 downto 0);
 
 -- Signal used by LVDS serial links
 signal TxPDat : std_logic_vector(15 downto 0);
-signal Rx1Dat,Rx1DatReg : std_logic_vector(23 downto 0);
+signal Rx1Dat : std_logic_vector(23 downto 0);
 signal RxOut : RxOutRec;
 signal RxIn : RxInRec;
 -- Signals used by the phase detector
-signal TxEn,FMTxBuff_wreq,FMTxBuff_empty,FMTxBuff_full,PhDtct,SqWav,BeamOn : std_logic;
+signal TxEn,FMTxBuff_wreq,FMTxBuff_empty,FMTxBuff_full,PhDtct,SqWav,OnBeam, Overflow, CombinedOnBeamOverflow, OffBeamOverflow : std_logic;
 signal FBDiv : std_logic_vector(2 downto 0);
 signal TxOuts : TxOutRec;
 
@@ -485,25 +489,28 @@ port map (clka => Clk100MHz,
     addra => uCA(7 downto 0),
     dina => uCD,
     douta => ShadowOut);
+--(now actually 34x1024 lol)
 
+uBunchBuffDat <= uBunch & OnBeam & Overflow;
 uBunchBuff : SCFIFO_32x256
 -- Fifo for buffering micro bunch numbers
   port map (rst => ResetHi,
 				clk => SysClk,
 				wr_en => uBunchWrt,
 				rd_en => uBunchRd,
-				din => uBunch,
+				din => uBunchBuffDat,
     dout => uBunchBuffOut, 
     empty => uBunchBuffEmpty,
 	 full => uBunchBuffFull);
-
+	 
+--(now actually 34x1024 lol)
 DDRAddrBuff : SCFIFO_32x256
--- Fifo for buffering micro bunch numbers
+-- Fifo for buffering micro bunch numbers to find ddram addresses
   port map (rst => ResetHi,
 				clk => SysClk,
 				wr_en => uBunchWrt,
 				rd_en => DDRAddrRd,
-				din => uBunch,
+				din => uBunchBuffDat,
     dout => DDRAddrOut, 
     empty => DDRAddrEmpty,
 	 full => DDRAddrFull);
@@ -671,6 +678,12 @@ AsyncRst <= '1' when ResetHi = '1' or (uCWr = '0' and CpldCS = '0' and uCD(5) = 
 Gen_FIFOs_Per_AFE : for i in 0 to 1 generate
 Gen_FIFOs_Per_Chan : for k in 0 to 7 generate
 
+-- Buffer size (512 currently) minus OnBeamLength
+OnBeam_full_thresh <= std_logic_vector(TO_UNSIGNED(512,9) - unsigned(OnBeamLength));
+
+--Only trigger an overflow
+OnBeam_overflow(i)(k) <= OnBeam_prog_full(i)(k) and MaskReg(i)(k);
+CombinedOnBeamOverflow <= '0' when OnBeam_overflow = ZerosArray else '1';
 BeamBuff : OnBeam_AFE_Buff
   PORT MAP (
     rst => ResetHI,
@@ -683,7 +696,10 @@ BeamBuff : OnBeam_AFE_Buff
     full => OnBeam_full(i)(k),
     empty => OnBeam_empty(i)(k),
     rd_data_count => OnBeam_rd_undercount(i)(k),
-    wr_data_count => OnBeam_wr_overcount(i)(k)
+    wr_data_count => OnBeam_wr_overcount(i)(k),
+	 prog_full_thresh => OnBeam_full_thresh,
+	 prog_full => OnBeam_prog_full(i)(k)
+
   );
 
 AFEBuff : DP_Ram_1kx16
@@ -713,7 +729,7 @@ begin
 elsif falling_edge(SysClk) then
 
  SqWav <= FBDiv(2);
- FBDiv <= FBDiv + 1;
+ FBDiv <= std_logic_vector(UNSIGNED(FBDiv) + 1);
 
 end if; -- CpldRst
 end process IntClkDiv;
@@ -737,7 +753,7 @@ end process IntClkDiv;
 PhDtct <= TrgSrc and not(FBDiv(2) xor RefIn);
 RefIn <= GPI0;
 
-A7 <= SqWav when GA = 2 else TrgSrc and PhDtct when GA = 3 else GPO;
+A7 <= SqWav when Unsigned(GA) = 2 else TrgSrc and PhDtct when Unsigned(GA) = 3 else GPO;
 
 -- This must sit outside the gen loop
 Debugproc : process (RxOutClk(0), CpldRst)
@@ -753,7 +769,7 @@ elsif rising_edge (RxOutClk(0)) then
 Debug(1) <= not Debug(1);
 if Input_Seqs(0)(0) = Idle then Debug(2) <= '0'; else Debug(2) <= '1'; end if;
 
-if SlfTrgEdge(0)(0) = 1 then Debug(3) <= '1'; else Debug(3) <= '0'; end if;
+if SlfTrgEdge(0)(0) = "01" then Debug(3) <= '1'; else Debug(3) <= '0'; end if;
 if Diff_Reg(0)(0) > IntTrgThresh(0)(0) then Debug(4) <= '1'; else Debug(4) <= '0'; end if;
 	--8765 outs
 	-- 	 Debug(9) <= SlfTrgEdge(0)(0)(0);
@@ -770,153 +786,17 @@ end process;
 
 Gen_Two_AFEs : for i in 0 to 1 generate
 
-Two_AFEs : process (RxOutClk(i), CpldRst)
-
+Hist : process (RxOutClk(i), CpldRst)
 begin
-
- if CpldRst = '0' then 
-
-	InputDPWrtAd(i) <= X"08"; InternalDPWrtAd(i) <= X"04"; EvBuffStatFIFO_In(i) <= "0"; EvenWrtDone(i) <= '0';
-	InputDPRdAd(i) <= (others => '0'); InternalDPRdAd(i) <= (others => '0'); PipeWrt(i) <= '0'; ADCSmplGate(i) <= '0';
-	iWrtDL(i) <= "00"; GateReq(i) <= '0'; GateWidth(i) <= (others => '0'); 
-	SlipReq(i) <= '0'; Slippause(i) <= X"0"; RstReqDL(i) <= "00"; SlipEn(i) <= '1';
-	SerdesRst(i) <= '1';
-	DoneDly(i) <= "000";
-	Triplet(i) <= (others => X"000"); HistTimer(i) <= "00"; Peak(i) <= X"00";
-	HistEnDl(i) <= "00";  Hist_wena(i) <= "0"; uBunchOffset(i) <= (others => '0');
-	HistAddra(i) <= (others => '0');	HistAdaReg(i) <= (others => '0');
-   Hist_Data(i) <= (others => '0'); HistInit(i) <= '0';
-	MaskReg(i) <= X"FF";	HistWidth(i) <= (others => '0'); 
-	WrtPtrRst(i) <= '0'; Pad_Avg_Count(i) <= (others => '0'); Avg_Req(i) <= '0';
-
-elsif rising_edge (RxOutClk(i)) then
-
-	--Debug(9+i) <= ADCSmplGate(i);
--- Synchronous edge detector for uC write strobe w.r.t. deserializer output clock
-	iWrtDL(i)(0) <= not CpldCS and not uCWR;
-	iWrtDL(i)(1) <= iWrtDL(i)(0);
-
-	if iWrtDL(i) = 1 and uCD(8) = '1' and
-		((uCA(11 downto 10) = GA and uCA(9 downto 0) = CSRRegAddr)
-										  or uCA(9 downto 0) = CSRBroadCastAd)
-	  then Avg_Req(i) <= '1';
-	elsif Pad_Avg_Count(i) /= 0 then Avg_Req(i) <= '0';
-	end if;
-
--- Reset for the input deserializer
-if CpldCS = '0' and uCWR = '0' and uCD(2) = '1' 
-   and ((uCA(11 downto 10) = GA and uCA = CSRRegAddr)
-	or uCA(9 downto 0) = CSRBroadCastAd)
- then SerdesRst(i) <= '1';
- else SerdesRst(i) <= '0';
-end if;
-
-	if Pad_Avg_Count(i) = 0 and FRDat(i) = 0 and Avg_Req(i) = '1'
-	then Pad_Avg_Count(i) <= "10001";
-	elsif Pad_Avg_Count(i) /= 0 and FRDat(i) = 0 
-	then Pad_Avg_Count(i) <= Pad_Avg_Count(i) - 1;
-	else Pad_Avg_Count(i) <= Pad_Avg_Count(i);
-	end if;
-
--- Engage serdes bit slip if shifted out framing signal isn't all 1's or all 0's
-	if (FRDat(i) /= 0 and FRDat(i) /= 63) and AlignReq(i) = '0' and Slippause(i) = 0
-	then Slippause(i) <= X"F";
-	elsif Slippause(i) /= 0
-	then  Slippause(i) <= Slippause(i) - 1;
-	else Slippause(i) <= Slippause(i);
-	end if;
-
--- Allow time between requests for bit slip to take effect
-	if Slippause(i) = X"F" then SlipReq(i) <= '1';	
-	else SlipReq(i) <= '0';
-	end if;
-
--- Read and write addresses for the internal pipeline delay
-if PipeWrt(i) = '1' and InternalDPRdAd(i) = X"FF" then 
-	InternalDPRdAd(i) <= (others => '0');
-	InternalDPWrtAd(i) <= InternalPipelineSet;
-  elsif PipeWrt(i) = '1' and InternalDPRdAd(i) /= X"FF" then 
-		  InternalDPWrtAd(i) <= InternalDPWrtAd(i) + 1;
-		  InternalDPRdAd(i)  <= InternalDPRdAd(i) + 1;
-	else InternalDPWrtAd(i) <= InternalDPWrtAd(i);
-		  InternalDPRdAd(i) <= InternalDPRdAd(i);
- end if;
- 
- -- Read and write addresses for the Input pipeline delay
-if PipeWrt(i) = '1' and InputDPRdAd(i) = X"FF" then 
-	InputDPRdAd(i) <= (others => '0');
-	InputDPWrtAd(i) <= InputPipelineSet;
-  elsif PipeWrt(i) = '1' and InputDPRdAd(i) /= X"FF" then 
-		  InputDPWrtAd(i) <= InputDPWrtAd(i) + 1;
-		  InputDPRdAd(i)  <= InputDPRdAd(i) + 1;
-	else InputDPWrtAd(i) <= InputDPWrtAd(i);
-		  InputDPRdAd(i) <= InputDPRdAd(i);
- end if;
-
--- Increment the pipeline every other clock tick
-	if FRDat(i) = 63 then PipeWrt(i) <= '1';
-	else PipeWrt(i) <= '0';
-	end if;
-
--- Channel mask register.
-	if iWrtDL(i) = 1 and uCA(11 downto 10) = GA and uCA(9 downto 0) = InputMaskAddr
-	 then MaskReg(i) <= uCD(8*i+7 downto 8*i); 
-	else MaskReg(i) <= MaskReg(i);
-	end if;
-
--- SlipEn
-   if iWrtDL(i) = 1 and uCA(11 downto 10) = GA and uCA(9 downto 0) =  AlignEnAd
-	  then SlipEn(i) <= uCD(i);
-	else
-	  SlipEn(i) <= SlipEn(i);
-	end if;
-
--- Use this counter to append time since microbunch start to the ADC data
-	if TrigReq = '1' and GateWidth(i) = 0 then uBunchOffset(i) <= (others => '0');
-	elsif GateWidth(i) /= 0 and FRDat(i) = 0 
-	 then uBunchOffset(i) <= uBunchOffset(i) + 1;
-	else uBunchOffset(i) <= uBunchOffset(i);
-	end if;
-
--- Hold Gate request high until the next complete ADC sample is available
-  if GateReq(i) = '0' and GateWidth(i) = 0 and TrigReq = '1'
-	then GateReq(i) <= '1'; --Debug(i+2) <= '1';
-	elsif GateReq(i) = '1' and GateWidth(i) /= 0
-	then GateReq(i) <= '0'; --Debug(i+2) <= '0';
-	else GateReq(i) <= GateReq(i);
-  end if;
-
--- Synchronize the live gate counter with the frame signal
-	if AsyncRst = '1' then GateWidth(i) <= (others => '0');
-elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and BeamOn = '1'
-  then GateWidth(i) <= BeamOnLength;
-elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and BeamOn = '0'
-  then GateWidth(i) <= BeamOffLength;
- elsif GateWidth(i) /= 0 and FRDat(i) = 0 
-  then GateWidth(i) <= GateWidth(i) - 1;
- else GateWidth(i) <= GateWidth(i);
- end if;
-
-if DoneDly(i) = 0 and GateWidth(i) = 1 and FRDat(i) = 0 
-	then DoneDly(i) <= "101";
-elsif DoneDly(i) /= 0 and FRDat(i) = 0 
-	then DoneDly(i) <= DoneDly(i) - 1;
-else DoneDly(i) <= DoneDly(i);
-end if;
-
--- Allow time for the last ADC samples to be written before declaring the 
--- event complete
-if DoneDly(i) = 1 then EvenWrtDone(i) <= '1';
-else EvenWrtDone(i) <= '0';
-end if;
- 
- if GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1'
-  then ADCSmplGate(i) <= '1';
- elsif AsyncRst = '1'
-  or (GateWidth(i) = (X"000" & (ADCSmplCntReg + 2)) and FRDat(i) = 0)
- then ADCSmplGate(i) <= '0';
- else ADCSmplGate(i) <= ADCSmplGate(i);
- end if;
+	if CpldRst = '0' then
+			Triplet(i) <= (others => X"000"); HistTimer(i) <= "00"; Peak(i) <= X"00";
+			HistEnDl(i) <= "00";  Hist_wena(i) <= "0"; 
+			HistAddra(i) <= (others => '0');	HistAdaReg(i) <= (others => '0');
+			Hist_Data(i) <= (others => '0'); HistInit(i) <= '0';
+			HistWidth(i) <= (others => '0'); 
+			
+	elsif rising_edge(RxOutClk(i))
+	then
 
 ------------------------ Histogramming logic ----------------------------
 -- First stage of the triplet register used for peak finding
@@ -1007,7 +887,39 @@ end if;
 	else Hist_wena(i) <= "0";
 	end if;
 
+end if;
+end process;
 -----------------------------------------------------------------------------
+
+
+Input_Proc : process (RxOutClk(i), CpldRst)
+
+begin
+
+ if CpldRst = '0' then 
+
+	InputDPWrtAd(i) <= X"08"; InternalDPWrtAd(i) <= X"04"; 
+	InputDPRdAd(i) <= (others => '0'); InternalDPRdAd(i) <= (others => '0'); PipeWrt(i) <= '0'; 
+	iWrtDL(i) <= "00"; 
+	SlipReq(i) <= '0'; Slippause(i) <= X"0"; RstReqDL(i) <= "00"; SlipEn(i) <= '1';
+	SerdesRst(i) <= '1';
+	MaskReg(i) <= X"FF";	
+	Pad_Avg_Count(i) <= (others => '0'); Avg_Req(i) <= '0';
+
+elsif rising_edge (RxOutClk(i)) then
+
+	--Debug(9+i) <= ADCSmplGate(i);
+-- Synchronous edge detector for uC write strobe w.r.t. deserializer output clock
+	iWrtDL(i)(0) <= not CpldCS and not uCWR;
+	iWrtDL(i)(1) <= iWrtDL(i)(0);
+
+	if iWrtDL(i) = 1 and uCD(8) = '1' and
+		((uCA(11 downto 10) = GA and uCA(9 downto 0) = CSRRegAddr)
+										  or uCA(9 downto 0) = CSRBroadCastAd)
+	  then Avg_Req(i) <= '1';
+	elsif Pad_Avg_Count(i) /= 0 then Avg_Req(i) <= '0';
+	end if;
+
 
 	RstReqDL(i)(0) <= RstReq(i);
 	RstReqDL(i)(1) <= RstReqDL(i)(0);
@@ -1053,24 +965,138 @@ Case SlipCntReg(i)(2 downto 1) is
 	when others => FRStat(i) <= '0';
 end Case;
 
-if FRDat(i) = 0 then 
-	--Debug(5+i) <= '1';
- else
-	--Debug(5+i) <= '0';
-end if;	
+
+	-- Reset for the input deserializer
+	if CpldCS = '0' and uCWR = '0' and uCD(2) = '1' 
+		and ((uCA(11 downto 10) = GA and uCA = CSRRegAddr)
+		or uCA(9 downto 0) = CSRBroadCastAd)
+	 then SerdesRst(i) <= '1';
+	 else SerdesRst(i) <= '0';
+	end if;
+
+	if Pad_Avg_Count(i) = 0 and FRDat(i) = 0 and Avg_Req(i) = '1'
+	then Pad_Avg_Count(i) <= "10001";
+	elsif Pad_Avg_Count(i) /= 0 and FRDat(i) = 0 
+	then Pad_Avg_Count(i) <= Pad_Avg_Count(i) - 1;
+	else Pad_Avg_Count(i) <= Pad_Avg_Count(i);
+	end if;
+
+-- Engage serdes bit slip if shifted out framing signal isn't all 1's or all 0's
+	if (FRDat(i) /= 0 and FRDat(i) /= 63) and AlignReq(i) = '0' and Slippause(i) = 0
+	then Slippause(i) <= X"F";
+	elsif Slippause(i) /= 0
+	then  Slippause(i) <= Slippause(i) - 1;
+	else Slippause(i) <= Slippause(i);
+	end if;
+
+-- Allow time between requests for bit slip to take effect
+	if Slippause(i) = X"F" then SlipReq(i) <= '1';	
+	else SlipReq(i) <= '0';
+	end if;
+
+-- Read and write addresses for the internal pipeline delay
+if PipeWrt(i) = '1' and InternalDPRdAd(i) = X"FF" then 
+	InternalDPRdAd(i) <= (others => '0');
+	InternalDPWrtAd(i) <= InternalPipelineSet;
+  elsif PipeWrt(i) = '1' and InternalDPRdAd(i) /= X"FF" then 
+		  InternalDPWrtAd(i) <= InternalDPWrtAd(i) + 1;
+		  InternalDPRdAd(i)  <= InternalDPRdAd(i) + 1;
+	else InternalDPWrtAd(i) <= InternalDPWrtAd(i);
+		  InternalDPRdAd(i) <= InternalDPRdAd(i);
+ end if;
+ 
+ -- Read and write addresses for the Input pipeline delay
+if PipeWrt(i) = '1' and InputDPRdAd(i) = X"FF" then 
+	InputDPRdAd(i) <= (others => '0');
+	InputDPWrtAd(i) <= InputPipelineSet;
+  elsif PipeWrt(i) = '1' and InputDPRdAd(i) /= X"FF" then 
+		  InputDPWrtAd(i) <= InputDPWrtAd(i) + 1;
+		  InputDPRdAd(i)  <= InputDPRdAd(i) + 1;
+	else InputDPWrtAd(i) <= InputDPWrtAd(i);
+		  InputDPRdAd(i) <= InputDPRdAd(i);
+ end if;
+
+-- Increment the pipeline every other clock tick
+	if FRDat(i) = 63 then PipeWrt(i) <= '1';
+	else PipeWrt(i) <= '0';
+	end if;
+
+-- Channel mask register.
+	if iWrtDL(i) = 1 and uCA(11 downto 10) = GA and uCA(9 downto 0) = InputMaskAddr
+	 then MaskReg(i) <= uCD(8*i+7 downto 8*i); 
+	else MaskReg(i) <= MaskReg(i);
+	end if;
+
+-- SlipEn
+   if iWrtDL(i) = 1 and uCA(11 downto 10) = GA and uCA(9 downto 0) =  AlignEnAd
+	  then SlipEn(i) <= uCD(i);
+	else
+	  SlipEn(i) <= SlipEn(i);
+	end if;
 
 end if;
 
 end process;
 
--- FrDat2
-FrDatLong : process (RxOutClk(i), CpldRst)
+OffBeamTriggerLogic : process (RxOutClk(i), CpldRst)
 begin
-  if CpldRst = '0' then 
-    FrDat2(i) <= "000000";
-  elsif rising_edge (RxOutClk(i)) then
-    FrDat2(i) <= FrDat(i);
+ if CpldRst = '0' then 
+
+	EvBuffStatFIFO_In(i) <= "0"; EvenWrtDone(i) <= '0';
+	ADCSmplGate(i) <= '0';
+	GateReq(i) <= '0'; GateWidth(i) <= (others => '0'); 
+	DoneDly(i) <= "000";
+	WrtPtrRst(i) <= '0'; 
+	
+	elsif rising_edge (RxOutClk(i)) then
+-- Use this counter to append time since microbunch start to the ADC data
+	if OffBeamTrigReq = '1' and GateWidth(i) = 0 then uBunchOffset(i) <= (others => '0');
+	elsif GateWidth(i) /= 0 and FRDat(i) = 0 
+	 then uBunchOffset(i) <= uBunchOffset(i) + 1;
+	else uBunchOffset(i) <= uBunchOffset(i);
+	end if;
+
+-- Hold Gate request high until the next complete ADC sample is available
+  if GateReq(i) = '0' and GateWidth(i) = 0 and OffBeamTrigReq = '1'
+	then GateReq(i) <= '1'; --Debug(i+2) <= '1';
+	elsif GateReq(i) = '1' and GateWidth(i) /= 0
+	then GateReq(i) <= '0'; --Debug(i+2) <= '0';
+	else GateReq(i) <= GateReq(i);
   end if;
+
+-- Synchronize the live gate counter with the frame signal
+	if AsyncRst = '1' then GateWidth(i) <= (others => '0');
+elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and OnBeam = '1'
+  then GateWidth(i) <= "0000" & OnBeamLength;
+elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and OnBeam = '0'
+  then GateWidth(i) <= BeamOffLength;
+ elsif GateWidth(i) /= 0 and FRDat(i) = 0 
+  then GateWidth(i) <= GateWidth(i) - 1;
+ else GateWidth(i) <= GateWidth(i);
+ end if;
+
+if DoneDly(i) = 0 and GateWidth(i) = 1 and FRDat(i) = 0 
+	then DoneDly(i) <= "101";
+elsif DoneDly(i) /= 0 and FRDat(i) = 0 
+	then DoneDly(i) <= DoneDly(i) - 1;
+else DoneDly(i) <= DoneDly(i);
+end if;
+
+-- Allow time for the last ADC samples to be written before declaring the 
+-- event complete
+if DoneDly(i) = 1 then EvenWrtDone(i) <= '1';
+else EvenWrtDone(i) <= '0';
+end if;
+ 
+ if GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1'
+  then ADCSmplGate(i) <= '1';
+ elsif AsyncRst = '1'
+  or (GateWidth(i) = (X"000" & (ADCSmplCntReg + 2)) and FRDat(i) = 0)
+ then ADCSmplGate(i) <= '0';
+ else ADCSmplGate(i) <= ADCSmplGate(i);
+ end if;
+
+end if;
 end process;
 
 Gen_Eight_Chans : for k in 0 to 7 generate
@@ -1099,11 +1125,6 @@ elsif rising_edge (RxOutClk(i)) then
 
 -- Pedestal registers, self trigger
 
-	if i = 0 and FRDat(0) = 0
-	then
-		Debug(8 downto 5) <= Outs(0)(0)(11 downto 8);
-	end if;
-	
 
 -- Subtract off the pedestal before applying the threshold
 	 if FRDat(i) = 0 
@@ -1268,7 +1289,7 @@ main : process(SysClk, CpldRst)
 -- Synchronous edge detectors for various strobes
 	RDDL <= "00"; WRDL <= "00"; AddrReg <= (others => '0'); 
 	SlfTrgEn <= '0'; DDRHoldoff <= '0'; 	
-	BeamOnLength <= X"050"; BeamOffLength <= X"700";
+	OnBeamLength <= X"50"; BeamOffLength <= X"700";
 	TmgSrcSel <= '0'; 
 -- Upper DRAM word staging register
 	CDStage <= (others => '0'); 
@@ -1287,14 +1308,13 @@ main : process(SysClk, CpldRst)
 	Event_Builder <= Idle; NoHIts <= (others => X"00"); Read_Seq_Stat <= X"0";
 	DDR_Write_Seq <= Idle;
 	DDR_Read_Seq <= Idle; Seq_Busy <= '0'; DDRWrtSeqStat <= "000";
-	Buff_Rd_Ptr(0) <= (others => (others => '0')); TrigReq <= '0';
-	Buff_Rd_Ptr(1) <= (others => (others => '0')); TrigReqD <= '0';
+	Buff_Rd_Ptr(0) <= (others => (others => '0')); OffBeamTrigReq <= '0';
+	Buff_Rd_Ptr(1) <= (others => (others => '0')); OffBeamTrigAck <= '0';
 	NextEvAddr(0) <= (others => (others => '0'));
 	NextEvAddr(1) <= (others => (others => '0'));
 	SampleCount <= (others => '0'); BuffRdCount <= (others => '0');
 	uBunchWrt <= '0'; uBunchRd <= '0'; 
-	BeamOn <= '0'; EvOvf <=(others => X"FF"); 	Rx1DatReg <= (others => '0');
-   FifoRdD <= '0'; 
+	OnBeam <= '0'; EvOvf <=(others => X"FF");    FifoRdD <= '0'; 
 	IdleDL <= "00"; GPIDL(1) <= "00"; uBunch <= (others => '0'); uBunchGuard <= '0';
 	EvBuffWrt <= '0'; EvBuffRd <= '0'; EvBuffDat <= (others => '0'); PageRdReq <= '0';
 	DRAMRdBuffDat <= (others => '0'); DDRWrtCount <= (others => '0'); PageRdStat <= '0';
@@ -1334,9 +1354,11 @@ end if;
 
 
 -- Register for determining the live gate lengths
-   if WRDL = 1 and uCA(9 downto 0) = BeamOnLengthAd
-then BeamOnLength <= uCD(11 downto 0);
-else BeamOnLength <= BeamOnLength;
+   if WRDL = 1 and uCA(9 downto 0) = OnBeamLengthAd and uCD < 250 and uCD > 7
+then OnBeamLength <= uCD(7 downto 0);
+elsif WRDL = 1 and uCA(9 downto 0) = OnBeamLengthAd
+then OnBeamLength <= x"FA";
+else OnBeamLength <= OnBeamLength;
 end if;
 
    if WRDL = 1 and uCA(9 downto 0) = BeamOffLengthAd
@@ -1358,14 +1380,6 @@ if Strt_req = '1' then AFEClk <= '0'; --Debug(8) <= '0';
  else AFEClk <= not AFEClk; --Debug(8) <= not Debug(8);
 end if;
 
------------------------ Flash gate logic ----------------------
-
-if SlfTrgEn = '1' and RxOut.Done = '1' and Rx1Dat(20) = '1' 
-	then BeamOn <= '1';
-elsif SlfTrgEn = '1' and RxOut.Done = '1' and Rx1Dat(20) = '0'
-	then BeamOn <= '0';
-else BeamOn <= BeamOn;
-end if;
 
 
 ------------------------------- Trigger Logic ----------------------------
@@ -1387,13 +1401,13 @@ else AFERst <= '0';
 end if;
 
 -- Trig out width counter
-if GPOCount = 0 and TrigReq = '1' then GPOCount <= "111";
+if GPOCount = 0 and OffBeamTrigReq = '1' then GPOCount <= "111";
 elsif GPOCount /= 0 then GPOCount <= GPOCount - 1;
 else GPOCount <= GPOCount;
 end if;
 
 -- Trig Out or SpillGate on the GPO LEMO.
-   if TrigReq = '1' then GPO <= '1';
+   if OffBeamTrigReq = '1' then GPO <= '1';
 elsif GPOCount = 1 then GPO <= '0';
 else GPO <= GPO;
 end if;
@@ -1407,7 +1421,26 @@ else RxIn.Clr_Err <= '0';
 end if;
 
 
+--------------------------------------------------------------------------------
+--Recieve Trigger and run correct sequencer 
+--------------------------------------------------------------------------------
 
+-- Meaning of bits on RxOut (code from controller)
+--HrtBtData(19 downto 0) <= MicrobunchCount(19 downto 0);
+--HrtBtData(20) <= '1' when TriggerType = TriggerVariantBeamOn else '0';
+--HrtBtData(21) <= '0' when MicrobunchCount(31 downto 20) = 0 else '1';
+--HrtBtData(23 downto 22) <= "00";
+
+
+------------------ Set Debug Signals
+
+--Debug(1) <= RxOut.Done;
+--Debug(2) <= Rx1Dat(21);
+--Debug(3) <= uBunchWrt;
+--Debug(4) <= uBunchGuard;
+
+
+--Update the microbunch number
 if RxOut.Done = '1' and Rx1Dat(21) = '1' and Rx1Dat(19 downto 0) = X"00000" and uBunchGuard = '0'
 	then uBunch(31 downto 20) <= uBunch(31 downto 20) + 1;
 		  uBunch(19 downto 0) <= (others => '0');
@@ -1419,31 +1452,41 @@ if RxOut.Done = '1' and Rx1Dat(21) = '1' and Rx1Dat(19 downto 0) = X"00000" and 
 else uBunch <= uBunch; uBunchGuard <= uBunchGuard;
 end if;
 
---Debug(1) <= RxOut.Done;
---Debug(2) <= Rx1Dat(21);
---Debug(3) <= uBunchWrt;
---Debug(4) <= uBunchGuard;
+--Send the trigger iff it will not cause an overflow
+
+if RxOut.Done = '1' and Rx1Dat(20) = '1' and CombinedOnBeamOverflow = '0'
+	then OnBeamTrigReq <= '1';
+elsif OnBeamTrigAck = '1' then OnBeamTrigReq <= '0'; 
+end if;
+
+if RxOut.Done = '1' and Rx1Dat(20) = '0' and OffBeamOverflow = '0'
+	then OffBeamTrigReq <= '1';
+elsif OffBeamTrigAck = '1' then OffBeamTrigReq <= '0'; 
+end if;
+
+--Update signals for uBunch buff
+if RxOut.Done = '1' and Rx1Dat(20) = '1' 
+	then OnBeam <= '1'; Overflow <= CombinedOnBeamOverflow;
+		  
+elsif RxOut.Done = '1' and Rx1Dat(20) = '0'
+	then OnBeam <= '0'; Overflow <= OffBeamOverflow;
+else OnBeam <= OnBeam;
+end if;
 
 -- Write uBunch number at the uBunch beginning
-if RxOut.Done = '1' and SlfTrgEn = '1' then uBunchWrt <= '1';
+if RxOut.Done = '1' 
+	then uBunchWrt <= '1';
 else uBunchWrt <= '0';
 end if;
 
-if RxOut.Done = '1' then Rx1DatReg <= Rx1Dat;
-else Rx1DatReg <= Rx1DatReg;
-end if;
 
+--Todo, move near event builder
 -- Read the uBunch number after calculating and writing the event word count.
 if Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0') 
 	then uBunchRd <= '1';
 else uBunchRd <= '0';
 end if;
 
-if RxOut.Done = '1' and TmgSrcSel = '0'
-	then TrigReq <= '1';
-elsif TrigReqD = '1' then TrigReq <= '0'; 
-end if;
-	TrigReqD <= TrigReq;
 
 -- flag used to signal end of read out across clock domains
  if Event_Builder = Incr_Chan1
@@ -2612,7 +2655,7 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 TestCount(31 downto 16) when TestCounterHiAd,
 		 TestCount(15 downto 0) when TestCounterLoAd,
 		 X"000" & "00" & FMTxBuff_full & FMTxBuff_empty when LVDSTxFIFOStatAd,
-		 X"0" & BeamOnLength when BeamOnLengthAd,
+		 X"00" & OnBeamLength when OnBeamLengthAd,
 		 X"0" & BeamOffLength when BeamOffLengthAd,
 		 "00" & SDWrtAd(29 downto 16) when SDRamWrtPtrHiAd,
 		 SDWrtAd(15 downto 0) when SDRamWrtPtrLoAd,
@@ -2669,8 +2712,8 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 X"000" & ADCSmplCntReg when ADCSmplCntrAd,
 		 X"000" &"0"& DDRHoldoff & SlfTrgEn & TmgSrcSel when IntTrgEnAddr,
 		 "000" & ControllerNo & "000" & PortNo when FEBAddresRegAd,
-		 "00" & FRDat(0) & "00" & FRDat2(0) when FRDat0RegAd,
-		 "00" & FRDat(1) & "00" & FRDat2(1) when FRDat1RegAd,
+		 "00" & FRDat(0) & "00000000"  when FRDat0RegAd,
+		 "00" & FRDat(1) & "00000000"  when FRDat1RegAd,
 		 uBunch(15 downto  0)        when uBLoAd,
 		 uBunch(31 downto 16)        when uBHiAd,
 		 uBunchBuffOut(15 downto  0) when uBBuffLoAd,
