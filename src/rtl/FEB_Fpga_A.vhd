@@ -165,7 +165,9 @@ signal OD_Write : OD_WriteState;
 
 -- trigger logic signals
 signal Strt_req, Seq_Busy, TrgSrc,
-		 OnBeamTrigReq, OffBeamTrigReq,OnBeamTrigAck, OffBeamTrigAck,SlfTrgEn,TmgSrcSel, DDRHoldoff : std_logic; 
+		 OnBeamTrigReq, OffBeamTrigReq,SlfTrgEn,TmgSrcSel, DDRHoldoff : std_logic; 
+		 
+signal OnBeamTrigAck, OffBeamTrigAck : std_logic_vector (1 downto 0);
 
 signal StatReg : std_logic_vector (3 downto 0);
 
@@ -681,7 +683,7 @@ Gen_FIFOs_Per_Chan : for k in 0 to 7 generate
 -- Buffer size (512 currently) minus OnBeamLength
 OnBeam_full_thresh <= std_logic_vector(TO_UNSIGNED(512,9) - unsigned(OnBeamLength));
 
---Only trigger an overflow
+--Only trigger an overflow for channels that are not masked
 OnBeam_overflow(i)(k) <= OnBeam_prog_full(i)(k) and MaskReg(i)(k);
 CombinedOnBeamOverflow <= '0' when OnBeam_overflow = ZerosArray else '1';
 BeamBuff : OnBeam_AFE_Buff
@@ -1036,6 +1038,29 @@ if PipeWrt(i) = '1' and InputDPRdAd(i) = X"FF" then
 
 end if;
 
+end process;
+
+OnBeamTriggerLogic : process(RxOutClk(i), CpldRst)
+begin
+ if CpldRst = '0' then
+	--Reset some stuff
+	
+ elsif rising_edge(RxOutClk(i)) then
+  if OnBeamTrigReq = '1' then
+	OnBeamTrigAck(i) <= '1'
+  end if;
+
+  if OnBeamTrigReq = '1' and OnBeamGateWidth(i) = 0
+
+-- Use this counter to append time since microbunch start to the ADC data
+	if OnBeamTrigReq = '1' and OnBeamGateWidth(i) = 0 then OnBeamuBunchOffset(i) <= (others => '0');
+	elsif OnBeamGateWidth(i) /= 0 and FRDat(i) = 0 
+	 then OnBeamuBunchOffset(i) <= OnBeamuBunchOffset(i) + 1;
+	else OnBeamuBunchOffset(i) <= OnBeamuBunchOffset(i);
+	end if;
+
+  
+end if;
 end process;
 
 OffBeamTriggerLogic : process (RxOutClk(i), CpldRst)
@@ -1456,12 +1481,12 @@ end if;
 
 if RxOut.Done = '1' and Rx1Dat(20) = '1' and CombinedOnBeamOverflow = '0'
 	then OnBeamTrigReq <= '1';
-elsif OnBeamTrigAck = '1' then OnBeamTrigReq <= '0'; 
+elsif OnBeamTrigAck = "11" then OnBeamTrigReq <= '0'; 
 end if;
 
 if RxOut.Done = '1' and Rx1Dat(20) = '0' and OffBeamOverflow = '0'
 	then OffBeamTrigReq <= '1';
-elsif OffBeamTrigAck = '1' then OffBeamTrigReq <= '0'; 
+elsif OffBeamTrigAck = "00" then OffBeamTrigReq <= '0'; 
 end if;
 
 --Update signals for uBunch buff
