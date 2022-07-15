@@ -320,9 +320,12 @@ signal Rx1Dat : std_logic_vector(23 downto 0);
 signal RxOut : RxOutRec;
 signal RxIn : RxInRec;
 -- Signals used by the phase detector
-signal TxEn,FMTxBuff_wreq,FMTxBuff_empty,FMTxBuff_full,PhDtct,SqWav,OnBeam, Overflow, CombinedOnBeamOverflow, OffBeamOverflow : std_logic;
+signal TxEn,FMTxBuff_wreq,FMTxBuff_empty,FMTxBuff_full,PhDtct,SqWav,OnBeam, Overflow, OffBeamOverflow : std_logic;
 signal FBDiv : std_logic_vector(2 downto 0);
 signal TxOuts : TxOutRec;
+
+--Signals used by trigger logic
+signal CombinedOnBeamOverflow: std_logic_vector(1 downto 0);
 
 -- Histogrammer signals
 signal HistGateCnt0,HistGateCnt1 : std_logic_vector(15 downto 0);
@@ -493,7 +496,7 @@ port map (clka => Clk100MHz,
     douta => ShadowOut);
 --(now actually 34x1024 lol)
 
-uBunchBuffDat <= uBunch & OnBeam & Overflow;
+uBunchBuffDat <= OnBeam & Overflow & uBunch;
 uBunchBuff : SCFIFO_32x256
 -- Fifo for buffering micro bunch numbers
   port map (rst => ResetHi,
@@ -681,11 +684,11 @@ Gen_FIFOs_Per_AFE : for i in 0 to 1 generate
 Gen_FIFOs_Per_Chan : for k in 0 to 7 generate
 
 -- Buffer size (512 currently) minus OnBeamLength
-OnBeam_full_thresh <= std_logic_vector(TO_UNSIGNED(512,9) - unsigned(OnBeamLength));
+OnBeam_full_thresh <= std_logic_vector(TO_UNSIGNED(508,9) - unsigned(OnBeamLength)); -- use 508 instead of 512 to have four empty spaces to account for clock crossing delay
 
 --Only trigger an overflow for channels that are not masked
-OnBeam_overflow(i)(k) <= OnBeam_prog_full(i)(k) and MaskReg(i)(k);
-CombinedOnBeamOverflow <= '0' when OnBeam_overflow = ZerosArray else '1';
+OnBeam_overflow(i)(k) <= (Unsigned(OnBeam_wr_overcount(i)(k)) > OnBeam_full_thresh) and MaskReg(i)(k);
+
 BeamBuff : OnBeam_AFE_Buff
   PORT MAP (
     rst => ResetHI,
@@ -698,10 +701,7 @@ BeamBuff : OnBeam_AFE_Buff
     full => OnBeam_full(i)(k),
     empty => OnBeam_empty(i)(k),
     rd_data_count => OnBeam_rd_undercount(i)(k),
-    wr_data_count => OnBeam_wr_overcount(i)(k),
-	 prog_full_thresh => OnBeam_full_thresh,
-	 prog_full => OnBeam_prog_full(i)(k)
-
+    wr_data_count => OnBeam_wr_overcount(i)(k)
   );
 
 AFEBuff : DP_Ram_1kx16
@@ -1046,85 +1046,136 @@ begin
 	--Reset some stuff
 	
  elsif rising_edge(RxOutClk(i)) then
-  if OnBeamTrigReq = '1' then
-	OnBeamTrigAck(i) <= '1'
-  end if;
 
-  if OnBeamTrigReq = '1' and OnBeamGateWidth(i) = 0
-
--- Use this counter to append time since microbunch start to the ADC data
-	if OnBeamTrigReq = '1' and OnBeamGateWidth(i) = 0 then OnBeamuBunchOffset(i) <= (others => '0');
-	elsif OnBeamGateWidth(i) /= 0 and FRDat(i) = 0 
-	 then OnBeamuBunchOffset(i) <= OnBeamuBunchOffset(i) + 1;
-	else OnBeamuBunchOffset(i) <= OnBeamuBunchOffset(i);
+	-- send ack on FRDAT
+	if OnBeamTrigReq = '1' and FRDat(i) = 0 then
+		OnBeamTrigAck(i) <= '1';
+	elsif OnBeamTrigReq = '0' then
+		OnBeamTrigAck(i) <= '0';
+	else
+		OnBeamTrigAck(i) <= OnBeamTrigAck(i);
 	end if;
 
-  
+	-- Use this counter to append time since microbunch start to the ADC data
+	-- And run the gate
+	if OnBeamTrigReq = '1' and FRDat(i) = 0 and OnBeamGateWidth(i) = 0
+	then
+		OnBeamuBunchOffset(i) <= (others => '0');
+		OnBeamGateWidth(i) <= OnBeamLength;
+	elsif OnBeamGateWidth(i) /= 0 and FRDat(i) = 0 
+	then 
+		OnBeamuBunchOffset(i) <= OnBeamuBunchOffset(i) + 1;
+		OnBeamGateWidth(i) <= OnBeamGateWidth(i) - 1;
+	else 
+		OnBeamuBunchOffset(i) <= OnBeamuBunchOffset(i);
+		OnBeamGateWidth(i) <= OnBeamGateWidth(i);
+	end if;
+
+	--Mark the end of the event by writing the flash found bits to the buffer
+	if OnBeamGateWidth(i) = 1 and FRDat(i) = 0 then
+		OnBeamDoneDelay(i) <= '1';
+	elsif OnBeamGateWidth = 0 and FRDat(i) = 0 then
+		OnBeamDoneDelay(i) <= '0';
+	else 
+		OnBeamDoneDelay(i)  <= OnBeamDoneDelay(i);
+	end if;
+
+	if OnBeamDoneDelay(i) = '1' and FRDat(i) = 0 then
+		FlashDetector_wr_en(i) <= '1';
+	else 
+		FlashDetector_wr_en(i) <= '0';
+	end if;
+
+
 end if;
 end process;
 
 OffBeamTriggerLogic : process (RxOutClk(i), CpldRst)
 begin
- if CpldRst = '0' then 
+	if CpldRst = '0' then 
 
-	EvBuffStatFIFO_In(i) <= "0"; EvenWrtDone(i) <= '0';
-	ADCSmplGate(i) <= '0';
-	GateReq(i) <= '0'; GateWidth(i) <= (others => '0'); 
-	DoneDly(i) <= "000";
-	WrtPtrRst(i) <= '0'; 
-	
-	elsif rising_edge (RxOutClk(i)) then
--- Use this counter to append time since microbunch start to the ADC data
-	if OffBeamTrigReq = '1' and GateWidth(i) = 0 then uBunchOffset(i) <= (others => '0');
-	elsif GateWidth(i) /= 0 and FRDat(i) = 0 
-	 then uBunchOffset(i) <= uBunchOffset(i) + 1;
-	else uBunchOffset(i) <= uBunchOffset(i);
+		EvBuffStatFIFO_In(i) <= "0"; EvenWrtDone(i) <= '0';
+		ADCSmplGate(i) <= '0';
+		GateReq(i) <= '0'; GateWidth(i) <= (others => '0'); 
+		DoneDly(i) <= "000";
+		WrtPtrRst(i) <= '0'; 
+		
+		elsif rising_edge (RxOutClk(i)) then
+	-- Use this counter to append time since microbunch start to the ADC data
+		if OffBeamTrigReq = '1' and GateWidth(i) = 0 then uBunchOffset(i) <= (others => '0');
+		elsif GateWidth(i) /= 0 and FRDat(i) = 0 
+		then uBunchOffset(i) <= uBunchOffset(i) + 1;
+		else uBunchOffset(i) <= uBunchOffset(i);
+		end if;
+
+	-- Hold Gate request high until the next complete ADC sample is available
+	if GateReq(i) = '0' and GateWidth(i) = 0 and OffBeamTrigReq = '1'
+		then GateReq(i) <= '1'; --Debug(i+2) <= '1';
+		elsif GateReq(i) = '1' and GateWidth(i) /= 0
+		then GateReq(i) <= '0'; --Debug(i+2) <= '0';
+		else GateReq(i) <= GateReq(i);
 	end if;
 
--- Hold Gate request high until the next complete ADC sample is available
-  if GateReq(i) = '0' and GateWidth(i) = 0 and OffBeamTrigReq = '1'
-	then GateReq(i) <= '1'; --Debug(i+2) <= '1';
-	elsif GateReq(i) = '1' and GateWidth(i) /= 0
-	then GateReq(i) <= '0'; --Debug(i+2) <= '0';
-	else GateReq(i) <= GateReq(i);
-  end if;
+	-- Synchronize the live gate counter with the frame signal
+		if AsyncRst = '1' then GateWidth(i) <= (others => '0');
+	elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and OnBeam = '1'
+	then GateWidth(i) <= "0000" & OnBeamLength;
+	elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and OnBeam = '0'
+	then GateWidth(i) <= BeamOffLength;
+	elsif GateWidth(i) /= 0 and FRDat(i) = 0 
+	then GateWidth(i) <= GateWidth(i) - 1;
+	else GateWidth(i) <= GateWidth(i);
+	end if;
 
--- Synchronize the live gate counter with the frame signal
-	if AsyncRst = '1' then GateWidth(i) <= (others => '0');
-elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and OnBeam = '1'
-  then GateWidth(i) <= "0000" & OnBeamLength;
-elsif GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1' and OnBeam = '0'
-  then GateWidth(i) <= BeamOffLength;
- elsif GateWidth(i) /= 0 and FRDat(i) = 0 
-  then GateWidth(i) <= GateWidth(i) - 1;
- else GateWidth(i) <= GateWidth(i);
- end if;
+	if DoneDly(i) = 0 and GateWidth(i) = 1 and FRDat(i) = 0 
+		then DoneDly(i) <= "101";
+	elsif DoneDly(i) /= 0 and FRDat(i) = 0 
+		then DoneDly(i) <= DoneDly(i) - 1;
+	else DoneDly(i) <= DoneDly(i);
+	end if;
 
-if DoneDly(i) = 0 and GateWidth(i) = 1 and FRDat(i) = 0 
-	then DoneDly(i) <= "101";
-elsif DoneDly(i) /= 0 and FRDat(i) = 0 
-	then DoneDly(i) <= DoneDly(i) - 1;
-else DoneDly(i) <= DoneDly(i);
-end if;
+	-- Allow time for the last ADC samples to be written before declaring the 
+	-- event complete
+	if DoneDly(i) = 1 then EvenWrtDone(i) <= '1';
+	else EvenWrtDone(i) <= '0';
+	end if;
+	
+	if GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1'
+	then ADCSmplGate(i) <= '1';
+	elsif AsyncRst = '1'
+	or (GateWidth(i) = (X"000" & (ADCSmplCntReg + 2)) and FRDat(i) = 0)
+	then ADCSmplGate(i) <= '0';
+	else ADCSmplGate(i) <= ADCSmplGate(i);
+	end if;
 
--- Allow time for the last ADC samples to be written before declaring the 
--- event complete
-if DoneDly(i) = 1 then EvenWrtDone(i) <= '1';
-else EvenWrtDone(i) <= '0';
-end if;
- 
- if GateWidth(i) = 0 and FRDat(i) = 0 and GateReq(i) = '1'
-  then ADCSmplGate(i) <= '1';
- elsif AsyncRst = '1'
-  or (GateWidth(i) = (X"000" & (ADCSmplCntReg + 2)) and FRDat(i) = 0)
- then ADCSmplGate(i) <= '0';
- else ADCSmplGate(i) <= ADCSmplGate(i);
- end if;
-
-end if;
+	end if;
 end process;
 
 Gen_Eight_Chans : for k in 0 to 7 generate
+
+OnBeamPerChan : process (RxOutClk(i), CpldRst)
+begin
+	if CpldRst = '0' then 
+		OnBeam_wr_en(i)(k) <= '0';
+		OnBeamPulseFound (i)(k) <= '0';
+	elsif rising_edge (RxOutClk(i)) then
+
+		if OnBeamTrigReq = '1' and FRDat(i) = 0 and OnBeamGateWidth(i) = 0 then
+			OnBeamPulseFound (i)(k) <= '0';
+		elsif Diff_Reg(i)(k) >= IntTrigThresh(i)(k) and OnBeamGateWidth(i) /= 0 and MaskReg(i)(k) = '1' then
+			OnBeamPulseFound (i)(k) <= '1';
+		else
+			OnBeamPulseFound (i)(k) <= OnBeamPulseFound (i)(k);
+		end if;
+
+		if OnBeamGateWidth(i) = 0 or MaskReg(i)(k) = '0' then
+			OnBeam_wr_en(i)(k) <= '0';
+		else
+			OnBeam_wr_en(i)(k) <= '1';
+		end if;
+
+	end if;
+end process;
 
 Eight_Chans : process (RxOutClk(i), CpldRst)
 
@@ -1300,7 +1351,7 @@ end generate;
 ----------------------- 160 Mhz clocked logic -----------------------------
 
 ResetHi <= not CpldRst;  -- Generate and active high reset for the Xilinx macros
-
+variable FlashChannelsCount : unsigned(4 downto 0) := "00000";
 main : process(SysClk, CpldRst)
 
  begin 
@@ -1478,8 +1529,11 @@ else uBunch <= uBunch; uBunchGuard <= uBunchGuard;
 end if;
 
 --Send the trigger iff it will not cause an overflow
+--clock the overflow signal to sysclk
+CombinedOnBeamOverflow(0) <= '0' when OnBeam_overflow = ZerosArray else '1';
+CombinedOnBeamOverflow(1) <= CombinedOnBeamOverflow(0);
 
-if RxOut.Done = '1' and Rx1Dat(20) = '1' and CombinedOnBeamOverflow = '0'
+if RxOut.Done = '1' and Rx1Dat(20) = '1' and CombinedOnBeamOverflow(1) = '0'
 	then OnBeamTrigReq <= '1';
 elsif OnBeamTrigAck = "11" then OnBeamTrigReq <= '0'; 
 end if;
@@ -1491,7 +1545,7 @@ end if;
 
 --Update signals for uBunch buff
 if RxOut.Done = '1' and Rx1Dat(20) = '1' 
-	then OnBeam <= '1'; Overflow <= CombinedOnBeamOverflow;
+	then OnBeam <= '1'; Overflow <= CombinedOnBeamOverflow(1);
 		  
 elsif RxOut.Done = '1' and Rx1Dat(20) = '0'
 	then OnBeam <= '0'; Overflow <= OffBeamOverflow;
@@ -1505,101 +1559,141 @@ else uBunchWrt <= '0';
 end if;
 
 
---Todo, move near event builder
--- Read the uBunch number after calculating and writing the event word count.
-if Event_Builder = WrtuBunchLo or (SlfTrgEn = '0' and uBunchBuffEmpty = '0') 
-	then uBunchRd <= '1';
-else uBunchRd <= '0';
-end if;
 
-
--- flag used to signal end of read out across clock domains
- if Event_Builder = Incr_Chan1
-   and AFE_Num = 1 and Chan_Num = 7 
-	then RdDone <= '1';
-  else RdDone <= '0';
- end if;
-
- if Event_Builder = Add_Wd_Count or (SlfTrgEn = '0' and EvBuffStatFIFO_Empty = 0)
-   then EvBuffStat_rden <= '1';
- else EvBuffStat_rden <= '0';
- end if; 
 
 -------------------------- Event Builder -------------------------------
 
+
+--Ubunch buff data is defined as uBunchBuffDat <= OnBeam & Overflow & uBunch;
+
 Case Event_Builder is
-   When Idle => Read_Seq_Stat <= X"0";
-	 	if EvBuffStatFIFO_Empty = 0 and SlfTrgEn = '1' and RdDone = '0'
-		then Event_Builder <= Check_Mask0;
-		else Event_Builder <= Idle;
+	When Idle => 
+		Read_Seq_Stat <= X"0";
+		
+		if uBunchBuffEmpty = 0 and uBunchBuffOut(32) = '1'  and uBunchBuffOut(33) = '1' and EvBuffWrdsUsed < EvBuffSize - 16*OnBeamLength - HeaderLen
+		then 
+			Event_Builder <= ClearOnBeamOverflow;
+		elsif uBunchBuffEmpty = 0 and uBunchBuffOut(32) = '0'  and uBunchBuffOut(33) = '1' and FlashDetector_empty(0) = '0' and FlashDetector_empty(1) = '0'   and EvBuffWrdsUsed < EvBuffSize - 4
+		then
+			Event_Builder <= ProcessOnBeamData;
+		else
+			Event_Builder <= Idle;
 		end if;
-	When Check_Mask0 => Read_Seq_Stat <= X"1"; 
-		if MaskReg(AFE_Num)(Chan_Num) = '1' 
-		  then Event_Builder <= Check_Ovf;
-		 else Event_Builder <= Incr_Chan0;
+	When ClearOnBeamOverflow =>
+		Read_Seq_Stat <= X"1"; 
+		Event_Builder <= WriteOvfEvent;
+		EvBuffWrtIndex <= (others=> '0');
+	When WriteOvfEvent =>
+		if EvBuffWrtIndex = 3 then
+			EvBuffWrtIndex <= (others=> '0');
+			Event_Builder <= Idle;
 		end if;
-	When Check_Ovf => Read_Seq_Stat <= X"3"; 
-			if EvOvf(AFE_Num)(Chan_Num) = '0' 
-				then Event_Builder <= Add_Wd_Count;
-			else Event_Builder <= Incr_Chan0;
-			end if;
-	When Incr_Chan0 => Read_Seq_Stat <= X"2"; 
-			if AFE_Num = 1 and Chan_Num = 7 
-				then Event_Builder <= WdCountWrt;
-			else Event_Builder <= Check_Mask0;
-			end if;
-	When Add_Wd_Count => Event_Builder <= Incr_Chan0; Read_Seq_Stat <= X"4"; 
-	When WdCountWrt => Event_Builder <= WrtuBunchHi; Read_Seq_Stat <= X"5"; 
-	When WrtuBunchHi => Event_Builder <= WrtuBunchLo; Read_Seq_Stat <= X"6"; 
-	When WrtuBunchLo => Event_Builder <= Check_Mask1; Read_Seq_Stat <= X"7";  
-	When Check_Mask1 =>  Read_Seq_Stat <= X"8";
-		if MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0'
-		  then Event_Builder <= Wait1;
-		 else Event_Builder <= Incr_Chan1;
+
+	When ProcessOnBeamData =>
+		Read_Seq_Stat <= X"3";
+		FlashChannelsCount := "00000"
+		for i in 0 to 7 loop   --Count all the channels with flashes detected to calculate the wordcount
+			FlashChannelsCount := FlashChannelsCount + ("0000" & FlashDetectorOut(0)(i));   --Add the bit to the count.
+		end loop;
+		for i in 0 to 7 loop   --for all the bits.
+			FlashChannelsCount := FlashChannelsCount + ("0000" & FlashDetectorOut(1)(i));   --Add the bit to the count.
+		end loop;
+		NumReadoutChannels <= FlashChannelsCount;
+		Event_Builder <= WdCountWrt;
+	When WdCountWrt => Event_Builder <= WrtuBunchHi; Read_Seq_Stat <= X"4"; 
+	When WrtuBunchHi => Event_Builder <= WrtuBunchLo; Read_Seq_Stat <= X"5"; 
+	When WrtuBunchLo => Event_Builder <= WrtErrStat; Read_Seq_Stat <= X"6"; 
+	When WrtErrStat => Event_Builder <= Check_Flash; Read_Seq_Stat <= X"7"; 
+	When Check_Flash =>  Read_Seq_Stat <= X"8";
+		if SavedFlashOut(AFE_Num)(Chan_Num) = '1'
+		then
+			Event_Builder <= WrtChanNo;
+			ReadoutChannelCount <= OnBeamLength;
+		else
+			Event_Builder <= Incr_Chan;
 		end if;
-	When Incr_Chan1 => Read_Seq_Stat <= X"9";
-		 if AFE_Num = 1 and Chan_Num = 7
-		  then Event_Builder <= Idle;
-			else Event_Builder <= Check_Mask1;
-			end if;
-	When Wait1 =>  Read_Seq_Stat <= X"A"; 
-			if NoHIts(AFE_Num)(Chan_Num) = '0' 
-			 then Event_Builder <= Wait2;
-			else Event_Builder <= Incr_Chan1;
-		   end if;
-	When Wait2 => Read_Seq_Stat <= X"B"; 
-		  Event_Builder <= WrtData;
-	When WrtData =>
-		 if SampleCount <= 1 then Event_Builder <= Incr_Chan1;
-		else Event_Builder <= WrtData;
+	When WrtChanNo => Event_Builder <= WrtReserved; Read_Seq_Stat <= X"9";
+	When WrtReserved => Event_Builder <= ReadoutChannel; Read_Seq_Stat <= X"A";
+	When ReadoutChannel =>
+		Read_Seq_Stat <= X"B";
+		if ReadoutChannelCount = 0
+		then
+			Event_Builder <= Incr_Chan;
+			OnBeam_rd_en(AFE_Num)(Chan_Num) <= '0';
+		else
+			Event_Builder <= ReadoutChannel;
+			OnBeam_rd_en(AFE_Num)(Chan_Num) <= '1';
+			ReadoutChannelCount <= ReadoutChannelCount - 1;
 		end if;
+	When Incr_Chan => Read_Seq_Stat <= X"C";
+		if AFE_Num = 1 and Chan_Num = 7
+		then
+			Event_Builder <= Idle;
+		else
+			Event_Builder <= Check_Flash;
+		end if;
+
 End Case;
 
-for i in 0 to 1 loop
-for j in 0 to 7 loop
-if	Buff_Out(i)(j) = 0 then NoHIts(i)(j) <= '1';
-else NoHIts(i)(j) <= '0';
-end if;
-end loop;
-end loop;
---EvOvf /= (X"00",X"00") & (14 downto 0);
- if Event_Builder = WdCountWrt
-	then EvBuffDat <= EventWdCnt;
-elsif Event_Builder = WrtuBunchHi
-	then EvBuffDat <= uBunchBuffOut(31 downto 16);
-elsif Event_Builder = WrtuBunchLo
-	then EvBuffDat <= uBunchBuffOut(15 downto 0);
-else EvBuffDat <= Buff_Out(AFE_Num)(Chan_Num);
+-- Read the uBunch number after calculating and writing the event word count.
+if Event_Builder = ClearOnBeamOverflow or Event_Builder = ProcessOnBeamData
+then 
+	uBunchRd <= '1';
+	SaveduBunch <= uBunchBuffOut;
+
+else
+	uBunchRd <= '0';
+	SaveduBunch <= SaveduBunch;
+
 end if;
 
-if Event_Builder = WdCountWrt or Event_Builder = WrtData or Event_Builder = WrtuBunchHi
-	or Event_Builder = WrtuBunchLo or Event_Builder = WrtData
+for i in 0 to 1 loop
+if Event_Builder = ProcessOnBeamData
+then 
+	FlashDetector_rd_en(i) <= '1';
+	SavedFlashOut(i) <= FlashDetectorOut(i);
+else 
+	FlashDetector_rd_en(i) <= '0';
+	SavedFlashOut(i) <= SavedFlashOut(i);
+end if;
+end loop;
+
+case Event_Builder is 
+	when WriteOvfEvent =>
+		case EvBuffWrtIndex is 
+			when 0 => EvBuffDat <= std_logic_vector(TO_UNSIGNED(4,16));
+			when 1 => EvBuffDat <= SaveduBunch(31 downto 16);
+			when 2 => EvBuffDat <= SaveduBunch(15 downto 0);
+			when 3 => EvBuffDat <= x"FFFF";
+		end case;
+
+	when WdCountWrt =>
+		EvBuffDat <= (NumReadoutChannels * (OnBeamReadoutLength + 1)) + 4 -- I wonder if this synthesizes... The length should be the length of each channel plus one for the header, plus 4 for the event header
+	when WrtuBunchHi =>
+		EvBuffDat <= SaveduBunch(31 downto 16);
+	when WrtuBunchLo =>
+		EvBuffDat <= SaveduBunch(15 downto 0);
+	when WrtErrStat =>
+		EvBuffDat <= x"0000";
+	when WrtChanNo =>
+		EvBuffDat <= ControllerNo & PortNo & GA & STD_LOGIC_VECTOR(TO_UNSIGNED(8*i+k, 4))
+	when WrtReserved =>
+		EvBuffDat <= x"0000";
+	when ReadoutChannel =>
+		EvBuffDat <= OnBeam_out(AFE_Num)(Chan_Num);
+	when others => 
+		EvBuffDat <= x"0000";
+end case;
+
+if Event_Builder = WriteOvfEvent or Event_Builder = WdCountWrt or Event_Builder = WrtuBunchHi
+	or Event_Builder = WrtuBunchLo or Event_Builder = WrtErrStat or Event_Builder = WrtChanNo
+	or Event_Builder = WrtReserved or Event_Builder = ReadoutChannel
  then EvBuffWrt <= '1'; 
  else EvBuffWrt <= '0'; 
  end if;
 
 -- Increment AFE number after eight channels have been read out
-if Event_Builder = Incr_Chan0 or Event_Builder = Incr_Chan1 
+if Event_Builder = Incr_Chan
 	then 
 	 if Chan_Num /= 7 then Chan_Num <= Chan_Num + 1;
 		else Chan_Num <= 0; 
@@ -1610,59 +1704,15 @@ if Event_Builder = Incr_Chan0 or Event_Builder = Incr_Chan1
     end if;
  end if;
 
-NextEvAddr(AFE_Num)(Chan_Num) <= Buff_Rd_Ptr(AFE_Num)(Chan_Num) 
-									    + Buff_Out(AFE_Num)(Chan_Num)(9 downto 0) + 1;
 
--- Assert reads when the read sequencer is requesting data
--- specify which FIFO to read with the channel number
- if SlfTrgEn = '0'
-   then 	Buff_Rd_Ptr(0) <= (others => (others => '0'));
-			Buff_Rd_Ptr(1) <= (others => (others => '0'));
--- If the channel has an overflow, skip ahead to the next channel
--- and advance the pointer on this channel to the next event
- elsif Event_Builder = Incr_Chan0 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '1'
-		then Buff_Rd_Ptr(AFE_Num)(Chan_Num) <= NextEvAddr(AFE_Num)(Chan_Num);
---Buff_Rd_Ptr(AFE_Num)(Chan_Num) 
--- + Buff_Out(AFE_Num)(Chan_Num)(9 downto 0) + 1;
-  elsif BuffRdCount /= 0 
-    or (Event_Builder = Check_Mask1 and MaskReg(AFE_Num)(Chan_Num) = '1' 
-	 and EvOvf(AFE_Num)(Chan_Num) = '0')
-	then Buff_Rd_Ptr(AFE_Num)(Chan_Num) <= Buff_Rd_Ptr(AFE_Num)(Chan_Num) + 1;
-	else Buff_Rd_Ptr(AFE_Num)(Chan_Num) <= Buff_Rd_Ptr(AFE_Num)(Chan_Num);
-	end if;
-
-   if Event_Builder = Idle then EventWdCnt <= X"0003";
-elsif Event_Builder = Incr_Chan0 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0'
-	then EventWdCnt <= EventWdCnt + Buff_Out(AFE_Num)(Chan_Num); -- BuffOut_Mux; 
-	else EventWdCnt <= EventWdCnt;
-	end if;
-
-NxtWdCount <= EventWdCnt + Buff_Out(AFE_Num)(Chan_Num);
---EventWdCnt + Buff_Out(AFE_Num)(Chan_Num)
-	if Event_Builder = Idle then EvOvf <= (others => X"00");
-elsif Event_Builder = Check_Ovf and MaskReg(AFE_Num)(Chan_Num) = '1' 
-then 
-   if NxtWdCount >= PageSize
-	then EvOvf(AFE_Num)(Chan_Num) <= '1';
-	else EvOvf <= EvOvf;
-	end if;
-else EvOvf <= EvOvf;
+-- flag used to signal end of read out across clock domains
+if Event_Builder = Incr_Chan and AFE_Num = 1 and Chan_Num = 7 
+then
+	RdDone <= '1';
+else
+	RdDone <= '0';
 end if;
 
--- Count down the words stored in the uBunch event for this channel
-if Event_Builder = Check_Mask1 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0' 
-	then SampleCount <= Buff_Out(AFE_Num)(Chan_Num)(8 downto 0); -- BuffOut_Mux(8 downto 0);
-elsif Event_Builder = WrtData and SampleCount /= 0
-then SampleCount <= SampleCount - 1;
-else SampleCount <= SampleCount;
-end if;
--- The same as above but with slightly different conditions
-if Event_Builder = Check_Mask1 and MaskReg(AFE_Num)(Chan_Num) = '1' and EvOvf(AFE_Num)(Chan_Num) = '0' 
-	then BuffRdCount <= Buff_Out(AFE_Num)(Chan_Num)(8 downto 0); -- BuffOut_Mux(8 downto 0);
-elsif (Event_Builder = WrtData or Event_Builder = Wait1 or Event_Builder = Wait2) and BuffRdCount /= 0
-then BuffRdCount <= BuffRdCount - 1;
-else BuffRdCount <= BuffRdCount;
-end if;
 
 -------------------------------- DDR Macro Interface -------------------------------
 

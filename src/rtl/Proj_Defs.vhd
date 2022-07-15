@@ -419,13 +419,11 @@ COMPONENT OnBeam_AFE_Buff
     din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
-    prog_full_thresh : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     full : OUT STD_LOGIC;
     empty : OUT STD_LOGIC;
     rd_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-    prog_full : OUT STD_LOGIC
+    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
   );
 END COMPONENT;
 
