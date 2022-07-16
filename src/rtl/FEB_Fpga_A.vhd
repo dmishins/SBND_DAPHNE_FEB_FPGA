@@ -1847,7 +1847,7 @@ then SDRdAD <= SDRdAD(29 downto 16) & uCD;
 elsif WRDL = 1 and uCA(9 downto 0) = uBunchRdPtrHiAd
  then SDRdAD <= uCD(3 downto 0) & SDRdAD(25 downto 0);
 elsif WRDL = 1 and uCA(9 downto 0) = uBunchRdPtrLoAd
- then SDRdAD <= SDRdAD(29 downto 26) & uCD & "00" & X"00";
+ then SDRdAD <= SDRdAD(29 downto 26) & uCD & "0" & X"000";
 -- Increment by 8 long words for each burst read command
 elsif SDRdCmdEn = '1' and DDR_Read_Seq /= CheckEmpty then SDRdAD <= SDRdAD + 32;
 else SDRdAD <= SDRdAD;
@@ -1954,11 +1954,11 @@ then SDWrtAd <= SDWrtAd(29 downto 16) & uCD;
 -- Increment by 4 for each long word write
 elsif SDwr_en = '1'
 then SDWrtAd <= SDWrtAd + 4;
---Use the stored microbunch number shifted left by 9 places 
+--Use the stored microbunch number shifted left by 13 places 
 -- to advance to the next requested page
 elsif DDR_Write_Seq = SetWrtPtr 
-then SDWrtAd(9 downto 0) <= (others => '0');
-	  SDWrtAd(29 downto 10) <= DDRAddrOut(19 downto 0);
+then SDWrtAd(12 downto 0) <= (others => '0');
+	  SDWrtAd(29 downto 13) <= DDRAddrOut(16 downto 0);
 else SDWrtAd <= SDWrtAd;
 end if;
 
