@@ -48,13 +48,11 @@ ENTITY OnBeam_AFE_Buff IS
     din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
-    prog_full_thresh : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     full : OUT STD_LOGIC;
     empty : OUT STD_LOGIC;
     rd_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-    prog_full : OUT STD_LOGIC
+    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
   );
 END OnBeam_AFE_Buff;
 
@@ -68,13 +66,11 @@ COMPONENT wrapped_OnBeam_AFE_Buff
     din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
-    prog_full_thresh : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
     full : OUT STD_LOGIC;
     empty : OUT STD_LOGIC;
     rd_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-    prog_full : OUT STD_LOGIC
+    wr_data_count : OUT STD_LOGIC_VECTOR(9 DOWNTO 0)
   );
 END COMPONENT;
 
@@ -213,7 +209,7 @@ END COMPONENT;
       c_prog_full_thresh_assert_val_wdch => 1023,
       c_prog_full_thresh_assert_val_wrch => 1023,
       c_prog_full_thresh_negate_val => 510,
-      c_prog_full_type => 3,
+      c_prog_full_type => 0,
       c_prog_full_type_axis => 0,
       c_prog_full_type_rach => 0,
       c_prog_full_type_rdch => 0,
@@ -282,13 +278,11 @@ U0 : wrapped_OnBeam_AFE_Buff
     din => din,
     wr_en => wr_en,
     rd_en => rd_en,
-    prog_full_thresh => prog_full_thresh,
     dout => dout,
     full => full,
     empty => empty,
     rd_data_count => rd_data_count,
-    wr_data_count => wr_data_count,
-    prog_full => prog_full
+    wr_data_count => wr_data_count
   );
 -- synthesis translate_on
 

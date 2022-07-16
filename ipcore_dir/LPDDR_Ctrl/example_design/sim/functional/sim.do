@@ -140,5 +140,5 @@ when {$now = @500 us and /sim_tb_top/design_top/calib_done != 1} {
 echo "TEST FAILED: INITIALIZATION DID NOT COMPLETE"
 stop
 }
-run -all
+run 1 ns
 stop

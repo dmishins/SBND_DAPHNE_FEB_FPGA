@@ -8,3 +8,4 @@
 ## You may want to edit this file to control your simulation.
 ##
 ######################################################################
+vlog  +incdir+. +define+x2Gb +define+FULL_MEM +define+sg5 +define+x16 ipcore_dir/LPDDR_Ctrl/example_design/sim/functional/lpddr_model_c3.v

@@ -87,7 +87,7 @@
 
 module lpddr_model_c3(Dq, Dqs, Addr, Ba, Clk, Clk_n, Cke, Cs_n, Ras_n, Cas_n, We_n, Dm);
 
-    `include "lpddr_model_parameters_c3.vh"
+    `include "/media/dmishins/1AD0BEB7D0BE9909/Users/Daniel/Desktop/Research/DAPHNE/FEB/FPGA/SBND_FEB/ipcore_dir/LPDDR_Ctrl/example_design/sim/functional/lpddr_model_parameters_c3.vh"
     `define MAX_PIPE   2*(CL_MAX + BL_MAX)
 
     // Port Declarations

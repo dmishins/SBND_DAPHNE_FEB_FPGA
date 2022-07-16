@@ -367,6 +367,21 @@ component AFE_DP_Pipeline
 end component;
 
 
+COMPONENT PulseFoundBuff
+  PORT (
+    rst : IN STD_LOGIC;
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+
 -- Histogrammer memory 512x32
 component Hist_Ram
   port (
@@ -411,7 +426,7 @@ component DP_Ram_1kx16
     doutb : out std_logic_vector(15 downto 0));
 end component;
 
-COMPONENT OnBeam_AFE_Buff
+COMPONENT FIFO_512x12
   PORT (
     rst : IN STD_LOGIC;
     wr_clk : IN STD_LOGIC;
