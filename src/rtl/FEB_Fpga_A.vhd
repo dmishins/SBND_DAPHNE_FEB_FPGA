@@ -247,7 +247,9 @@ Signal Ins,Mids,Outs : Array_2x8x12;
 
 --On Beam input buffer signals
 signal OnBeam_out : Array_2x8x12;
-signal OnBeam_rd_en, OnBeam_wr_en, OnBeam_full, OnBeam_overflow, OnBeam_empty: Array_2x8;
+signal OnBeam_rd_en,OnBeam_rd_or, OnBeam_clr_en, OnBeam_wr_en, OnBeam_full, OnBeam_overflow, OnBeam_empty: Array_2x8;
+signal ClearChannelReq, ClearChannelActive: Array_2x8;
+signal ClearChannelCounter : Array_2x8x10;
 constant ZerosArray: Array_2x8:= (others=>(others=>'0'));
 signal OnBeam_rd_undercount, OnBeam_wr_overcount : Array_2x8x10;
 signal OnBeam_full_thresh : unsigned (8 downto 0);
@@ -314,6 +316,8 @@ signal EvBuffWrt,EvBuffRd,EvBuffEmpty,EvBuffFull,DRAMRdBuffWrt,PageRdStat,
 signal EvBuffDat,EvBufffOut,DRAMRdBuffDat,DRAMRdBuffOut : std_logic_vector(15 downto 0);
 signal DRAMRdBuffWdsUsed,EvBuffWdsUsed,PageWdCount : std_logic_vector(13 downto 0); --TODO
 signal DDRWrtCount : std_logic_vector(10 downto 0);
+
+signal MaxEvBuffSize : unsigned(15 downto 0);
 
 signal AFE_Num  : Integer range 0 to 2; 
 signal Chan_Num : integer range 0 to 7;
@@ -416,7 +420,7 @@ LPDDRCtrl : LPDDR_Ctrl
     C3_MEMCLK_PERIOD => 6250,  C3_RST_ACT_LOW => 0,
     C3_INPUT_CLK_TYPE => "DIFFERENTIAL",
     C3_CALIB_SOFT_IP => "TRUE",  C3_SIMULATION => "TRUE",
-    DEBUG_EN => 0, C3_MEM_ADDR_ORDER => "ROW_BANK_COLUMN",
+    DEBUG_EN => 1, C3_MEM_ADDR_ORDER => "ROW_BANK_COLUMN",
     C3_NUM_DQ_PINS => 16, C3_MEM_ADDR_WIDTH => 14,
     C3_MEM_BANKADDR_WIDTH => 2)
 port map (
@@ -716,6 +720,8 @@ OnBeam_full_thresh <= TO_UNSIGNED(508,9) - unsigned(OnBeamLength); -- use 508 in
 --Only trigger an overflow for channels that are not masked
 OnBeam_overflow(i)(k) <= '1' when ((Unsigned(OnBeam_wr_overcount(i)(k)) > OnBeam_full_thresh) and MaskReg(i)(k) = '1') else '0';
 
+OnBeam_rd_or(i)(k) <= OnBeam_rd_en(i)(k) or OnBeam_clr_en(i)(k);
+
 BeamBuff : FIFO_512x12
   PORT MAP (
     rst => ResetHI,
@@ -723,7 +729,7 @@ BeamBuff : FIFO_512x12
     rd_clk => SysClk,
     din => Mids(i)(k),
     wr_en => OnBeam_wr_en(i)(k),
-    rd_en => OnBeam_rd_en(i)(k),
+    rd_en => OnBeam_rd_or(i)(k),
     dout => OnBeam_out(i)(k),
     full => OnBeam_full(i)(k),
     empty => OnBeam_empty(i)(k),
@@ -731,6 +737,29 @@ BeamBuff : FIFO_512x12
     wr_data_count => OnBeam_wr_overcount(i)(k)
 
   );
+
+ClearBeamBuff: process(SysClk, CpldRst)
+begin
+if CpldRst = '0' then
+	ClearChannelActive(i)(k) <= '0';
+	OnBeam_clr_en(i)(k) <= '0';
+	ClearChannelCounter(i)(k) <= (others => '0');
+elsif rising_edge(SysClk) then
+	if ClearChannelReq(i)(k) = '1' then
+		ClearChannelCounter(i)(k) <= "00" & OnBeamLength;
+		ClearChannelActive(i)(k) <= '1';
+	elsif ClearChannelCounter(i)(k) /= 0 then
+			ClearChannelCounter(i)(k) <= ClearChannelCounter(i)(k) - 1;
+			ClearChannelActive(i)(k) <= '1';
+			OnBeam_clr_en(i)(k) <= '1';
+	else 
+		ClearChannelActive(i)(k) <= '0';
+		OnBeam_clr_en(i)(k) <= '0';
+
+	end if;
+end if;
+
+end process;
 
 AFEBuff : DP_Ram_1kx16
   PORT MAP ( 
@@ -1421,7 +1450,7 @@ variable FlashChannelsCount : unsigned(4 downto 0) := "00000";
 	NextEvAddr(1) <= (others => (others => '0'));
 	SampleCount <= (others => '0'); BuffRdCount <= (others => '0');
 	uBunchWrt <= '0'; uBunchRd <= '0'; 
-	OnBeam <= '0'; EvOvf <=(others => X"FF");    FifoRdD <= '0'; 
+	EvOvf <=(others => X"FF");    FifoRdD <= '0'; 
 	IdleDL <= "00"; GPIDL(1) <= "00"; uBunch <= (others => '0'); uBunchGuard <= '0';
 	EvBuffWrt <= '0'; EvBuffRd <= '0'; EvBuffDat <= (others => '0'); PageRdReq <= '0';
 	DRAMRdBuffDat <= (others => '0'); DDRWrtCount <= (others => '0'); PageRdStat <= '0';
@@ -1430,6 +1459,7 @@ variable FlashChannelsCount : unsigned(4 downto 0) := "00000";
 	
 	ControllerNo <= "00000"; PortNo <= "00000"; 
 	OnBeam_rd_en <= (others => (others => '0'));
+	ClearChannelReq <= (others => (others => '0'));
 	CombinedOnBeamOverflow(0) <= '0';
 	ReadoutChannelCounter <= (others => '0');
 	NumReadoutChannels <= (others => '0');
@@ -1439,6 +1469,11 @@ variable FlashChannelsCount : unsigned(4 downto 0) := "00000";
 	OnBeamTrigReq <= '0';
 	PulseSel <= '0';
 	Pulse <= '0';
+	
+	OnBeam <= '0';
+	Overflow <= '0';
+	OnBeam <= '0';
+	SaveduBunch <= (others => '0');
 	
 elsif rising_edge (SysClk) then 
 
@@ -1589,7 +1624,7 @@ end if;
 
 CombinedOnBeamOverflow(1) <= CombinedOnBeamOverflow(0);
 
-if RxOut.Done = '1' and Rx1Dat(20) = '1' and CombinedOnBeamOverflow(1) = '0'
+if RxOut.Done = '1' and (Rx1Dat(20) = '1' or Rx1Dat(20) = '0') and CombinedOnBeamOverflow(1) = '0'
 	then OnBeamTrigReq <= '1';
 elsif (OnBeamTrigAck(0) = '1' or AFEPDn(0) = '1') and (OnBeamTrigAck(1) = '1' or AFEPDn(1) = '1')  then OnBeamTrigReq <= '0'; 
 else
@@ -1597,7 +1632,7 @@ else
 end if;
 
 if RxOut.Done = '1' and Rx1Dat(20) = '0' and OffBeamOverflow = '0'
-	then OffBeamTrigReq <= '1';
+	then --OffBeamTrigReq <= '1';
 elsif OffBeamTrigAck = "00" then OffBeamTrigReq <= '0'; 
 end if;
 
@@ -1617,7 +1652,7 @@ else uBunchWrt <= '0';
 end if;
 
 
-
+MaxEvBuffSize <= TO_UNSIGNED(8188, 14) - 16* (Unsigned(OnBeamLength) + 2);
 
 -------------------------- Event Builder -------------------------------
 
@@ -1628,10 +1663,10 @@ Case Event_Builder is
 	When Idle => 
 		Read_Seq_Stat <= X"0";
 		
-		if uBunchBuffEmpty = '0' and uBunchBuffOut(32) = '1'  and uBunchBuffOut(33) = '1' and Unsigned(EvBuffWdsUsed) < TO_UNSIGNED(8188, 14) - 16* (Unsigned(OnBeamLength) + 2) -- 8188 - 8192 - 4 header
+		if uBunchBuffEmpty = '0' and uBunchBuffOut(32) = '1'  and uBunchBuffOut(33) = '1' and Unsigned(EvBuffWdsUsed) < 8180  -- 8188 - 8192 - 4 header
 		then 
 			Event_Builder <= ClearOnBeamOverflow;
-		elsif uBunchBuffEmpty = '0' and uBunchBuffOut(32) = '0'  and uBunchBuffOut(33) = '1' and FlashDetector_empty(0) = '0' and FlashDetector_empty(1) = '0'   and EvBuffWdsUsed < 8188
+		elsif uBunchBuffEmpty = '0' and uBunchBuffOut(32) = '0'  and uBunchBuffOut(33) = '1' and FlashDetector_empty(0) = '0' and FlashDetector_empty(1) = '0'   and Unsigned(EvBuffWdsUsed) < MaxEvBuffSize
 		then
 			Event_Builder <= ProcessOnBeamData;
 		else
@@ -1668,11 +1703,16 @@ Case Event_Builder is
 	When WrtErrStat => Event_Builder <= WrtReserved; Read_Seq_Stat <= X"7"; 
 	When WrtReserved => Event_Builder <= Check_Flash; Read_Seq_Stat <= X"A";
 	When Check_Flash =>  Read_Seq_Stat <= X"8";
-		if SavedFlashOut(AFE_Num)(Chan_Num) = '1'
+		if ClearChannelActive(AFE_Num)(Chan_Num) = '1' then
+				Event_Builder <= Check_Flash; --If clear channel is currently active, wait for it to finish
+		elsif SavedFlashOut(AFE_Num)(Chan_Num) = '1'
 		then
 			Event_Builder <= WrtChanNo;
 			ReadoutChannelCounter <= OnBeamLength;
 		else
+			if MaskReg(AFE_Num)(Chan_Num) = '1' then --if channel was active, but there is no flash, clear it out
+				ClearChannelReq(AFE_Num)(Chan_Num) <= '1';
+			end if;
 			Event_Builder <= Incr_Chan;
 		end if;
 	When WrtChanNo => Read_Seq_Stat <= X"9";
@@ -1690,6 +1730,7 @@ Case Event_Builder is
 			ReadoutChannelCounter <= ReadoutChannelCounter - 1;
 		end if;
 	When Incr_Chan => Read_Seq_Stat <= X"C";
+		ClearChannelReq(AFE_Num)(Chan_Num) <= '0';
 		if AFE_Num = 1 and Chan_Num = 7
 		then
 			Event_Builder <= Idle;

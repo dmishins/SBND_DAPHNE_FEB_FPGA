@@ -97,7 +97,7 @@ END COMPONENT;
 
 -----------------------Memory Simulator
 
-   constant  C3_MEMCLK_PERIOD : integer    := 6277;
+   constant  C3_MEMCLK_PERIOD : integer    := 6250;
    constant C3_RST_ACT_LOW : integer := 0;
    constant C3_INPUT_CLK_TYPE : string := "DIFFERENTIAL";
    constant C3_CLK_PERIOD_NS   : real := 6277.0 / 1000.0;
@@ -152,6 +152,7 @@ END COMPONENT;
 -- System Reset
    signal  c3_sys_rst   : std_logic := '0';
    signal  c3_sys_rst_i     : std_logic;
+	signal RASn,CASn,SDWEn : std_logic;
 
 
 
@@ -313,8 +314,11 @@ BEGIN
 -- ========================================================================== --
 -- Memory model instances                                                     -- 
 -- ========================================================================== --
-
-    mcb3_command <= (RAS & CAS & SDWE);
+	 RASn <= RAS;--not RAS;
+	 CASn <= CAS;--not CAS;
+	 SDWEn <= SDWE;--not SDWE;
+	 
+    mcb3_command <= (RASn & CASn & SDWEn);
 
     process(SDClk_P)
     begin
@@ -357,17 +361,17 @@ BEGIN
 --		SDA : out std_logic_vector(13 downto 0);
 --		BA : out std_logic_vector(1 downto 0);
 
---SDRzq <='L';
-   rzq_pulldown3 : PULLDOWN port map(O => SDRzq);
+ SDRzq <='L';
+   --rzq_pulldown3 : PULLDOWN port map(O => SDRzq);
 mcb3_dram_dm_vector <= (UDM & LDM);
      u_mem_c3 : lpddr_model_c3 port map(
         Clk        => SDClk_P,
         Clk_n      => SDClk_N,
         Cke       => SDCKE,
         Cs_n      => '0',
-        Ras_n     => RAS,
-        Cas_n     => CAS,
-        We_n      => SDWE,
+        Ras_n     => RASn,
+        Cas_n     => CASn,
+        We_n      => SDWEn,
         Dm        => mcb3_dram_dm_vector ,
         Ba        => BA,
         Addr      => SDA,
@@ -564,11 +568,11 @@ uBunchWidthproc : process (Clk53,CpldRst)
 
 		then
 			
-		if uBunchWidth /= 80 then uBunchWidth <= uBunchWidth + 1;
+		if uBunchWidth /= 580 then uBunchWidth <= uBunchWidth + 1;
 		else uBunchWidth <= (others => '0');
 		end if;
 
-		if uBunchWidth = 80 then TxReq <= '1';
+		if uBunchWidth = 580 then TxReq <= '1';
 		elsif TxAck = '1' then TxReq <= '0';
 		else TxReq <= TxReq;
 		end if;
@@ -931,7 +935,49 @@ DDRCmd : process
 		  uCA(9 downto 0) <= OnBeamLengthAd;
  		  wait for 5 ns;
 		  CpldCS <= '0';
+        uCD <= X"00FF";
+		  uCWr <= '0';
+		  wait for 30 ns;
+		  uCWr <= '1';
+		  CpldCS <= '1';
+		  wait for 10 ns;
+		  uCA(9 downto 0) <= (Others => 'Z');
+		  uCD <= (others => 'Z');
+
+		  wait for 50 ns;
+		  		  
+		  uCA(9 downto 0) <= ThreshRegAddr(0)(0);
+ 		  wait for 5 ns;
+		  CpldCS <= '0';
         uCD <= X"0070";
+		  uCWr <= '0';
+		  wait for 30 ns;
+		  uCWr <= '1';
+		  CpldCS <= '1';
+		  wait for 10 ns;
+		  uCA(9 downto 0) <= (Others => 'Z');
+		  uCD <= (others => 'Z');
+
+		  wait for 50 ns;
+		  		  
+		  uCA(9 downto 0) <= ThreshRegAddr(0)(1);
+ 		  wait for 5 ns;
+		  CpldCS <= '0';
+        uCD <= X"0095";
+		  uCWr <= '0';
+		  wait for 30 ns;
+		  uCWr <= '1';
+		  CpldCS <= '1';
+		  wait for 10 ns;
+		  uCA(9 downto 0) <= (Others => 'Z');
+		  uCD <= (others => 'Z');
+
+		  wait for 50 ns;
+		  		  
+		  uCA(9 downto 0) <= ThreshRegAddr(0)(2);
+ 		  wait for 5 ns;
+		  CpldCS <= '0';
+        uCD <= X"0000";
 		  uCWr <= '0';
 		  wait for 30 ns;
 		  uCWr <= '1';
@@ -965,7 +1011,7 @@ DDRCmd : process
  	     uCA(9 downto 0) <=  InputMaskAddr;
  		  wait for 5 ns;
 		  CpldCS <= '0';
-		  uCD <= X"000F";
+		  uCD <= X"FFFF";
 		  uCWr <= '0';
 		  wait for 30 ns;
 		  uCWr <= '1';

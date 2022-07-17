@@ -32,10 +32,12 @@ USE ieee.std_logic_1164.ALL;
 use work.Proj_defs.all;
 use ieee.std_logic_arith.all;
 use ieee.std_logic_unsigned.all;
-
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 USE ieee.numeric_std.ALL;
+ 
+library unisim;
+use unisim.vcomponents.all;
  
 ENTITY AFE_Fpga_A_tb IS
 END AFE_Fpga_A_tb;
@@ -93,6 +95,101 @@ COMPONENT FEB_Fpga_A
 
 END COMPONENT;
 
+-----------------------Memory Simulator
+
+   constant  C3_MEMCLK_PERIOD : integer    := 6250;
+   constant C3_RST_ACT_LOW : integer := 0;
+   constant C3_INPUT_CLK_TYPE : string := "DIFFERENTIAL";
+   constant C3_CLK_PERIOD_NS   : real := 6277.0 / 1000.0;
+   constant C3_TCYC_SYS        : real := C3_CLK_PERIOD_NS/2.0;
+   constant C3_TCYC_SYS_DIV2   : time := C3_TCYC_SYS * 1 ns;
+   constant C3_NUM_DQ_PINS        : integer := 16;
+   constant C3_MEM_ADDR_WIDTH     : integer := 14;
+   constant C3_MEM_BANKADDR_WIDTH : integer := 2;
+   constant C3_MEM_ADDR_ORDER     : string := "BANK_ROW_COLUMN"; 
+	constant C3_P0_MASK_SIZE : integer      := 4;
+   constant C3_P0_DATA_PORT_SIZE : integer := 32;  
+   constant C3_P1_MASK_SIZE   : integer    := 4;
+   constant C3_P1_DATA_PORT_SIZE  : integer := 32;
+   constant C3_CALIB_SOFT_IP      : string := "TRUE";
+   constant C3_SIMULATION      : string := "TRUE";
+   
+    --
+--	 	SDCKE,LDM,UDM,RAS,CAS,SDWE : out std_logic;
+--		SDClk_P,SDClk_N : out  std_logic;
+--		SDD : inout std_logic_vector(15 downto 0);
+--		UDQS,LDQS,SDRzq : inout std_logic;
+--		SDA : out std_logic_vector(13 downto 0);
+--		BA : out std_logic_vector(1 downto 0);
+
+    component lpddr_model_c3 is
+    port (
+      Clk     : in    std_logic;
+      Clk_n   : in    std_logic;
+      Cke     : in    std_logic;
+      Cs_n    : in    std_logic;
+      Ras_n   : in    std_logic;
+      Cas_n   : in    std_logic;
+      We_n    : in    std_logic;
+      Dm      : inout std_logic_vector((C3_NUM_DQ_PINS/16) downto 0);
+      Ba      : in    std_logic_vector((C3_MEM_BANKADDR_WIDTH - 1) downto 0);
+      Addr    : in    std_logic_vector((C3_MEM_ADDR_WIDTH  - 1) downto 0);
+      Dq      : inout std_logic_vector((C3_NUM_DQ_PINS - 1) downto 0);
+      Dqs     : inout std_logic_vector((C3_NUM_DQ_PINS/16) downto 0)
+      );
+  end component;
+
+
+-- ========================================================================== --
+-- Signal Declarations                                                        --
+-- ========================================================================== --
+
+
+ 			-- Clocks
+   signal  c3_sys_clk     : std_logic := '0';
+   signal  c3_sys_clk_p   : std_logic;
+   signal  c3_sys_clk_n   : std_logic;
+-- System Reset
+   signal  c3_sys_rst   : std_logic := '0';
+   signal  c3_sys_rst_i     : std_logic;
+	signal RASn,CASn,SDWEn : std_logic;
+
+
+
+-- Design-Top Port Map   
+   signal mcb3_dram_a : std_logic_vector(C3_MEM_ADDR_WIDTH-1 downto 0);
+   signal mcb3_dram_ba : std_logic_vector(C3_MEM_BANKADDR_WIDTH-1 downto 0);  
+
+   signal  mcb3_dram_ck : std_logic;  
+   signal  mcb3_dram_ck_n : std_logic;  
+   signal  mcb3_dram_dq : std_logic_vector(C3_NUM_DQ_PINS-1 downto 0);   
+   signal  mcb3_dram_dqs   : std_logic;    
+   signal  mcb3_dram_dm    : std_logic;   
+   signal  mcb3_dram_ras_n : std_logic;   
+   signal  mcb3_dram_cas_n : std_logic;   
+   signal  mcb3_dram_we_n  : std_logic;    
+   signal  mcb3_dram_cke   : std_logic;   
+       signal  calib_done                        : std_logic;  
+   signal  error                             : std_logic;  
+
+
+      signal  mcb3_dram_udqs   : std_logic;
+   signal mcb3_dram_dqs_vector : std_logic_vector(1 downto 0);
+      signal   mcb3_dram_udm :std_logic;     -- for X16 parts
+   signal mcb3_dram_dm_vector : std_logic_vector(1 downto 0);
+   
+   
+   signal mcb3_command               : std_logic_vector(2 downto 0);
+   signal mcb3_enable1                : std_logic;
+   signal mcb3_enable2              : std_logic;
+   
+
+   signal  rzq3     : std_logic;
+	
+	
+	
+	
+------ DONE MEMORY SIMULATOR
 --Inputs
 	signal ClkB_P,ClkB_N : std_logic := '0';
    signal VXO_P : std_logic := '0';
@@ -210,6 +307,82 @@ component FM_Tx is
 end component;
 
 BEGIN
+
+--Instantiate Memory Model
+
+
+-- ========================================================================== --
+-- Memory model instances                                                     -- 
+-- ========================================================================== --
+	 RASn <= RAS;--not RAS;
+	 CASn <= CAS;--not CAS;
+	 SDWEn <= SDWE;--not SDWE;
+	 
+    mcb3_command <= (RASn & CASn & SDWEn);
+
+    process(SDClk_P)
+    begin
+      if (rising_edge(SDClk_P)) then
+        if (c3_sys_rst = '0') then
+          mcb3_enable1   <= '0';
+          mcb3_enable2 <= '0';
+        elsif (mcb3_command = "100") then
+          mcb3_enable2 <= '0';
+        elsif (mcb3_command = "101") then
+          mcb3_enable2 <= '1';
+        else
+          mcb3_enable2 <= mcb3_enable2;
+        end if;
+        mcb3_enable1     <= mcb3_enable2;
+      end if;
+    end process;
+
+-----------------------------------------------------------------------------
+--read
+-----------------------------------------------------------------------------
+    mcb3_dram_dqs_vector(1 downto 0)               <= (UDQS & LDQS)
+                                                           when (mcb3_enable2 = '0' and mcb3_enable1 = '0')
+							   else "ZZ";
+
+-----------------------------------------------------------------------------
+--write
+-----------------------------------------------------------------------------
+    mcb3_dram_dqs          <= mcb3_dram_dqs_vector(0)
+                              when ( mcb3_enable1 = '1') else 'Z';
+
+    mcb3_dram_udqs          <= mcb3_dram_dqs_vector(1)
+                              when (mcb3_enable1 = '1') else 'Z';
+
+   
+   --	 	SDCKE,LDM,UDM,RAS,CAS,SDWE : out std_logic;
+--		SDClk_P,SDClk_N : out  std_logic;
+--		SDD : inout std_logic_vector(15 downto 0);
+--		UDQS,LDQS,SDRzq : inout std_logic;
+--		SDA : out std_logic_vector(13 downto 0);
+--		BA : out std_logic_vector(1 downto 0);
+
+ SDRzq <='L';
+   --rzq_pulldown3 : PULLDOWN port map(O => SDRzq);
+mcb3_dram_dm_vector <= (UDM & LDM);
+     u_mem_c3 : lpddr_model_c3 port map(
+        Clk        => SDClk_P,
+        Clk_n      => SDClk_N,
+        Cke       => SDCKE,
+        Cs_n      => '0',
+        Ras_n     => RASn,
+        Cas_n     => CASn,
+        We_n      => SDWEn,
+        Dm        => mcb3_dram_dm_vector ,
+        Ba        => BA,
+        Addr      => SDA,
+        Dq        => SDD,
+        Dqs       => mcb3_dram_dqs_vector
+      );
+
+
+
+--END MEMORY MODEL
+
 
 -- Instantiate the Unit Under Test (UUT)
    uut: FEB_Fpga_A PORT MAP (
@@ -395,11 +568,11 @@ uBunchWidthproc : process (Clk53,CpldRst)
 
 		then
 			
-		if uBunchWidth /= 589 then uBunchWidth <= uBunchWidth + 1;
+		if uBunchWidth /= 80 then uBunchWidth <= uBunchWidth + 1;
 		else uBunchWidth <= (others => '0');
 		end if;
 
-		if uBunchWidth = 589 then TxReq <= '1';
+		if uBunchWidth = 80 then TxReq <= '1';
 		elsif TxAck = '1' then TxReq <= '0';
 		else TxReq <= TxReq;
 		end if;
@@ -627,6 +800,20 @@ DDRCmd : process
 		  uCA(9 downto 0) <= (Others => 'Z');
 		  uCD <= (others => 'Z');
 		  wait for 100 ns;
+		  
+		  
+		  uCA(9 downto 0) <=  FEBAddresRegAd;
+ 		  wait for 5 ns;
+		  CpldCS <= '0';
+		  uCD <= X"FFFF";
+		  uCWr <= '0';
+		  wait for 30 ns;
+		  uCWr <= '1';
+		  CpldCS <= '1';
+		  wait for 10 ns;
+		  uCA(9 downto 0) <= (Others => 'Z');
+		  uCD <= (others => 'Z');
+		  wait for 100 ns;
 	
 --		  uCA(9 downto 0) <= "00" & X"41";
 -- 	  wait for 5 ns;
@@ -745,10 +932,52 @@ DDRCmd : process
 
 		  wait for 100 ns;
 		  
-		  uCA(9 downto 0) <= BeamOnLengthAd;
+		  uCA(9 downto 0) <= OnBeamLengthAd;
  		  wait for 5 ns;
 		  CpldCS <= '0';
         uCD <= X"0070";
+		  uCWr <= '0';
+		  wait for 30 ns;
+		  uCWr <= '1';
+		  CpldCS <= '1';
+		  wait for 10 ns;
+		  uCA(9 downto 0) <= (Others => 'Z');
+		  uCD <= (others => 'Z');
+
+		  wait for 50 ns;
+		  		  
+		  uCA(9 downto 0) <= ThreshRegAddr(0);
+ 		  wait for 5 ns;
+		  CpldCS <= '0';
+        uCD <= X"0070";
+		  uCWr <= '0';
+		  wait for 30 ns;
+		  uCWr <= '1';
+		  CpldCS <= '1';
+		  wait for 10 ns;
+		  uCA(9 downto 0) <= (Others => 'Z');
+		  uCD <= (others => 'Z');
+
+		  wait for 50 ns;
+		  		  
+		  uCA(9 downto 0) <= ThreshRegAddr(1);
+ 		  wait for 5 ns;
+		  CpldCS <= '0';
+        uCD <= X"0395";
+		  uCWr <= '0';
+		  wait for 30 ns;
+		  uCWr <= '1';
+		  CpldCS <= '1';
+		  wait for 10 ns;
+		  uCA(9 downto 0) <= (Others => 'Z');
+		  uCD <= (others => 'Z');
+
+		  wait for 50 ns;
+		  		  
+		  uCA(9 downto 0) <= ThreshRegAddr(2);
+ 		  wait for 5 ns;
+		  CpldCS <= '0';
+        uCD <= X"0500";
 		  uCWr <= '0';
 		  wait for 30 ns;
 		  uCWr <= '1';
@@ -914,78 +1143,81 @@ end loop;
 			
 end process;
 
--- poor man's LPDDR model. Produces data in response to a read command.
-DDR_Rd_Data : Process(IntDQSClk,CpldRst)
 
- begin
 
-if CpldRst = '0' then
-
- BurstCount <= X"0"; iDQS <= '0';
- UDQS <= 'Z'; LDQS <= 'Z'; SDD <= (others => 'Z');
--- DDR_LSFR <= X"47A95B"; 
- DDR_Tap <= "0000";  
- DDR_LSFR <= (others => '0');
-
-elsif falling_edge(IntDQSClk)
-
-	then
-
-	 DDR_Tap(0) <= DDR_LSFR(23) xor DDR_LSFR(19);
-	 DDR_Tap(1) <= DDR_LSFR(13) xor DDR_LSFR(17);
-	 DDR_Tap(2) <= DDR_LSFR(3) xor DDR_LSFR(12);
-	 DDR_Tap(3) <= DDR_LSFR(1) xor DDR_LSFR(9);
---	 DDR_LSFR <= DDR_LSFR(22 downto 0) & DDR_Tap(3);
-
--- Idle,WaitCS0,WaitCS1,WaitCS2,WaitCS3,EnableDQS,DisableDQS
-	Case DDR_Rx_State is
-		When Idle =>
-		  if SDCKE = '1' and RAS = '1' and CAS = '0' and SDWE = '1'
-			then DDR_Rx_State <= WaitCS0;
-		  else DDR_Rx_State <= Idle;
-		  end if;
-		 When WaitCS0 => 
-		   if CAS = '1' then DDR_Rx_State <= WaitCS1;
-			else DDR_Rx_State <= WaitCS0;
-			end if;
-		 When WaitCS1 => DDR_Rx_State <= WaitCS2;
-		 When WaitCS2 => DDR_Rx_State <= WaitCS3; 
-		 When WaitCS3 => DDR_Rx_State <= EnableDQS;  		 
-		 when EnableDQS =>
-			if BurstCount = 0
-				then DDR_Rx_State <= DisableDQS;
-			else DDR_Rx_State <= EnableDQS;
-			end if;
-		 When DisableDQS => DDR_Rx_State <= Idle;
-	end case;
-
-if DDR_Rx_State = WaitCS3 then BurstCount <= X"F";
- elsif DDR_Rx_State = EnableDQS and BurstCount > 0
- then BurstCount <= BurstCount - 1;
- else BurstCount <= BurstCount;
- end if;
-
-  if DDR_Rx_State = WaitCS3 or DDR_Rx_State = EnableDQS then 
-iDQS <= not iDQS;
-else iDQS <= '0';
-end if;
-
- if DDR_Rx_State = WaitCS3 or DDR_Rx_State = EnableDQS then 
-	UDQS <= iDQS; 
-	LDQS <= iDQS;
- else UDQS <= 'Z'; LDQS <= 'Z';
- end if;
-
- if DDR_Rx_State = EnableDQS
- then SDD <= DDR_LSFR(15 downto 0);
-			 DDR_LSFR <= DDR_LSFR + 1;
- else SDD <= (others => 'Z');
- 	   DDR_LSFR <= DDR_LSFR;
- end if;
-
-end if; -- rising edge
-
-end process	DDR_Rd_Data;
+--
+---- poor man's LPDDR model. Produces data in response to a read command.
+--DDR_Rd_Data : Process(IntDQSClk,CpldRst)
+--
+-- begin
+--
+--if CpldRst = '0' then
+--
+-- BurstCount <= X"0"; iDQS <= '0';
+-- UDQS <= 'Z'; LDQS <= 'Z'; SDD <= (others => 'Z');
+---- DDR_LSFR <= X"47A95B"; 
+-- DDR_Tap <= "0000";  
+-- DDR_LSFR <= (others => '0');
+--
+--elsif falling_edge(IntDQSClk)
+--
+--	then
+--
+--	 DDR_Tap(0) <= DDR_LSFR(23) xor DDR_LSFR(19);
+--	 DDR_Tap(1) <= DDR_LSFR(13) xor DDR_LSFR(17);
+--	 DDR_Tap(2) <= DDR_LSFR(3) xor DDR_LSFR(12);
+--	 DDR_Tap(3) <= DDR_LSFR(1) xor DDR_LSFR(9);
+----	 DDR_LSFR <= DDR_LSFR(22 downto 0) & DDR_Tap(3);
+--
+---- Idle,WaitCS0,WaitCS1,WaitCS2,WaitCS3,EnableDQS,DisableDQS
+--	Case DDR_Rx_State is
+--		When Idle =>
+--		  if SDCKE = '1' and RAS = '1' and CAS = '0' and SDWE = '1'
+--			then DDR_Rx_State <= WaitCS0;
+--		  else DDR_Rx_State <= Idle;
+--		  end if;
+--		 When WaitCS0 => 
+--		   if CAS = '1' then DDR_Rx_State <= WaitCS1;
+--			else DDR_Rx_State <= WaitCS0;
+--			end if;
+--		 When WaitCS1 => DDR_Rx_State <= WaitCS2;
+--		 When WaitCS2 => DDR_Rx_State <= WaitCS3; 
+--		 When WaitCS3 => DDR_Rx_State <= EnableDQS;  		 
+--		 when EnableDQS =>
+--			if BurstCount = 0
+--				then DDR_Rx_State <= DisableDQS;
+--			else DDR_Rx_State <= EnableDQS;
+--			end if;
+--		 When DisableDQS => DDR_Rx_State <= Idle;
+--	end case;
+--
+--if DDR_Rx_State = WaitCS3 then BurstCount <= X"F";
+-- elsif DDR_Rx_State = EnableDQS and BurstCount > 0
+-- then BurstCount <= BurstCount - 1;
+-- else BurstCount <= BurstCount;
+-- end if;
+--
+--  if DDR_Rx_State = WaitCS3 or DDR_Rx_State = EnableDQS then 
+--iDQS <= not iDQS;
+--else iDQS <= '0';
+--end if;
+--
+-- if DDR_Rx_State = WaitCS3 or DDR_Rx_State = EnableDQS then 
+--	UDQS <= iDQS; 
+--	LDQS <= iDQS;
+-- else UDQS <= 'Z'; LDQS <= 'Z';
+-- end if;
+--
+-- if DDR_Rx_State = EnableDQS
+-- then SDD <= DDR_LSFR(15 downto 0);
+--			 DDR_LSFR <= DDR_LSFR + 1;
+-- else SDD <= (others => 'Z');
+-- 	   DDR_LSFR <= DDR_LSFR;
+-- end if;
+--
+--end if; -- rising edge
+--
+--end process	DDR_Rd_Data;
 
 
 AFE_Rd_Data : Process(AFESClk,AFECS)

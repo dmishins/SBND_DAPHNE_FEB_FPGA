@@ -63,13 +63,14 @@ add wave -noupdate -group Old_Off_Beam_Logic /afe_fpga_a_tb/uut/Buff_In
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/SlfTrgEn
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/Input_Seqs(0)(0)
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/Input_Seqs
-add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/Diff_Reg
+add wave -noupdate -expand -group Input_Buffering -radix sfixed /afe_fpga_a_tb/uut/Diff_Reg
+add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/IntTrgThresh
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/SlfTrgEdge
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/Ins(0)(0)
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/Outs(0)(0)
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/Mids(0)(0)
 add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/TmgSrcSel
-add wave -noupdate -expand -group Input_Buffering -expand /afe_fpga_a_tb/uut/RxOut
+add wave -noupdate -expand -group Input_Buffering /afe_fpga_a_tb/uut/RxOut
 add wave -noupdate -expand -group OnBeam_Readout -color Orange -itemcolor Orange /afe_fpga_a_tb/uut/SysClk
 add wave -noupdate -expand -group OnBeam_Readout -color Orange -itemcolor Orange /afe_fpga_a_tb/uut/RxOutClk
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeamTrigReq
@@ -81,12 +82,16 @@ add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeamuBunch
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeamDoneDelay
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_out
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_rd_en
+add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_rd_or
+add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_clr_en
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_wr_en
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_full
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_overflow
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_empty
-add wave -noupdate -expand -group OnBeam_Readout -expand /afe_fpga_a_tb/uut/OnBeam_rd_undercount
+add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_rd_undercount
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam_wr_overcount
+add wave -noupdate -expand -group OnBeam_Readout -radix sfixed /afe_fpga_a_tb/uut/IntTrgThresh
+add wave -noupdate -expand -group OnBeam_Readout -radix sfixed /afe_fpga_a_tb/uut/Diff_Reg(0)(0)
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeamPulseFound
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/OnBeam
 add wave -noupdate -expand -group OnBeam_Readout /afe_fpga_a_tb/uut/CombinedOnBeamOverflow
@@ -94,6 +99,9 @@ add wave -noupdate /afe_fpga_a_tb/uut/DDRAddrOut
 add wave -noupdate /afe_fpga_a_tb/uut/DDRAddrRd
 add wave -noupdate /afe_fpga_a_tb/uut/DDRAddrFull
 add wave -noupdate /afe_fpga_a_tb/uut/DDRAddrEmpty
+add wave -noupdate /afe_fpga_a_tb/uut/ClearChannelReq
+add wave -noupdate /afe_fpga_a_tb/uut/ClearChannelActive
+add wave -noupdate /afe_fpga_a_tb/uut/ClearChannelCounter
 add wave -noupdate -expand -group uBunchBuff /afe_fpga_a_tb/uut/uBunchOffset
 add wave -noupdate -expand -group uBunchBuff /afe_fpga_a_tb/uut/OnBeamuBunchOffset
 add wave -noupdate -expand -group uBunchBuff /afe_fpga_a_tb/uut/uBunchBuffOut
@@ -106,6 +114,7 @@ add wave -noupdate -expand -group uBunchBuff /afe_fpga_a_tb/uut/uBunchRd
 add wave -noupdate -expand -group uBunchBuff /afe_fpga_a_tb/uut/uBunchBuffEmpty
 add wave -noupdate -expand -group uBunchBuff /afe_fpga_a_tb/uut/uBunchBuffFull
 add wave -noupdate -expand -group EvBuff /afe_fpga_a_tb/uut/EventWdCnt
+add wave -noupdate -expand -group EvBuff /afe_fpga_a_tb/uut/MaxEvBuffSize
 add wave -noupdate -expand -group EvBuff /afe_fpga_a_tb/uut/EvBuffStatFIFO_Full
 add wave -noupdate -expand -group EvBuff /afe_fpga_a_tb/uut/EvBuffStatFIFO_Empty
 add wave -noupdate -expand -group EvBuff /afe_fpga_a_tb/uut/EvenWrtDone
@@ -184,7 +193,7 @@ add wave -noupdate /afe_fpga_a_tb/uut/GenOnePerAFE(0)/Pipeline/U0/native_mem_mod
 add wave -noupdate -label AFE_buff_0_0 /afe_fpga_a_tb/uut/Gen_FIFOs_Per_AFE(0)/Gen_FIFOs_Per_Chan(0)/AFEBuff/U0/native_mem_module/mem_module/line__3384/memory
 add wave -noupdate -label AFE_Buff_0_1 /afe_fpga_a_tb/uut/Gen_FIFOs_Per_AFE(0)/Gen_FIFOs_Per_Chan(1)/AFEBuff/U0/native_mem_module/mem_module/line__3384/memory
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {10185463 ps} 0}
+WaveRestoreCursors {{Cursor 1} {28770925 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 389
 configure wave -valuecolwidth 204
@@ -200,4 +209,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ps} {31500 ns}
+WaveRestoreZoom {0 ps} {105 us}
