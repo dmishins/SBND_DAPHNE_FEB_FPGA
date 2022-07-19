@@ -1,0 +1,101 @@
+#:C19    
+#Xilinx FPGA Editor Command Log File
+#Editor Version:
+#:V   SPARC M2.1 P.20131013
+#Current Working Directory:
+#:D   /home/dmishins/Desktop/SBND_FEB
+#Host Name:
+#:H   dhcp-131-225-95-215
+#Date/Time:
+#:T   Tue Jul 19 12:43:56 2022
+#------------------------------
+	#Reading FEB_Fpga_A.ncd...
+	#Loading device for application Rf_Device from file '6slx25.nph' in environment /opt/Xilinx/14.7/ISE_DS/ISE/.
+	#   "FEB_Fpga_A" is an NCD, version 3.2, device xc6slx25, package csg324, speed -3
+	#Design creation date: 2022.07.19.16.17.02
+	#Building chip graphics...
+	#Loading speed info...
+	#1
+setattr main edit-mode no-logic-changes
+	#Crossprobing - Hilite bell Maddsub_n6445.
+	#2
+unselect -all
+	#3
+select -k comp 'Maddsub_n6445'
+	#4
+unselect -all
+	#5
+unselect -all
+	#6
+select comp 'Maddsub_n6445'
+	#comp "Maddsub_n6445",  site "DSP48_X1Y8",  type = DSP48A1  (RPM grid X121Y128)
+	#7
+unselect -all
+	#8
+select comp 'Maddsub_n6445'
+	#comp "Maddsub_n6445",  site "DSP48_X1Y8",  type = DSP48A1  (RPM grid X121Y128)
+	#9
+post block
+	#10
+unselect -all
+	#11
+select net "GLOBAL_LOGIC0"
+	#net "GLOBAL_LOGIC0"
+	#12
+unselect -all
+	#13
+unselect -all
+	#Crossprobing - Hilite bell Maddsub_n6445.
+	#14
+post attr
+	#15
+post attr
+	#16
+unselect -all
+	#17
+select comp 'Maddsub_n6445'
+	#comp "Maddsub_n6445",  site "DSP48_X1Y8",  type = DSP48A1  (RPM grid X121Y128)
+	#18
+unselect -all
+	#19
+select comp 'Maddsub_n6445'
+	#comp "Maddsub_n6445",  site "DSP48_X1Y8",  type = DSP48A1  (RPM grid X121Y128)
+	#20
+post attr
+	#21
+unpost comp "Maddsub_n6445"
+	#22
+unselect -all
+	#23
+select comp 'Maddsub_n6445'
+	#comp "Maddsub_n6445",  site "DSP48_X1Y8",  type = DSP48A1  (RPM grid X121Y128)
+	#24
+unselect -all
+	#25
+select comp 'Maddsub_n6445'
+	#comp "Maddsub_n6445",  site "DSP48_X1Y8",  type = DSP48A1  (RPM grid X121Y128)
+	#26
+post block
+	#<P5>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<5>>.
+	#<P6>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<6>>.
+	#<P5>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<5>>.
+	#<P4>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<4>>.
+	#<P3>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<3>>.
+	#<P3>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<3>>.
+	#<P46>.
+	#<DREG>.
+	#<BCOUT1>.
+	#<BCOUT3>.
+	#<BCOUT6>.
+	#<BCOUT14>.
+	#<PCOUT8>.
+	#<P2>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<2>>.
+	#<CARRYOUT>.
+	#<P3>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<3>>.
+	#<P5>; net <NumReadoutChannels[4]_GND_8_o_add_2352_OUT<5>>.
+	#27
+route
+	#ERROR:FPGAEditor:565 - There is no net in the selection. Please select a net to manual route.
+	#28
+route
+	#ERROR:FPGAEditor:565 - There is no net in the selection. Please select a net to manual route.
