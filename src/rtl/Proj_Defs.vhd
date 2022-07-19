@@ -120,6 +120,7 @@ constant DebugVersionAd : AddrPtr := "00" & X"76";
 constant PageRstAddr : AddrPtr := "00" & X"77";
 constant evBuffOutAd : AddrPtr := "00" & X"78";
 constant evBuffWrdsAd : AddrPtr := "00" & X"79";
+constant DebugCtrlAd : AddrPtr := "00" & X"7A";
 -- Spill indicator
 
 Type AddrArrayType is Array(0 to 7) of AddrPtr;

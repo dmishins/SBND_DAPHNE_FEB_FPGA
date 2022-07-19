@@ -365,6 +365,8 @@ signal TempEn : std_logic;
 signal TempCtrl : std_logic_vector(3 downto 0);
 signal One_Wire_Out : std_logic_vector(15 downto 0);
 
+
+signal DebugCtrl : std_logic_vector(4 downto 0);
 -- Simon 
 
 signal FRSimonSync : Array_2x3;
@@ -815,28 +817,33 @@ RefIn <= GPI0;
 A7 <= SqWav when Unsigned(GA) = 2 else TrgSrc and PhDtct when Unsigned(GA) = 3 else GPO;
 
 -- This must sit outside the gen loop
-Debugproc : process (RxOutClk(0), CpldRst)
+Debugproc : process (SysClk, CpldRst)
 
 begin
 
  if CpldRst = '0' then 
- Debug(4 downto 1) <= (others => '0');
- 
-elsif rising_edge (RxOutClk(0)) then
-
---Debug(1) <= ADCSmplGate(0);
-Debug(1) <= not Debug(1);
-if Input_Seqs(0)(0) = Idle then Debug(2) <= '0'; else Debug(2) <= '1'; end if;
-
-if SlfTrgEdge(0)(0) = "01" then Debug(3) <= '1'; else Debug(3) <= '0'; end if;
-if Diff_Reg(0)(0) > IntTrgThresh(0)(0) then Debug(4) <= '1'; else Debug(4) <= '0'; end if;
-	--8765 outs
-	-- 	 Debug(9) <= SlfTrgEdge(0)(0)(0);
-	-- 10 gatewidth nonzero
+ Debug(10 downto 1) <= (others => '0');
+ DebugCtrl <= "00000";
+elsif rising_edge (SysClk) then
+-- Register for defining the geographical address of the FEB
+   if uWRDL = 1 and uCA(9 downto 0) =  DebugCtrlAd then 
+		DebugCtrl <= uCD(15 downto 11); 
+	else
+		DebugCtrl <= DebugCtrl; 
+	end if;
 
 
---if SlfTrgEdge(0)(4) = 1 then Debug(9) <= '1'; else Debug(9) <= '0'; end if;
---if Diff_Reg(0)(4) > IntTrgThresh(0)(4) then Debug(10) <= '1'; else Debug(10) <= '0'; end if;
+if DebugCtrl = "00000" then
+	Debug(1) <= not Debug(1);
+	Debug(2) <= EvBuffRd;
+	Debug(3) <= EvBuffWrt;
+	Debug(7 downto 4) <= Read_Seq_Stat;
+	Debug(8) <= uBunchWrt;
+	Debug(9) <= uBunchRd;
+	Debug(10) <= OnBeam;
+elsif DebugCtrl = "00001" then
+Debug(10 downto 1) <= EvWdCnt(13 downto 4);
+end if;
 
 end if;
 end process;
@@ -1308,15 +1315,7 @@ elsif rising_edge (RxOutClk(i)) then
 		then SlfTrgEdge(i)(k)(1) <= SlfTrgEdge(i)(k)(0);
 	 else SlfTrgEdge(i)(k)(1) <= SlfTrgEdge(i)(k)(1);
 	 end if;
-	 if i = 0 then
-	 Debug(9) <= SlfTrgEdge(0)(0)(0);
-	 if GateWidth(0) = 0 
-	 then
-		Debug(10) <= '1';
-	 else 
-		Debug(10) <= '0';
-		end if;
-	 end if;
+
 -- Input Sequencer (i: 0->1, k: 0->7)
 -- (Idle,Increment,WrtChanNo,WrtTimeStamp,WrtHits,WrtHitWdCnt,LdNxtWrtAd);
 case Input_Seqs(i)(k) is
@@ -1886,9 +1885,9 @@ elsif WRDL = 1 and ((uCA(11 downto 10) = GA and uCA(9 downto 0) = SDRamRdPtrLoAd
 then SDRdAD <= SDRdAD(29 downto 16) & uCD;
 -- Convert the microcontroller data to a page number
 elsif WRDL = 1 and uCA(9 downto 0) = uBunchRdPtrHiAd
- then SDRdAD <= uCD(3 downto 0) & SDRdAD(25 downto 0);
+ then SDRdAD <= uCD(0 downto 0) & SDRdAD(28 downto 0);
 elsif WRDL = 1 and uCA(9 downto 0) = uBunchRdPtrLoAd
- then SDRdAD <= SDRdAD(29 downto 26) & uCD & "0" & X"000";
+ then SDRdAD <= SDRdAD(29 downto 29) & uCD & "0" & X"000";
 -- Increment by 8 long words for each burst read command
 elsif SDRdCmdEn = '1' and DDR_Read_Seq /= CheckEmpty then SDRdAD <= SDRdAD + 32;
 else SDRdAD <= SDRdAD;
@@ -2896,6 +2895,7 @@ iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
 		 DDRAddrOut(15 downto  0)    when uBBuffAdLoAd,
 		 DDRAddrOut(31 downto 16)    when uBBuffAdHiAd,
 		 EvBufffOut 					  when evBuffOutAd,
+		 DebugCtrl & '0' & Debug 	  when DebugCtrlAd,
 		 "00" & EvBuffWdsUsed					  when evBuffWrdsAd,
 		 X"0000" when others;
 
