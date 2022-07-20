@@ -315,7 +315,7 @@ signal EvBuffWrt,EvBuffRd,EvBuffEmpty,EvBuffFull,DRAMRdBuffWrt,PageRdStat,
 		 PageRdReq,DRAMRdBuffRd,DRAMRdBuffFull,DRAMRdBuffEmpty, rstDRAMBuffHi, DramReset : std_logic;
 signal EvBuffDat,EvBufffOut,DRAMRdBuffDat,DRAMRdBuffOut : std_logic_vector(15 downto 0);
 signal DRAMRdBuffWdsUsed,EvBuffWdsUsed,PageWdCount : std_logic_vector(13 downto 0); --TODO
-signal DDRWrtCount : std_logic_vector(10 downto 0);
+signal DDRWrtCount : std_logic_vector(15 downto 0);
 
 signal MaxEvBuffSize : unsigned(15 downto 0);
 
@@ -1891,7 +1891,7 @@ Case DDR_Write_Seq is
    When Idle => DDRWrtSeqStat <= "000"; --Debug(10 downto 8) <= "000";
 -- If the FIFO words used is > leading word count, 
 -- then at least one event is ready for copying to DRAM
-		if SlfTrgEn = '1' and EvBuffWdsUsed >= EvBufffOut(10 downto 0) 
+		if SlfTrgEn = '1' and EvBuffWdsUsed >= EvBufffOut(15 downto 0) 
 		 and EvBuffEmpty = '0' and DDRHoldoff = '0'
 		then DDR_Write_Seq <= ChkWrtBuff;
 		else DDR_Write_Seq <= Idle;
@@ -1941,8 +1941,8 @@ if DDR_Write_Seq = Wait1 or (SlfTrgEn = '0' and DDRAddrEmpty = '0')
 --Debug(3) <= uBunchBuffEmpty;
 --Debug(1) <= uBunchRd;
 
-if DDR_Write_Seq = SetWrtPtr and EvBufffOut(10 downto 0) > 0 
-						then DDRWrtCount <= EvBufffOut(10 downto 0);
+if DDR_Write_Seq = SetWrtPtr and EvBufffOut(15 downto 0) > 0 
+						then DDRWrtCount <= EvBufffOut(15 downto 0);
 elsif DDR_Write_Seq = WrtDDR and DDRWrtCount /= 0 
 						then DDRWrtCount <= DDRWrtCount - 1;
 else DDRWrtCount <= DDRWrtCount;
