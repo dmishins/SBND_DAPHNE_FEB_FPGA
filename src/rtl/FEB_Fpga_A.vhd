@@ -1854,8 +1854,8 @@ elsif Strt_req = '1' then SDWrtAdStage <= (others => '0');
 -- Keep the address from the last update until the write command has been sent
 elsif WrtCmdEn = '1' and DDR_Write_Seq /= SetWrtPtr then SDWrtAdStage <= SDWrtAd;
 elsif DDR_Write_Seq = SetWrtPtr 
-then SDWrtAdStage(9 downto 0) <= (others => '0');
-	  SDWrtAdStage(29 downto 10) <= DDRAddrOut(19 downto 0);
+then SDWrtAdStage(12 downto 0) <= (others => '0');
+	  SDWrtAdStage(29 downto 13) <= DDRAddrOut(16 downto 0);
 else SDWrtAdStage <= SDWrtAdStage;
 end if;
 
