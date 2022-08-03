@@ -323,9 +323,10 @@ signal AFE_Num  : Integer range 0 to 2;
 signal Chan_Num : integer range 0 to 7;
 
 Type Read_Seq_FSM is (Idle,CheckEmpty,FirstCmd,CheckRdBuff0,
-						 RdWdCount,CheckRdBuff1,RdDataHi,RdDataLo);
+						 RdWdCount,CheckRdBuff1,RdDataHi,RdDataLo, WriteFakeEvent0, WriteFakeEvent1,
+						 WriteFakeEvent2);
 signal DDR_Read_Seq : Read_Seq_FSM;
-
+signal FakeSkippedEvent : std_logic;
 -- Signals used by the current sense multiplexer
 signal MuxSelReg : std_logic_vector(2 downto 0);
 signal MuxadReg : std_logic_vector(1 downto 0);
@@ -367,6 +368,8 @@ signal One_Wire_Out : std_logic_vector(15 downto 0);
 
 
 signal DebugCtrl : std_logic_vector(4 downto 0);
+
+signal uBStore : std_logic_vector(31 downto 0);
 -- Simon 
 
 signal FRSimonSync : Array_2x3;
@@ -1291,7 +1294,7 @@ variable FlashChannelsCount : unsigned(4 downto 0) := "00000";
 	DRAMRdBuffDat <= (others => '0'); DDRWrtCount <= (others => '0'); PageRdStat <= '0';
 	PageWdCount <= (others => '0'); DRAMRdBuffWrt <= '0'; DRAMRdBuffRd <= '0';
 	EvBuffStat_rden <= '0'; RdDone <= '0'; GPOCount <= "000"; GPO <= '0'; 
-	
+	FakeSkippedEvent <= '0';
 	ControllerNo <= "00000"; PortNo <= "00000"; 
 	OnBeam_rd_en <= (others => (others => '0'));
 	ClearChannelReq <= (others => (others => '0'));
@@ -1442,9 +1445,9 @@ if RxOut.Done = '1' and Rx1Dat(21) = '1' and Rx1Dat(19 downto 0) = X"00000" and 
 		  uBunch(19 downto 0) <= (others => '0');
 		  uBunchGuard <= '1';
  elsif RxOut.Done = '1' and Rx1Dat(21) = '1' and Rx1Dat(19 downto 0) /= 0 
-	then uBunch <= uBunch(31 downto 20) & Rx1Dat(19 downto 0); uBunchGuard <= '0';
+	then uBunch <= uBunch(31 downto 20) & Rx1Dat(19 downto 2) & GA; uBunchGuard <= '0';
  elsif RxOut.Done = '1' and Rx1Dat(21) = '0'
-	then uBunch <= X"000" & Rx1Dat(19 downto 0); uBunchGuard <= '0';
+	then uBunch <= X"000" & Rx1Dat(19 downto 2) & GA; uBunchGuard <= '0';
 else uBunch <= uBunch; uBunchGuard <= uBunchGuard;
 end if;
 
@@ -1667,13 +1670,30 @@ end if;
 -- Clear out any stale data from the read FIFO before starting a new block read
 -- Read_Seq_FSM is (Idle,CheckEmpty,FirstCmd,CheckRdBuff0,RdWdCount,
 -- 						CheckRdBuff1,RdDataHi,RdDataLo);
+
+if uWRDL = 1 
+ and ((uCA(11 downto 10) = GA and uCA(9 downto 0) = CSRRegAddr)
+    or uCA(9 downto 0) = CSRBroadCastAd)
+then FakeSkippedEvent <= uCD(15);
+else FakeSkippedEvent <= FakeSkippedEvent;
+end if;
+
 case DDR_Read_Seq is
 	When Idle => --Debug(10 downto 8) <= "000";
- if WRDL = 1 and ((uCA(11 downto 10) = GA and uCA(9 downto 0) = SDRamRdPtrLoAd)
-		 	 or uCA(9 downto 0) = BrdCstRdPtrLoAd or uCA(9 downto 0) = uBunchRdPtrLoAd)
+		if WRDL = 1 and (
+			(uCA(11 downto 10) = GA and uCA(9 downto 0) = SDRamRdPtrLoAd) or
+		 	(uCA(9 downto 0) = BrdCstRdPtrLoAd) or
+			(uCA(9 downto 0) = uBunchRdPtrLoAd and (uCD(1 downto 0) = GA or FakeSkippedEvent = '0'))
+			)
 		then DDR_Read_Seq <= CheckEmpty;
+		elsif WRDL = 1 and (uCA(9 downto 0) = uBunchRdPtrLoAd) and (uCD(1 downto 0) /= GA and FakeSkippedEvent = '1')
+		then
+			DDR_Read_Seq <= WriteFakeEvent0;
 		else DDR_Read_Seq <= Idle;
 		end if;
+	When WriteFakeEvent0 => DDR_Read_Seq <= WriteFakeEvent1;
+	When WriteFakeEvent1 => DDR_Read_Seq <= WriteFakeEvent2;
+	When WriteFakeEvent2 => DDR_Read_Seq <= Idle;
 	When CheckEmpty => --Debug(10 downto 8) <= "001"; 
 		if SDrd_empty = '1' then DDR_Read_Seq <= FirstCmd;
 		else DDR_Read_Seq <= CheckEmpty;
@@ -1726,8 +1746,11 @@ then SDRdAD <= SDRdAD(29 downto 16) & uCD;
 -- Convert the microcontroller data to a page number
 elsif WRDL = 1 and uCA(9 downto 0) = uBunchRdPtrHiAd
  then SDRdAD <= uCD(0 downto 0) & SDRdAD(28 downto 0);
+		uBStore(31 downto 16) <= uCD;
 elsif WRDL = 1 and uCA(9 downto 0) = uBunchRdPtrLoAd
  then SDRdAD <= SDRdAD(29 downto 29) & uCD & "0" & X"000";
+ 		uBStore(15 downto 0) <= uCD;
+
 -- Increment by 8 long words for each burst read command
 elsif SDRdCmdEn = '1' and DDR_Read_Seq /= CheckEmpty then SDRdAD <= SDRdAD + 32;
 else SDRdAD <= SDRdAD;
@@ -1789,7 +1812,8 @@ else PageRdReq <= PageRdReq;
 end if;
 
 -- DDR Page data FIFO write
-if PageWdCount /= 0 and (DDR_Read_Seq = RdDataHi or (DDR_Read_Seq = RdDataLo and SDrd_en = '1'))
+if (DDR_Read_Seq = WriteFakeEvent0 or DDR_Read_Seq = WriteFakeEvent1 or DDR_Read_Seq = WriteFakeEvent2) or
+ (PageWdCount /= 0 and (DDR_Read_Seq = RdDataHi or (DDR_Read_Seq = RdDataLo and SDrd_en = '1')))
 then DRAMRdBuffWrt <= '1'; 
 else DRAMRdBuffWrt <= '0'; 
 end if;
@@ -1821,6 +1845,9 @@ end if;
 -- DDR page data
     if DDR_Read_Seq = RdDataHi then DRAMRdBuffDat <= SDRdDat(31 downto 16);
  elsif DDR_Read_Seq = RdDataLo then DRAMRdBuffDat <= SDRdDat(15 downto 0);
+ elsif DDR_Read_Seq = WriteFakeEvent0 then DRAMRdBuffDat <= x"0003";
+ elsif DDR_Read_Seq = WriteFakeEvent1 then DRAMRdBuffDat <= uBStore(31 downto 16);
+ elsif DDR_Read_Seq = WriteFakeEvent2 then DRAMRdBuffDat <= uBStore(15 downto 0);
 else DRAMRdBuffDat <= DRAMRdBuffDat;
 end if;
 
@@ -2651,7 +2678,7 @@ DDRRd_Mux <= SDRdDat(31 downto 16) when RdHi_LoSel = '0' else SDRdDat(15 downto 
 
 with uCA(9 downto 0) select
 
-iCD <= X"000" & "00" & AFEPDn when CSRRegAddr,
+iCD <= FakeSkippedEvent & "000" &  X"00" & "00" & AFEPDn when CSRRegAddr,
 		 X"000" & "00" & AlignReq when SlipCtrlAd,
 		 X"0" & '0' & SlipCntReg(1)
 			& X"0" & '0' & SlipCntReg(0) when SlipCntRegAd,
